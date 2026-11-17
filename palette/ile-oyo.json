@@ -9,7 +9,7 @@
       "mode": "dark",
       "palette": {
         "bg": "#1A2B4C",
-        "fg": "#F5F5DC",
+        "fg": "#F4E6CE",
         "selection": "#2A3B5C",
         "comment": "#8994AA",
         "red": "#EC6C64",
@@ -36,7 +36,7 @@
         "color4": "#6E9DF5",
         "color5": "#E86A8F",
         "color6": "#6B9D9D",
-        "color7": "#F5F5DC",
+        "color7": "#F4E6CE",
         "color8": "#8194BA",
         "color9": "#FE8D84",
         "color10": "#A7B27C",

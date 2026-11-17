@@ -85,7 +85,9 @@ A first attempt redesigned the colors from scratch in OKLCH. It passed, but
 drifted from the draft's look, so it was replaced with a minimal-change pass
 over the draft:
 
-- **Kept exactly:** bg, fg, selection, UI scale and overlays in both variants;
+- **Alẹ́ fg:** warmer sányán `#F4E6CE` (11.4:1) instead of the draft's
+  `#F5F5DC`, by preference; ANSI 7 matches it.
+- **Kept exactly:** bg, fg (Ọ̀sán), selection, UI scale and overlays in both variants;
   Alẹ́ yellow; in Ọ̀sán, comment, red, orange, green, cyan and purple.
 - **Lightened (Alẹ́), same hue and chroma:** comment `#8994AA` (greyer, to stay
   apart from blue), red `#EC6C64`, orange `#CE8154`, green `#8F9964`, cyan
