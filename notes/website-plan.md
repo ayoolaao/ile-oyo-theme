@@ -22,7 +22,7 @@ Yoruba design story.
 | Apps | A card per app; each links to its install page |
 | App install page | Steps from that target's README, download links to the release files, screenshot |
 | Palette | Every color in both variants with hex, contrast ratio and its aṣọ-òkè source; click to copy |
-| Story | Ọ̀yọ́, aṣọ-òkè (ẹtù, sányán, àlàárì), why the variant names, pronunciation |
+| Story | Ọ̀yọ́, aṣọ-òkè (ẹtù, sányán, àlàárì), why the variant names, pronunciation. English first; draft in [story-draft.md](story-draft.md) |
 | Spec | Contrast rules, syntax roles, how to contribute a new app |
 
 ## Content comes from the repository
@@ -58,6 +58,24 @@ Decided: **A** (Astro). Hosting: see below.
 1. Home, Apps, install pages for the three v0.1 targets, Palette.
 2. Story and Spec pages; screenshots per app.
 3. Add pages automatically as v0.2 targets land.
+4. Yoruba translation of the site (see Internationalization).
+
+## Internationalization (planned)
+
+English ships first. A Yoruba version follows as its own milestone:
+
+- **Routing:** Astro's built-in i18n with English at `/` and Yoruba at `/yo/`;
+  a language switcher on every page; `lang` and `hreflang` set correctly.
+- **Content:** translations live next to the English source (one file per page
+  per language) so missing translations are easy to spot; untranslated pages
+  fall back to English.
+- **Generated content:** labels on the Palette and install pages (e.g.
+  "Background", "Install") come from a small string table per language.
+- **Typography:** fonts must render Yoruba tone marks over dotted letters
+  (Ọ̀, ẹ́, ṣ) correctly; test every page in both languages.
+- **Translation:** by the author or a fluent Yoruba speaker; machine
+  translation is not good enough for tone-marked Yoruba.
+- Start with Home and Story, then the rest.
 
 ## Domain, hosting and merch (decided 2026-11-17)
 
@@ -96,6 +114,5 @@ Products: apparel, and arts and crafts.
 
 ## Open questions
 
-- Should the Story page also be available in Yoruba?
-- Who writes the Story text? (Author's voice is best; I can draft from the
-  notes for editing.)
+- Story text: the author edits [story-draft.md](story-draft.md) into their
+  own voice and fills in the bracketed parts.

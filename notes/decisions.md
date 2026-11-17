@@ -124,3 +124,8 @@ Supersedes "proposed" in the previous entry. Theme site at
 private repos, PR previews, commercial use allowed). Merch store on Shopify at
 akeetan.com (apparel via print-on-demand, arts and crafts as own inventory),
 linked from the theme site. theiroko.com is kept for now.
+
+## 2026-11-17: Site language
+The site launches in English, Story page included. A Yoruba translation is a
+planned milestone (Astro i18n, `/yo/`), translated by a fluent speaker rather
+than by machine. A Story draft is in story-draft.md for the author to edit.
