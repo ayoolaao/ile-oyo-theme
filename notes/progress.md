@@ -34,7 +34,7 @@
   themes (257 UI colors, TextMate + semantic code colors). Syntax roles moved
   to `scripts/lib/syntax.mjs`. Added `ui.muted` to the palette after the tests
   found Ọ̀sán's secondary UI text at 3.96–4.26:1. `tests/vscode.test.mjs`: 16
-  tests pass. Branch `feature/vscode`.
+  tests pass. Smoke-tested in VS Code. Branch `feature/vscode`, PR #4 into `develop`.
 
 ## Open questions
 
@@ -42,5 +42,5 @@
 
 ## Next
 
-1. Try the VS Code themes in VS Code; open PR for `feature/vscode`.
+1. Merge PR #4 into `develop`.
 2. Later: package (`vsce`), Marketplace publisher, icon.
