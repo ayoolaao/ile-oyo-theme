@@ -18,8 +18,8 @@
 - 2026-11-16: PR #1 merged into `develop`.
 - 2026-11-16: Build pipeline (`npm run build`, `--check`) and iTerm2 target:
   `themes/iterm/Ile-Oyo-{Ale,Osan}.itermcolors`. Validated with `plutil` and a
-  round-trip check (every color reads back as the palette hex). Branch
-  `feature/iterm`.
+  round-trip check (every color reads back as the palette hex). Reviewed in
+  iTerm2. Branch `feature/iterm`, PR #2 into `develop`.
 
 ## Open questions
 
@@ -27,6 +27,6 @@
 
 ## Next
 
-1. Try the iTerm2 presets in iTerm itself; merge `feature/iterm`.
+1. Merge PR #2 into `develop`.
 2. CSS target.
 3. VS Code extension.
