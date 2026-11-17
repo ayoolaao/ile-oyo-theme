@@ -25,7 +25,7 @@
   Sass, JS/TS tokens) and `themes/css/demo.html`. Verified: JS tokens match the
   palette; in headless Chrome all 50 checked highlight colors match in both
   variants, the scoped `data-ile-theme` box works, and system light/dark picks
-  the right variant. Branch `feature/css`.
+  the right variant. Demo reviewed. Branch `feature/css`, PR #3 into `develop`.
 - 2026-11-16: `npm test` added: palette check, build check, JS token tests,
   Sass compile, TypeScript type-check (sass and typescript as dev dependencies).
   Each check was confirmed to fail when its file is broken.
@@ -36,5 +36,5 @@
 
 ## Next
 
-1. Review CSS, open PR for `feature/css`.
+1. Merge PR #3 into `develop`.
 2. VS Code extension (reuse the syntax roles).
