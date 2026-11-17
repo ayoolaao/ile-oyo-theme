@@ -2,31 +2,12 @@
 // highlighting for Prism, highlight.js and Shiki. Everything is generated from
 // the palette; the highlighting rules only reference CSS variables, so code
 // blocks follow whichever variant (Alẹ́ / Ọ̀sán) is active.
+import { SYNTAX } from '../lib/syntax.mjs';
+
 const OUT = 'themes/css';
 const ATTR = 'data-ile-theme';
 
-// Syntax roles → palette token. Shared reference for every target (see notes/spec.md).
-export const SYNTAX = {
-  keyword: 'pink',      // if, return, const, import, operators
-  function: 'green',    // function and method names
-  string: 'yellow',     // strings, template literals
-  number: 'purple',     // numbers, booleans, null, constants
-  type: 'cyan',         // classes, types, built-ins
-  parameter: 'orange',  // function parameters
-  property: 'green',    // object keys, attribute names
-  tag: 'pink',          // HTML/XML tags
-  regex: 'red',
-  comment: 'comment',
-  variable: 'fg',
-  punctuation: 'fg',
-  link: 'cyan',
-  deleted: 'red',
-  inserted: 'green',
-  changed: 'orange',
-  heading: 'purple',    // markdown headings
-  emphasis: 'yellow',
-  strong: 'orange',
-};
+
 
 const header = (palette, what) =>
   `/* ${palette.name} ${what} v${palette.version}\n` +

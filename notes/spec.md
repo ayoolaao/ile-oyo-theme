@@ -44,7 +44,7 @@ scripts/targets/<name>.mjs  one generator per app; returns [{ path, contents }]
 scripts/preview.mjs         npm run preview (local HTML, git-ignored preview/)
 themes/iterm/               generated .itermcolors (committed) + README
 themes/css/                 generated CSS/Sass/JS (committed), demo.html, README
-themes/vscode/              planned
+themes/vscode/              extension: package.json + README (hand-written), themes/*.json (generated)
 notes/                      these notes
 ```
 
@@ -72,7 +72,9 @@ the hex values exactly.
 
 Which palette color each kind of code token uses. Defined once in
 `scripts/targets/css.mjs` (`SYNTAX`, also exported from the JS tokens) and
-reused by every target that colors code (CSS highlighting now, VS Code next).
+reused by every target that colors code (CSS highlighting and VS Code). Now
+lives in `scripts/lib/syntax.mjs` with `STYLE` (italic: comment, parameter;
+bold: heading, strong).
 
 | Role | Color | Role | Color |
 | ---- | ----- | ---- | ----- |
@@ -100,6 +102,34 @@ Variant selection: Ọ̀sán by default, Alẹ́ under `prefers-color-scheme: da
 `data-ile-theme="ale" | "osan"` on any element overrides it for that subtree.
 `demo.html` is hand-written and uses only the variables.
 
+## Target: VS Code
+
+Extension in `themes/vscode/`: `package.json` (manifest, hand-written; publisher
+`ayoolaao` until a Marketplace publisher exists) and generated
+`themes/ile-oyo-ale.json` / `ile-oyo-osan.json` (labels "Ilé-Ọ̀yọ́ Alẹ́",
+"Ilé-Ọ̀yọ́ Ọ̀sán").
+
+Workbench layout, outermost to innermost: title bar, activity bar and status
+bar on `ui.bg_darker`; side bar, panels and inactive tabs on `ui.bg_dark`;
+editor and active tab on `bg`; widgets, menus and notifications on
+`ui.bg_light`.
+
+| Role | Color |
+| ---- | ----- |
+| Brand accent: active tab/panel/activity border, badges, progress, peek border | red (àlàárì) |
+| Buttons, links, info | blue |
+| Errors / warnings | red / yellow |
+| Secondary text | `ui.muted` |
+| Selection, active list item | `selection` |
+| Git: modified, added/untracked, deleted, conflict, ignored | orange, green, red, pink, `comment` |
+| Terminal | `ansi.color0`–`color15` |
+
+Code colors: TextMate scopes per syntax role, plus semantic token colors for
+the same roles (`semanticHighlighting: true`). `tests/vscode.test.mjs` checks
+UI text contrast (4.5:1; icons 3:1), that code colors come from the palette,
+the terminal colors, the manifest, and that every color key is registered by
+the installed VS Code.
+
 One repo with generators, not Dracula's one-repo-per-app layout. Targets can be
 split out later if needed.
 
@@ -110,7 +140,8 @@ Borrowed from Dracula, per variant:
 
 - `palette`: bg, fg, selection, comment, and the syntax accents
   (red, orange, yellow, green, cyan, blue, purple, pink)
-- `ui`: background scale (bg_darker → bg_lighter, float)
+- `ui`: background scale (bg_darker → bg_lighter, float) and `muted`, the
+  secondary UI text color (inactive tabs, descriptions, placeholders)
 - `ansi`: color0–color15 for terminals
 - `other`: translucent overlays (line highlight, tab drop, etc.)
 
@@ -129,6 +160,9 @@ pass (target 4.6:1, so hex rounding can't drop it below 4.5). Stored as hex.
 - **Selection:** `selection` must reach **1.5:1** against `bg` so highlighted
   text is easy to see. (The line highlight and tab-drop overlays are derived
   from it.)
+- **Muted UI text:** `ui.muted` must reach 4.5:1 against `bg`, `ui.bg_dark` and
+  `ui.bg_darker`, because it's drawn on all of them. (`comment` only has to
+  pass on `bg`, where code is.)
 - **Distinct accents:** no two syntax accents share a hex value, and none equals
   `bg`.
 - **One source:** generated files are never hand-edited.
