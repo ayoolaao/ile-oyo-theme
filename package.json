@@ -9,6 +9,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "check": "node scripts/check-palette.mjs"
+    "check": "node scripts/check-palette.mjs",
+    "preview": "node scripts/preview.mjs"
   }
 }

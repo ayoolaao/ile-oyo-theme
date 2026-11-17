@@ -78,3 +78,12 @@ hex. Accents sit at L ≈ 0.69–0.87 in Alẹ́ and L ≈ 0.47–0.53 in Ọ̀s
 ## Tooling
 
 Node.js (installed via nvm). The VS Code extension needs `vsce` for packaging.
+
+| Command | What it does |
+| ------- | ------------ |
+| `npm run check` | Enforces the rules above; non-zero exit on failure |
+| `npm run preview` | Builds `preview/index.html` from the palette and opens it |
+| `npm run preview -- --compare <file>` | Side-by-side with another palette (either format) → `preview/compare.html` |
+
+Previews are local files in the git-ignored `preview/` folder. Nothing is
+published to the web.

@@ -9,7 +9,8 @@
 - 2026-11-16: Name settled as Ilé-Ọ̀yọ́ ("home of Ọ̀yọ́"); palette sources are Ọ̀yọ́ aṣọ-òkè.
 - 2026-11-16: Palette revised to v0.1.0 in `palette/ile-oyo.json`; contrast
   check added (`npm run check`); swatch page published for review.
-  Branch: `feature/palette-revision` (PR into `develop`).
+  Branch: `feature/palette-revision` (PR #1 into `develop`).
+- 2026-11-16: Local preview added (`npm run preview`, `--compare` for side by side).
 
 ## Next
 
