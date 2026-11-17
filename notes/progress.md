@@ -50,6 +50,9 @@
   `assets/icon/icon.svg`, rendered to `themes/vscode/icon.png` by
   `npm run icon`. `.vsix` now 9 files incl. icon, LICENSE, NOTICE, no
   warnings; 22 tests pass. PR `feature/packaging` → `release/v0.1.0`.
+- 2026-11-17: PR #6 merged into `release/v0.1.0`. Release check on a clean
+  `npm ci`: 22 tests pass; npm dry run OK. Fixed `package:vscode` failing when
+  `dist/` doesn't exist yet. PR #5 marked ready.
 
 ## Open questions
 
@@ -58,8 +61,8 @@
 
 ## Next
 
-1. v0.1.0: merge packaging into `release/v0.1.0`, mark PR #5 ready, merge
-   into `main`, tag `v0.1.0`, merge `main` back into `develop`.
+1. v0.1.0: author merges PR #5 into `main` (merge commit, not squash); then
+   tag `v0.1.0` and merge `main` back into `develop`.
 2. VS Code Marketplace: author creates the publisher `ayoolaao` and runs
    `npm run publish:vscode` (repository is private for now).
 3. npm: author runs `npm run publish:css`.

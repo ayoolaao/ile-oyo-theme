@@ -17,7 +17,7 @@
     "test:tokens": "node --test tests/",
     "test:sass": "sass --no-source-map tests/use.scss > /dev/null",
     "test:types": "tsc --noEmit --strict --module nodenext --moduleResolution nodenext tests/use.ts",
-    "package:vscode": "npm test && cd themes/vscode && vsce package --no-dependencies -o ../../dist/",
+    "package:vscode": "npm test && node -e \"require('fs').mkdirSync('dist',{recursive:true})\" && cd themes/vscode && vsce package --no-dependencies -o ../../dist/",
     "ls:vscode": "cd themes/vscode && vsce ls --no-dependencies",
     "publish:vscode": "npm test && cd themes/vscode && vsce publish --no-dependencies",
     "pack:css": "npm test && cd themes/css && npm pack --dry-run",
