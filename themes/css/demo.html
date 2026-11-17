@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ilé-Ọ̀yọ́ CSS Demo</title>
+<link rel="stylesheet" href="ile-oyo.css">
+<link rel="stylesheet" href="ile-oyo-highlight.css">
+<style>
+  /* Demo page chrome. Every color comes from the --ile-* variables. */
+  body {
+    margin: 0;
+    background: var(--ile-ui-bg-dark);
+    color: var(--ile-fg);
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
+    padding: 24px max(16px, 4vw) 64px;
+  }
+  main { max-width: 860px; margin: 0 auto; display: grid; gap: 28px; }
+  h1 { margin: 0; font-size: 36px; }
+  h2 { margin: 0 0 8px; font-size: 18px; color: var(--ile-comment); font-weight: 500; }
+  p { margin: 0; }
+  a { color: var(--ile-blue); }
+  .switch { display: flex; gap: 8px; flex-wrap: wrap; }
+  .switch button {
+    font: inherit; padding: 6px 14px; border-radius: 999px; cursor: pointer;
+    background: var(--ile-ui-bg-light); color: var(--ile-fg); border: 1px solid var(--ile-selection);
+  }
+  .switch button[aria-pressed="true"] { background: var(--ile-selection); }
+  .switch button:focus-visible { outline: 2px solid var(--ile-blue); outline-offset: 2px; }
+  pre { margin: 0; padding: 14px 16px; border-radius: 8px; overflow-x: auto; font: 14px/1.6 ui-monospace, "SF Mono", Menlo, monospace; }
+  .swatches { display: flex; flex-wrap: wrap; gap: 6px; }
+  .swatches span { width: 44px; height: 28px; border-radius: 4px; box-shadow: inset 0 0 0 1px var(--ile-non-text); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Ilé-Ọ̀yọ́</h1>
+    <p>Alẹ́ (dark) and Ọ̀sán (light), from <code>ile-oyo.css</code> and <code>ile-oyo-highlight.css</code>.</p>
+  </header>
+
+  <div class="switch" role="group" aria-label="Variant">
+    <button id="v-system" type="button" data-v="" aria-pressed="true">System</button>
+    <button id="v-ale" type="button" data-v="ale" aria-pressed="false">Alẹ́</button>
+    <button id="v-osan" type="button" data-v="osan" aria-pressed="false">Ọ̀sán</button>
+  </div>
+
+  <section>
+    <h2>Palette</h2>
+    <div class="swatches">
+      <span style="background:var(--ile-bg)" title="bg"></span>
+      <span style="background:var(--ile-fg)" title="fg"></span>
+      <span style="background:var(--ile-selection)" title="selection"></span>
+      <span style="background:var(--ile-comment)" title="comment"></span>
+      <span style="background:var(--ile-red)" title="red"></span>
+      <span style="background:var(--ile-orange)" title="orange"></span>
+      <span style="background:var(--ile-yellow)" title="yellow"></span>
+      <span style="background:var(--ile-green)" title="green"></span>
+      <span style="background:var(--ile-cyan)" title="cyan"></span>
+      <span style="background:var(--ile-blue)" title="blue"></span>
+      <span style="background:var(--ile-purple)" title="purple"></span>
+      <span style="background:var(--ile-pink)" title="pink"></span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Prism</h2>
+<pre class="language-js" id="prism"><code class="language-js"><span class="token comment">// Weave one strip of aṣọ-òkè</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Loom <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./loom.js"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">weave</span><span class="token punctuation">(</span><span class="token parameter">threads<span class="token punctuation">,</span> width <span class="token operator">=</span> <span class="token number">4</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> loom <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Loom</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">pattern</span><span class="token operator">:</span> <span class="token regex">/ẹtù|sányán/</span><span class="token punctuation">,</span> <span class="token literal-property property">sewn</span><span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> loom<span class="token punctuation">.</span><span class="token method function property-access">pass</span><span class="token punctuation">(</span>threads<span class="token punctuation">,</span> width <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+  </section>
+
+  <section>
+    <h2>highlight.js</h2>
+<pre id="hljs"><code class="hljs language-python"><span class="hljs-comment"># Count strips by cloth</span>
+<span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> Counter
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">tally</span>(<span class="hljs-params">strips: <span class="hljs-built_in">list</span>[<span class="hljs-built_in">str</span>]</span>) -&gt; Counter:
+    <span class="hljs-keyword">return</span> Counter(s <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> strips <span class="hljs-keyword">if</span> s != <span class="hljs-string">"àlàárì"</span> <span class="hljs-keyword">or</span> <span class="hljs-literal">True</span>)
+
+<span class="hljs-built_in">print</span>(tally([<span class="hljs-string">"ẹtù"</span>] * <span class="hljs-number">3</span>))</code></pre>
+  </section>
+
+  <section>
+    <h2>Shiki (css-variables theme)</h2>
+<pre class="shiki" id="shiki" style="background-color:var(--shiki-background);color:var(--shiki-foreground)"><code><span style="color:var(--shiki-token-comment)"># Install the theme</span>
+<span style="color:var(--shiki-token-function)">npm</span><span style="color:var(--shiki-token-string)"> install</span><span style="color:var(--shiki-token-parameter)"> --save</span><span style="color:var(--shiki-token-string)"> ile-oyo-theme</span>
+<span style="color:var(--shiki-token-keyword)">export</span><span style="color:var(--shiki-foreground)"> THEME</span><span style="color:var(--shiki-token-keyword)">=</span><span style="color:var(--shiki-token-string-expression)">"ale"</span></code></pre>
+  </section>
+
+  <section data-ile-theme="osan" style="background:var(--ile-bg);color:var(--ile-fg);padding:16px;border-radius:8px" id="scoped">
+    <h2>Scoped variant</h2>
+    <p>This box sets <code>data-ile-theme="osan"</code>, so it stays Ọ̀sán whatever the page uses. <a href="#scoped">A link</a>.</p>
+  </section>
+</main>
+<script>
+  // Switch the page variant. "System" removes the attribute and follows the OS setting.
+  const buttons = document.querySelectorAll('.switch button');
+  for (const b of buttons) {
+    b.addEventListener('click', () => {
+      if (b.dataset.v) document.documentElement.setAttribute('data-ile-theme', b.dataset.v);
+      else document.documentElement.removeAttribute('data-ile-theme');
+      for (const o of buttons) o.setAttribute('aria-pressed', String(o === b));
+    });
+  }
+</script>
+</body>
+</html>

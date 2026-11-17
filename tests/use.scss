@@ -1,0 +1,7 @@
+// Compiles only if themes/css/_ile-oyo.scss exposes the documented API.
+@use 'sass:map';
+@use '../themes/css/ile-oyo' as ile;
+
+.flat { color: ile.$ile-ale-red; border-color: ile.$ile-osan-selection; }
+.maps { background: map.get(ile.$ile-oyo, 'osan', 'bg'); color: map.get(ile.$ile-ale, 'ansi-15'); }
+.ui   { background: ile.$ile-ale-ui-bg-darker; outline-color: ile.$ile-osan-line-highlight; }

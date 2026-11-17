@@ -1,0 +1,45 @@
+{
+  "name": "ile-oyo-theme",
+  "displayName": "Ilé-Ọ̀yọ́ Theme",
+  "description": "Home of Ọ̀yọ́: a color theme woven from aṣọ-òkè, with Alẹ́ (dark) and Ọ̀sán (light) variants.",
+  "version": "0.1.0",
+  "publisher": "ayoolaao",
+  "icon": "icon.png",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ayoolaao/ile-oyo-theme.git"
+  },
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "color-theme",
+    "dark",
+    "light",
+    "yoruba",
+    "ile-oyo"
+  ],
+  "galleryBanner": {
+    "color": "#1A2B4C",
+    "theme": "dark"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "Ilé-Ọ̀yọ́ Alẹ́",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ile-oyo-ale.json"
+      },
+      {
+        "label": "Ilé-Ọ̀yọ́ Ọ̀sán",
+        "uiTheme": "vs",
+        "path": "./themes/ile-oyo-osan.json"
+      }
+    ]
+  }
+}

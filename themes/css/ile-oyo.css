@@ -1,0 +1,133 @@
+/* Ilé-Ọ̀yọ́ CSS variables v0.1.0
+ * Generated from palette/ile-oyo.json by `npm run build`. Do not edit by hand. */
+
+/* Usage
+ *   Follows the system setting: Ọ̀sán when light, Alẹ́ when dark.
+ *   Force a variant on any element (and its children) with
+ *   data-ile-theme="ale" (Alẹ́, dark) or data-ile-theme="osan" (Ọ̀sán, light). */
+
+:root,
+[data-ile-theme="osan"] {
+  color-scheme: light;
+  --ile-bg: #F4E6CE;
+  --ile-fg: #1A2B4C;
+  --ile-selection: #C7BAA3;
+  --ile-comment: #576788;
+  --ile-red: #A52A2A;
+  --ile-orange: #8B4513;
+  --ile-yellow: #876002;
+  --ile-green: #4B5320;
+  --ile-cyan: #2A5B5C;
+  --ile-blue: #35589D;
+  --ile-purple: #6B3A5A;
+  --ile-pink: #A12854;
+  --ile-ui-bg-darker: #E4D6BE;
+  --ile-ui-bg-dark: #EEDDC2;
+  --ile-ui-bg-light: #F3EDE4;
+  --ile-ui-bg-lighter: #FFFFFF;
+  --ile-ui-float: #F3EDE4;
+  --ile-ui-muted: #4D5D7E;
+  --ile-line-highlight: #C7BAA375;
+  --ile-non-text: #0000001A;
+  --ile-tab-drop-bg: #C7BAA370;
+  --ile-ansi-0: #1A2B4C;
+  --ile-ansi-1: #A52A2A;
+  --ile-ansi-2: #4B5320;
+  --ile-ansi-3: #876002;
+  --ile-ansi-4: #35589D;
+  --ile-ansi-5: #A12854;
+  --ile-ansi-6: #2A5B5C;
+  --ile-ansi-7: #E4D6BE;
+  --ile-ansi-8: #576788;
+  --ile-ansi-9: #BE3234;
+  --ile-ansi-10: #5B6330;
+  --ile-ansi-11: #846104;
+  --ile-ansi-12: #25478A;
+  --ile-ansi-13: #8D0F44;
+  --ile-ansi-14: #3A6B6C;
+  --ile-ansi-15: #EEDDC2;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-ile-theme="osan"]) {
+    color-scheme: dark;
+    --ile-bg: #1A2B4C;
+    --ile-fg: #F4E6CE;
+    --ile-selection: #37496B;
+    --ile-comment: #8994AA;
+    --ile-red: #EC6C64;
+    --ile-orange: #CE8154;
+    --ile-yellow: #DAA520;
+    --ile-green: #8F9964;
+    --ile-cyan: #6B9D9D;
+    --ile-blue: #6E9DF5;
+    --ile-purple: #BA83A5;
+    --ile-pink: #E86A8F;
+    --ile-ui-bg-darker: #0F1F3C;
+    --ile-ui-bg-dark: #152540;
+    --ile-ui-bg-light: #253550;
+    --ile-ui-bg-lighter: #354560;
+    --ile-ui-float: #253550;
+    --ile-ui-muted: #8994AA;
+    --ile-line-highlight: #37496B75;
+    --ile-non-text: #FFFFFF1A;
+    --ile-tab-drop-bg: #37496B70;
+    --ile-ansi-0: #0F1F3C;
+    --ile-ansi-1: #EC6C64;
+    --ile-ansi-2: #8F9964;
+    --ile-ansi-3: #DAA520;
+    --ile-ansi-4: #6E9DF5;
+    --ile-ansi-5: #E86A8F;
+    --ile-ansi-6: #6B9D9D;
+    --ile-ansi-7: #F4E6CE;
+    --ile-ansi-8: #8194BA;
+    --ile-ansi-9: #FE8D84;
+    --ile-ansi-10: #A7B27C;
+    --ile-ansi-11: #F5BF45;
+    --ile-ansi-12: #91B8FE;
+    --ile-ansi-13: #FE89A9;
+    --ile-ansi-14: #83B6B6;
+    --ile-ansi-15: #FFFFFF;
+  }
+}
+
+[data-ile-theme="ale"] {
+  color-scheme: dark;
+  --ile-bg: #1A2B4C;
+  --ile-fg: #F4E6CE;
+  --ile-selection: #37496B;
+  --ile-comment: #8994AA;
+  --ile-red: #EC6C64;
+  --ile-orange: #CE8154;
+  --ile-yellow: #DAA520;
+  --ile-green: #8F9964;
+  --ile-cyan: #6B9D9D;
+  --ile-blue: #6E9DF5;
+  --ile-purple: #BA83A5;
+  --ile-pink: #E86A8F;
+  --ile-ui-bg-darker: #0F1F3C;
+  --ile-ui-bg-dark: #152540;
+  --ile-ui-bg-light: #253550;
+  --ile-ui-bg-lighter: #354560;
+  --ile-ui-float: #253550;
+  --ile-ui-muted: #8994AA;
+  --ile-line-highlight: #37496B75;
+  --ile-non-text: #FFFFFF1A;
+  --ile-tab-drop-bg: #37496B70;
+  --ile-ansi-0: #0F1F3C;
+  --ile-ansi-1: #EC6C64;
+  --ile-ansi-2: #8F9964;
+  --ile-ansi-3: #DAA520;
+  --ile-ansi-4: #6E9DF5;
+  --ile-ansi-5: #E86A8F;
+  --ile-ansi-6: #6B9D9D;
+  --ile-ansi-7: #F4E6CE;
+  --ile-ansi-8: #8194BA;
+  --ile-ansi-9: #FE8D84;
+  --ile-ansi-10: #A7B27C;
+  --ile-ansi-11: #F5BF45;
+  --ile-ansi-12: #91B8FE;
+  --ile-ansi-13: #FE89A9;
+  --ile-ansi-14: #83B6B6;
+  --ile-ansi-15: #FFFFFF;
+}

@@ -1,0 +1,107 @@
+{
+  "name": "Ilé-Ọ̀yọ́",
+  "description": "Home of Ọ̀yọ́. A color theme woven from aṣọ-òkè: ẹtù indigo, sányán beige, àlàárì crimson.",
+  "version": "0.1.0",
+  "variants": {
+    "ale": {
+      "name": "Alẹ́",
+      "meaning": "evening",
+      "mode": "dark",
+      "palette": {
+        "bg": "#1A2B4C",
+        "fg": "#F4E6CE",
+        "selection": "#37496B",
+        "comment": "#8994AA",
+        "red": "#EC6C64",
+        "orange": "#CE8154",
+        "yellow": "#DAA520",
+        "green": "#8F9964",
+        "cyan": "#6B9D9D",
+        "blue": "#6E9DF5",
+        "purple": "#BA83A5",
+        "pink": "#E86A8F"
+      },
+      "ui": {
+        "bg_darker": "#0F1F3C",
+        "bg_dark": "#152540",
+        "bg_light": "#253550",
+        "bg_lighter": "#354560",
+        "float": "#253550",
+        "muted": "#8994AA"
+      },
+      "ansi": {
+        "color0": "#0F1F3C",
+        "color1": "#EC6C64",
+        "color2": "#8F9964",
+        "color3": "#DAA520",
+        "color4": "#6E9DF5",
+        "color5": "#E86A8F",
+        "color6": "#6B9D9D",
+        "color7": "#F4E6CE",
+        "color8": "#8194BA",
+        "color9": "#FE8D84",
+        "color10": "#A7B27C",
+        "color11": "#F5BF45",
+        "color12": "#91B8FE",
+        "color13": "#FE89A9",
+        "color14": "#83B6B6",
+        "color15": "#FFFFFF"
+      },
+      "other": {
+        "line_highlight": "#37496B75",
+        "non_text": "#FFFFFF1A",
+        "tab_drop_bg": "#37496B70"
+      }
+    },
+    "osan": {
+      "name": "Ọ̀sán",
+      "meaning": "afternoon",
+      "mode": "light",
+      "palette": {
+        "bg": "#F4E6CE",
+        "fg": "#1A2B4C",
+        "selection": "#C7BAA3",
+        "comment": "#576788",
+        "red": "#A52A2A",
+        "orange": "#8B4513",
+        "yellow": "#876002",
+        "green": "#4B5320",
+        "cyan": "#2A5B5C",
+        "blue": "#35589D",
+        "purple": "#6B3A5A",
+        "pink": "#A12854"
+      },
+      "ui": {
+        "bg_darker": "#E4D6BE",
+        "bg_dark": "#EEDDC2",
+        "bg_light": "#F3EDE4",
+        "bg_lighter": "#FFFFFF",
+        "float": "#F3EDE4",
+        "muted": "#4D5D7E"
+      },
+      "ansi": {
+        "color0": "#1A2B4C",
+        "color1": "#A52A2A",
+        "color2": "#4B5320",
+        "color3": "#876002",
+        "color4": "#35589D",
+        "color5": "#A12854",
+        "color6": "#2A5B5C",
+        "color7": "#E4D6BE",
+        "color8": "#576788",
+        "color9": "#BE3234",
+        "color10": "#5B6330",
+        "color11": "#846104",
+        "color12": "#25478A",
+        "color13": "#8D0F44",
+        "color14": "#3A6B6C",
+        "color15": "#EEDDC2"
+      },
+      "other": {
+        "line_highlight": "#C7BAA375",
+        "non_text": "#0000001A",
+        "tab_drop_bg": "#C7BAA370"
+      }
+    }
+  }
+}

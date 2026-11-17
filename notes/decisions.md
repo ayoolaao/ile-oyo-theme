@@ -36,3 +36,96 @@ Abẹ́òkúta, not Ọ̀yọ́, so it is dropped. The palette is grounded in a�
 The name is **Ilé-Ọ̀yọ́**, with the low tone on the first Ọ, matching the city
 (Ọ̀yọ́, Ọ̀yọ́ State). Earlier text spelled it "Ilé-Ọyọ́"; all files were
 updated. ASCII identifiers (repo, package and file names) stay `ile-oyo`.
+
+## 2026-11-16: Palette stays as close to the draft as accessibility allows
+The from-scratch OKLCH redesign was replaced. Draft colors that pass are kept
+exactly; failing ones keep hue and chroma and change only lightness, to 4.6:1.
+Duplicates (blue = bg/fg, pink = red) were resolved with the nearest distinct
+color. Details in palette-review.md.
+
+## 2026-11-16: Alẹ́ text color
+Alẹ́ fg is the warmer sányán `#F4E6CE` (11.4:1 on `#1A2B4C`) instead of the
+draft's `#F5F5DC`, by preference. ANSI 7 matches it.
+
+## 2026-11-16: Previews stay local
+Previews are built as local files (`npm run preview`) and opened in the
+browser. Nothing is published to the web unless explicitly asked.
+
+## 2026-11-16: Warm Ọ̀sán, stronger selection
+Ọ̀sán bg is `#F4E6CE`, the same sányán as Alẹ́ fg, with its beige UI tones
+warmed to match. Selection must reach 1.5:1 against bg (checked); both
+variants now sit near 1.55. The closest accent pairs (Alẹ́ comment/cyan,
+red/pink) are accepted for now.
+
+## 2026-11-16: Build pipeline and iTerm2 output
+- One generator per app in `scripts/targets/`, run by `npm run build` after the
+  palette passes validation. Shared rules live in `scripts/lib/palette.mjs`.
+- Generated theme files are committed (users download them), guarded by
+  `npm run build -- --check`.
+- iTerm2 presets use ASCII filenames (`Ile-Oyo-Ale`, `Ile-Oyo-Osan`) to avoid
+  Unicode filename problems across tools; colors use the sRGB color space.
+
+## 2026-11-16: CSS scope and structure
+Scope is color tokens plus code highlighting (options 1 and 2); no base page
+styles, typography or forms. Variables use the `--ile-` prefix; variants switch
+by `prefers-color-scheme` and the `data-ile-theme="ale" | "osan"` attribute,
+which also works on a single element. Highlighting reads only the variables,
+so it follows the active variant. Syntax roles (which color each code token
+uses) are defined once and shared with later targets.
+
+## 2026-11-16: Dev dependencies for tests
+`sass` (1.83.0) and `typescript` (5.6.3) are pinned dev dependencies so
+`npm test` can compile the Sass output and type-check the `.d.ts`. The build
+stays dependency-free. npm skips `@parcel/watcher`'s install script (sass watch
+mode only); not needed here.
+
+## 2026-11-16: VS Code theme design
+- Workbench surfaces step from `ui.bg_darker` (title/activity/status bars) to
+  `ui.bg_dark` (side bar, panels) to `bg` (editor); widgets use `ui.bg_light`.
+- Àlàárì red is the brand accent (active borders, badges, progress); blue is
+  for buttons and links, so red doesn't read as "destructive" on every button.
+- New palette color `ui.muted` for secondary UI text, required to pass 4.5:1 on
+  every surface. Ọ̀sán's comment color failed on the darker panels (as low as
+  3.96:1); Alẹ́'s comment already passed, so its `ui.muted` equals `comment`.
+- Not yet: packaging and Marketplace publishing (needs a publisher account).
+
+## 2026-11-16: Packaging
+- npm package name `ile-oyo-theme` (free on npm), published from
+  `themes/css`; ES module only, with `/css`, `/highlight.css` and `/scss`
+  subpaths. The private root package is renamed `ile-oyo-theme-repo` to avoid
+  confusion.
+- VS Code extension packaged with `@vscode/vsce` 3.2.1 into `dist/`
+  (git-ignored). Publisher ID `ayoolaao` must match the author's Marketplace
+  publisher.
+- Packaging and publishing scripts run `npm test` first. Publishing itself is
+  left to the author (accounts and tokens).
+
+## 2026-11-17: License, icon, release contents
+- License: Apache-2.0 for now (author may revisit; the repository is still
+  private). `NOTICE` reserves the names Ilé-Ọ̀yọ́, Alẹ́, Ọ̀sán and the icon for
+  the original project (Apache-2.0 §6 grants no trademark rights). The build
+  copies LICENSE and NOTICE into each package.
+- Icon: concept D (Alẹ́/Ọ̀sán split joined by an àlàárì band), with a faint
+  inner edge for dark backgrounds. Source `assets/icon/icon.svg`; PNG rendered
+  by `npm run icon` (needs Google Chrome) and committed.
+- Packaging (VS Code `.vsix`, npm `ile-oyo-theme`) is part of v0.1.0.
+- v0.2 includes store listings (Chrome, Firefox, JetBrains); Notepad++ is
+  checked on a Windows VM.
+
+## 2026-11-17: Scope and website direction
+- Vim / Neovim removed from v0.2 (notes kept in roadmap-v0.2.md).
+- Personal projects live under jazzykid.com; the theme site is proposed at
+  `ile-oyo.jazzykid.com`. Merch covers apparel and arts and crafts. Hosting
+  and store are recommended (Cloudflare Pages, Shopify) but not yet decided.
+
+## 2026-11-17: Website decisions
+Supersedes "proposed" in the previous entry. Theme site at
+`ile-oyo.jazzykid.com`, built with Astro and hosted on Cloudflare Pages (free,
+private repos, PR previews, commercial use allowed). Merch store on Shopify at
+akeetan.com (apparel via print-on-demand, arts and crafts as own inventory),
+linked from the theme site. theiroko.com is kept for now.
+
+## 2026-11-17: Site language
+The site launches in English, Story page included. A Yoruba translation is a
+planned milestone (Astro i18n, `/yo/`), translated by a fluent speaker rather
+than by machine. A Story draft is in story-draft.md for the author to edit.

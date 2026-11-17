@@ -21,9 +21,9 @@ The palette started as the Ilé-Ọ̀yọ́ preset on [ayoola.io](https://ayoola
 
 | Application        | Status  |
 | ------------------ | ------- |
-| CSS (web)          | Planned |
-| iTerm2             | Planned |
-| Visual Studio Code | Planned |
+| CSS (web)          | [Available](themes/css/) |
+| iTerm2             | [Available](themes/iterm/) |
+| Visual Studio Code | [Available](themes/vscode/) (not on the Marketplace yet) |
 
 ## How it works
 
@@ -33,4 +33,6 @@ See [`notes/`](notes/) for the spec, design decisions, and progress log.
 
 ## License
 
-MIT (to be added)
+[Apache License 2.0](LICENSE). The names Ilé-Ọ̀yọ́, Alẹ́ and Ọ̀sán and the
+icon identify this project; modified versions need their own name and icon
+(see [NOTICE](NOTICE)).

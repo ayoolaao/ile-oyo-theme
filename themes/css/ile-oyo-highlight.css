@@ -1,0 +1,99 @@
+/* Ilé-Ọ̀yọ́ syntax highlighting v0.1.0
+ * Generated from palette/ile-oyo.json by `npm run build`. Do not edit by hand. */
+
+/* Requires ile-oyo.css. Colors come from its variables, so highlighted code
+ * switches with the active variant. Covers Prism, highlight.js and Shiki's
+ * css-variables theme. */
+
+/* Code block container ---------------------------------------------------- */
+pre[class*="language-"],
+pre.hljs,
+pre:has(> code.hljs),
+pre.shiki {
+  background: var(--ile-bg);
+  color: var(--ile-fg);
+  tab-size: 2;
+}
+pre[class*="language-"] ::selection,
+pre.hljs ::selection,
+pre:has(> code.hljs) ::selection,
+pre.shiki ::selection {
+  background: var(--ile-selection);
+}
+code.hljs {
+  background: transparent;
+  color: var(--ile-fg);
+}
+
+/* Prism -------------------------------------------------------------------- */
+.token.comment, .token.prolog, .token.doctype, .token.cdata { color: var(--ile-comment); font-style: italic; }
+.token.punctuation { color: var(--ile-fg); }
+.token.keyword, .token.operator, .token.important, .token.atrule .token.rule { color: var(--ile-pink); }
+.token.tag, .token.selector { color: var(--ile-pink); }
+.token.function, .token.method { color: var(--ile-green); }
+.token.property, .token.attr-name { color: var(--ile-green); }
+.token.string, .token.char, .token.attr-value, .token.template-string { color: var(--ile-yellow); }
+.token.number, .token.boolean, .token.constant, .token.symbol { color: var(--ile-purple); }
+.token.class-name, .token.builtin, .token.namespace { color: var(--ile-cyan); }
+.token.parameter { color: var(--ile-orange); font-style: italic; }
+.token.variable { color: var(--ile-fg); }
+.token.regex { color: var(--ile-red); }
+.token.url { color: var(--ile-cyan); }
+.token.deleted { color: var(--ile-red); }
+.token.inserted { color: var(--ile-green); }
+.token.title { color: var(--ile-purple); font-weight: bold; }
+.token.italic { color: var(--ile-yellow); font-style: italic; }
+.token.bold { color: var(--ile-orange); font-weight: bold; }
+.token.interpolation-punctuation { color: var(--ile-pink); }
+
+/* highlight.js --------------------------------------------------------------- */
+.hljs-comment, .hljs-quote, .hljs-meta { color: var(--ile-comment); font-style: italic; }
+.hljs-punctuation, .hljs-subst { color: var(--ile-fg); }
+.hljs-keyword, .hljs-operator, .hljs-selector-tag { color: var(--ile-pink); }
+.hljs-name, .hljs-tag { color: var(--ile-pink); }
+.hljs-title.function_, .hljs-title { color: var(--ile-green); }
+.hljs-attr, .hljs-attribute, .hljs-property { color: var(--ile-green); }
+.hljs-string, .hljs-template-tag, .hljs-template-variable { color: var(--ile-yellow); }
+.hljs-number, .hljs-literal, .hljs-symbol { color: var(--ile-purple); }
+.hljs-type, .hljs-built_in, .hljs-title.class_, .hljs-class .hljs-title { color: var(--ile-cyan); }
+.hljs-params { color: var(--ile-orange); font-style: italic; }
+.hljs-variable, .hljs-variable.language_ { color: var(--ile-fg); }
+.hljs-regexp { color: var(--ile-red); }
+.hljs-link { color: var(--ile-cyan); text-decoration: underline; }
+.hljs-deletion { color: var(--ile-red); }
+.hljs-addition { color: var(--ile-green); }
+.hljs-section { color: var(--ile-purple); font-weight: bold; }
+.hljs-emphasis { color: var(--ile-yellow); font-style: italic; }
+.hljs-strong { color: var(--ile-orange); font-weight: bold; }
+
+/* Shiki: use createCssVariablesTheme() and these variables ------------------ */
+:root,
+[data-ile-theme] {
+  --shiki-foreground: var(--ile-fg);
+  --shiki-background: var(--ile-bg);
+  --shiki-token-keyword: var(--ile-pink);
+  --shiki-token-function: var(--ile-green);
+  --shiki-token-string: var(--ile-yellow);
+  --shiki-token-string-expression: var(--ile-yellow);
+  --shiki-token-constant: var(--ile-purple);
+  --shiki-token-parameter: var(--ile-orange);
+  --shiki-token-comment: var(--ile-comment);
+  --shiki-token-punctuation: var(--ile-fg);
+  --shiki-token-link: var(--ile-cyan);
+  --shiki-ansi-black: var(--ile-ansi-0);
+  --shiki-ansi-bright-black: var(--ile-ansi-8);
+  --shiki-ansi-red: var(--ile-ansi-1);
+  --shiki-ansi-bright-red: var(--ile-ansi-9);
+  --shiki-ansi-green: var(--ile-ansi-2);
+  --shiki-ansi-bright-green: var(--ile-ansi-10);
+  --shiki-ansi-yellow: var(--ile-ansi-3);
+  --shiki-ansi-bright-yellow: var(--ile-ansi-11);
+  --shiki-ansi-blue: var(--ile-ansi-4);
+  --shiki-ansi-bright-blue: var(--ile-ansi-12);
+  --shiki-ansi-magenta: var(--ile-ansi-5);
+  --shiki-ansi-bright-magenta: var(--ile-ansi-13);
+  --shiki-ansi-cyan: var(--ile-ansi-6);
+  --shiki-ansi-bright-cyan: var(--ile-ansi-14);
+  --shiki-ansi-white: var(--ile-ansi-7);
+  --shiki-ansi-bright-white: var(--ile-ansi-15);
+}
