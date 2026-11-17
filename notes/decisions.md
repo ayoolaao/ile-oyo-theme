@@ -36,3 +36,23 @@ Abẹ́òkúta, not Ọ̀yọ́, so it is dropped. The palette is grounded in a�
 The name is **Ilé-Ọ̀yọ́**, with the low tone on the first Ọ, matching the city
 (Ọ̀yọ́, Ọ̀yọ́ State). Earlier text spelled it "Ilé-Ọyọ́"; all files were
 updated. ASCII identifiers (repo, package and file names) stay `ile-oyo`.
+
+## 2026-11-16: Palette stays as close to the draft as accessibility allows
+The from-scratch OKLCH redesign was replaced. Draft colors that pass are kept
+exactly; failing ones keep hue and chroma and change only lightness, to 4.6:1.
+Duplicates (blue = bg/fg, pink = red) were resolved with the nearest distinct
+color. Details in palette-review.md.
+
+## 2026-11-16: Alẹ́ text color
+Alẹ́ fg is the warmer sányán `#F4E6CE` (11.4:1 on `#1A2B4C`) instead of the
+draft's `#F5F5DC`, by preference. ANSI 7 matches it.
+
+## 2026-11-16: Previews stay local
+Previews are built as local files (`npm run preview`) and opened in the
+browser. Nothing is published to the web unless explicitly asked.
+
+## 2026-11-16: Warm Ọ̀sán, stronger selection
+Ọ̀sán bg is `#F4E6CE`, the same sányán as Alẹ́ fg, with its beige UI tones
+warmed to match. Selection must reach 1.5:1 against bg (checked); both
+variants now sit near 1.55. The closest accent pairs (Alẹ́ comment/cyan,
+red/pink) are accepted for now.

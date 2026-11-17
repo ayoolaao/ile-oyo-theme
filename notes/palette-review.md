@@ -75,3 +75,37 @@ mid-indigo, distinct from fg.
 Keep the schema and the anchor hues. Rebuild the Alẹ́ accents, fix three
 Ọ̀sán colors, and give pink its own hue. Then lock it in with the build's
 contrast check.
+
+## Revision v0.1.0 (2026-11-16)
+
+Now in `palette/ile-oyo.json`; `npm run check` passes. Compare with the draft
+locally: `npm run preview -- --compare <draft palette.json>`.
+
+A first attempt redesigned the colors from scratch in OKLCH. It passed, but
+drifted from the draft's look, so it was replaced with a minimal-change pass
+over the draft:
+
+- **Alẹ́ fg:** warmer sányán `#F4E6CE` (11.4:1) instead of the draft's
+  `#F5F5DC`, by preference; ANSI 7 matches it.
+- **Kept exactly:** bg, fg (Ọ̀sán), selection, UI scale and overlays in both variants;
+  Alẹ́ yellow; in Ọ̀sán, comment, red, orange, green, cyan and purple.
+- **Lightened (Alẹ́), same hue and chroma:** comment `#8994AA` (greyer, to stay
+  apart from blue), red `#EC6C64`, orange `#CE8154`, green `#8F9964`, cyan
+  `#6B9D9D`, purple `#BA83A5`. All land at 4.6:1.
+- **Darkened (Ọ̀sán):** yellow `#B8860B` → `#8F6705` (2.94 → 4.62).
+- **Blue** no longer equals bg (Alẹ́ `#6E9DF5`, 5.2) or fg (Ọ̀sán `#35589D`, 6.3).
+- **Pink** no longer equals red: red's hue turned halfway toward the draft's
+  plum purple (Alẹ́ `#E86A8F`, Ọ̀sán `#A12854`).
+- **ANSI:** Alẹ́ brights are derived from their normal colors so they read as
+  brighter. Ọ̀sán black/white swapped so black (color0 `#1A2B4C`) is text.
+
+Follow-up changes (same day, by decision):
+- **Ọ̀sán bg warmed** to `#F4E6CE`, matching Alẹ́ fg (the draft mirrored the
+  two). The UI scale and ANSI 7/15 took the same warmth. On the new bg,
+  comment → `#576788` (4.61), yellow → `#876002` (4.60), ANSI 9 → `#BE3234`,
+  ANSI 11 → `#846104`; everything else in Ọ̀sán was unchanged.
+- **Selection strengthened** to ~1.55:1: Alẹ́ `#37496B`, Ọ̀sán `#C7BAA3`.
+  Line highlight and tab-drop overlays follow it. Now a checked rule (≥ 1.5).
+
+Accepted as-is: closest accent pairs, Alẹ́ comment/cyan 0.052 and red/pink
+0.061 (OKLab).
