@@ -1,0 +1,14 @@
+{
+  "name": "ile-oyo-theme",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Ilé-Ọ̀yọ́: a color theme woven from aṣọ-òkè, with Alẹ́ (dark) and Ọ̀sán (light) variants.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "check": "node scripts/check-palette.mjs"
+  }
+}

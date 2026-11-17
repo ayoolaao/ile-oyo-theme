@@ -75,3 +75,22 @@ mid-indigo, distinct from fg.
 Keep the schema and the anchor hues. Rebuild the Alẹ́ accents, fix three
 Ọ̀sán colors, and give pink its own hue. Then lock it in with the build's
 contrast check.
+
+## Revision v0.1.0 (2026-11-16)
+
+Now in `palette/ile-oyo.json`. All text colors pass in both variants
+(`npm run check`). Visual review page: swatches, code and terminal samples, and
+a draft-vs-revision table.
+
+Alẹ́ (bg `#12192F`, a deeper ẹtù): fg 14.2, comment 6.3, accents 5.8–11.8.
+Ọ̀sán (bg `#F9EFDA`, sányán): fg 13.3, comment 4.8, accents 4.6–6.2.
+
+Changes from the draft:
+- Alẹ́ accents rebuilt at high lightness, same hue families.
+- Blue no longer equals bg (Alẹ́) or fg (Ọ̀sán).
+- Pink is its own hue (rose-magenta), no longer a copy of red.
+- Ọ̀sán yellow is a dark ochre (`#826905`, 4.6) instead of goldenrod (2.9).
+- Selection is easier to see: 1.59 (Alẹ́), 1.48 (Ọ̀sán).
+
+Closest accent pairs (OKLab distance, lower = more alike): Alẹ́ blue/purple
+0.090; Ọ̀sán comment/cyan 0.075. Watch these in real code.

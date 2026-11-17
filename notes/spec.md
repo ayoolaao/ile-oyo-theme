@@ -12,8 +12,8 @@ the woven cloth of Ọ̀yọ́'s *agbádá* and *ìró àti bùbá*. Each is tie
 | ------ | ------------------- |
 | *Ẹtù* (indigo aṣọ-òkè) | Alẹ́ background, blues |
 | *Sányán* (beige wild-silk aṣọ-òkè) | foreground (Alẹ́), background (Ọ̀sán) |
-| *Àlàárì* (crimson aṣọ-òkè) | primary red |
-| Coral beads (*iyùn*) | pink/coral |
+| *Àlàárì* (crimson aṣọ-òkè) | red, and pink from its magenta shade |
+| Coral beads (*iyùn*) | echoed by red; no token of its own |
 | Gold thread | yellow |
 | Clay and earth | browns, oranges, UI surfaces |
 
@@ -49,6 +49,7 @@ split out later if needed.
 
 ## Palette shape
 
+Defined in `palette/ile-oyo.json` under `variants.ale` and `variants.osan`.
 Borrowed from Dracula, per variant:
 
 - `palette`: bg, fg, selection, comment, and the syntax accents
@@ -57,14 +58,22 @@ Borrowed from Dracula, per variant:
 - `ansi`: color0–color15 for terminals
 - `other`: translucent overlays (line highlight, tab drop, etc.)
 
+Colors are designed in OKLCH (even lightness steps across hues) and stored as
+hex. Accents sit at L ≈ 0.69–0.87 in Alẹ́ and L ≈ 0.47–0.53 in Ọ̀sán.
+
 ## Rules
 
-- **Contrast:** every text color (fg, comment, each accent, ANSI 1–7 and 9–15)
-  must reach **4.5:1** against its variant's `bg` (WCAG 2.1 AA). The build fails
-  otherwise. Exception: `comment` may drop to 3.0:1 if we decide so explicitly.
+- **Contrast:** every text color (fg, comment, each accent) must reach
+  **4.5:1** against its variant's `bg` (WCAG 2.1 AA).
+- **ANSI contrast:** colors 1–6, 8 and 9–14 must reach 4.5:1 in both variants.
+  Black and white swap roles by mode: in Alẹ́ (dark), white (7, 15) is text and
+  black (0) is exempt; in Ọ̀sán (light), black (0) is text and white (7, 15) is
+  exempt.
 - **Distinct accents:** no two syntax accents share a hex value, and none equals
   `bg`.
 - **One source:** generated files are never hand-edited.
+- **Enforced:** `npm run check` (scripts/check-palette.mjs) tests all of the
+  above and exits non-zero on any failure.
 
 ## Tooling
 
