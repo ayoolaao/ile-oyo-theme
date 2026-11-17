@@ -6,8 +6,9 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { ROOT, loadPalette, validate } from './lib/palette.mjs';
 import iterm from './targets/iterm.mjs';
+import css from './targets/css.mjs';
 
-const TARGETS = { iterm };
+const TARGETS = { iterm, css };
 const checkOnly = process.argv.includes('--check');
 
 const palette = loadPalette();

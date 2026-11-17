@@ -43,7 +43,7 @@ scripts/build.mjs           npm run build: validate, then run every target
 scripts/targets/<name>.mjs  one generator per app; returns [{ path, contents }]
 scripts/preview.mjs         npm run preview (local HTML, git-ignored preview/)
 themes/iterm/               generated .itermcolors (committed) + README
-themes/css/                 planned
+themes/css/                 generated CSS/Sass/JS (committed), demo.html, README
 themes/vscode/              planned
 notes/                      these notes
 ```
@@ -67,6 +67,38 @@ the hex values exactly.
 | Selection | `selection` |
 | Link | `blue` |
 | Cursor Guide | `selection` at 40% opacity |
+
+## Syntax roles
+
+Which palette color each kind of code token uses. Defined once in
+`scripts/targets/css.mjs` (`SYNTAX`, also exported from the JS tokens) and
+reused by every target that colors code (CSS highlighting now, VS Code next).
+
+| Role | Color | Role | Color |
+| ---- | ----- | ---- | ----- |
+| keyword, operator | pink | comment | comment (italic) |
+| function, property | green | variable, punctuation | fg |
+| string | yellow | link | cyan |
+| number, boolean, constant | purple | deleted | red |
+| type, class, built-in | cyan | inserted | green |
+| parameter | orange (italic) | changed | orange |
+| tag | pink | heading | purple |
+| regex | red | emphasis / strong | yellow / orange |
+
+## Target: CSS
+
+Files in `themes/css/`:
+
+| File | Contents |
+| ---- | -------- |
+| `ile-oyo.css` | `--ile-*` variables for both variants |
+| `ile-oyo-highlight.css` | Prism + highlight.js token rules and Shiki `--shiki-*` variables, all via `--ile-*` |
+| `_ile-oyo.scss` | `$ile-<variant>-<token>` (all `!default`), maps `$ile-ale`, `$ile-osan`, `$ile-oyo` |
+| `ile-oyo-tokens.js`, `.d.ts` | ES module: `ale`, `osan`, `syntax`, default export |
+
+Variant selection: Ọ̀sán by default, Alẹ́ under `prefers-color-scheme: dark`;
+`data-ile-theme="ale" | "osan"` on any element overrides it for that subtree.
+`demo.html` is hand-written and uses only the variables.
 
 One repo with generators, not Dracula's one-repo-per-app layout. Targets can be
 split out later if needed.
