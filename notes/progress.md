@@ -53,6 +53,10 @@
 - 2026-11-17: PR #6 merged into `release/v0.1.0`. Release check on a clean
   `npm ci`: 22 tests pass; npm dry run OK. Fixed `package:vscode` failing when
   `dist/` doesn't exist yet. PR #5 marked ready.
+- 2026-11-17: **v0.1.0 released.** PR #5 merged into `main` (merge commit
+  `9881615`); annotated tag `v0.1.0`; GitHub Release with the `.vsix` and both
+  `.itermcolors` files (built from `main` after `npm ci`; downloaded assets
+  verified by SHA-256). `main` merged back into `develop`.
 
 ## Open questions
 
@@ -61,11 +65,13 @@
 
 ## Next
 
-1. v0.1.0: author merges PR #5 into `main` (merge commit, not squash); then
-   tag `v0.1.0` and merge `main` back into `develop`.
-2. VS Code Marketplace: author creates the publisher `ayoolaao` and runs
-   `npm run publish:vscode` (repository is private for now).
-3. npm: author runs `npm run publish:css`.
-4. v0.2 targets: see [roadmap-v0.2.md](roadmap-v0.2.md).
-5. Website at `ile-oyo.jazzykid.com` (Astro on Cloudflare Pages); store on
+1. Publish (2026-11-18, once the author has the accounts):
+   - VS Code Marketplace: create publisher `ayoolaao` (must match
+     `themes/vscode/package.json`), `npx vsce login ayoolaao`, then
+     `npm run publish:vscode` from `main`.
+   - npm: `npm login`, then `npm run publish:css` from `main`.
+   - Both make the theme files public even while the repository is private.
+2. Update the release notes' "npm package coming soon" line once published.
+3. v0.2 targets: see [roadmap-v0.2.md](roadmap-v0.2.md).
+4. Website at `ile-oyo.jazzykid.com` (Astro on Cloudflare Pages); store on
    Shopify at akeetan.com. See [website-plan.md](website-plan.md).
