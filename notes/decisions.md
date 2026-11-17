@@ -50,3 +50,9 @@ draft's `#F5F5DC`, by preference. ANSI 7 matches it.
 ## 2026-11-16: Previews stay local
 Previews are built as local files (`npm run preview`) and opened in the
 browser. Nothing is published to the web unless explicitly asked.
+
+## 2026-11-16: Warm Ọ̀sán, stronger selection
+Ọ̀sán bg is `#F4E6CE`, the same sányán as Alẹ́ fg, with its beige UI tones
+warmed to match. Selection must reach 1.5:1 against bg (checked); both
+variants now sit near 1.55. The closest accent pairs (Alẹ́ comment/cyan,
+red/pink) are accepted for now.

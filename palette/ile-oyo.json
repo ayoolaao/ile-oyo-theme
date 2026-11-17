@@ -10,7 +10,7 @@
       "palette": {
         "bg": "#1A2B4C",
         "fg": "#F4E6CE",
-        "selection": "#2A3B5C",
+        "selection": "#37496B",
         "comment": "#8994AA",
         "red": "#EC6C64",
         "orange": "#CE8154",
@@ -47,9 +47,9 @@
         "color15": "#FFFFFF"
       },
       "other": {
-        "line_highlight": "#2A3B5C75",
+        "line_highlight": "#37496B75",
         "non_text": "#FFFFFF1A",
-        "tab_drop_bg": "#2A3B5C70"
+        "tab_drop_bg": "#37496B70"
       }
     },
     "osan": {
@@ -57,13 +57,13 @@
       "meaning": "afternoon",
       "mode": "light",
       "palette": {
-        "bg": "#F5F5DC",
+        "bg": "#F4E6CE",
         "fg": "#1A2B4C",
-        "selection": "#E5E5CC",
-        "comment": "#5A6B8C",
+        "selection": "#C7BAA3",
+        "comment": "#576788",
         "red": "#A52A2A",
         "orange": "#8B4513",
-        "yellow": "#8F6705",
+        "yellow": "#876002",
         "green": "#4B5320",
         "cyan": "#2A5B5C",
         "blue": "#35589D",
@@ -71,34 +71,34 @@
         "pink": "#A12854"
       },
       "ui": {
-        "bg_darker": "#E5E5CC",
-        "bg_dark": "#EDEDD0",
-        "bg_light": "#FAFAF0",
+        "bg_darker": "#E4D6BE",
+        "bg_dark": "#EEDDC2",
+        "bg_light": "#F3EDE4",
         "bg_lighter": "#FFFFFF",
-        "float": "#FAFAF0"
+        "float": "#F3EDE4"
       },
       "ansi": {
         "color0": "#1A2B4C",
         "color1": "#A52A2A",
         "color2": "#4B5320",
-        "color3": "#8F6705",
+        "color3": "#876002",
         "color4": "#35589D",
         "color5": "#A12854",
         "color6": "#2A5B5C",
-        "color7": "#E5E5CC",
-        "color8": "#5A6B8C",
-        "color9": "#C53A3A",
+        "color7": "#E4D6BE",
+        "color8": "#576788",
+        "color9": "#BE3234",
         "color10": "#5B6330",
-        "color11": "#8D6801",
+        "color11": "#846104",
         "color12": "#25478A",
         "color13": "#8D0F44",
         "color14": "#3A6B6C",
-        "color15": "#EDEDD0"
+        "color15": "#EEDDC2"
       },
       "other": {
-        "line_highlight": "#E5E5CC75",
+        "line_highlight": "#C7BAA375",
         "non_text": "#0000001A",
-        "tab_drop_bg": "#E5E5CC70"
+        "tab_drop_bg": "#C7BAA370"
       }
     }
   }

@@ -3,6 +3,7 @@
 import { readFileSync } from 'node:fs';
 
 const MIN = 4.5; // WCAG 2.1 AA, normal text
+const MIN_SELECTION = 1.5; // selection must stand out from bg
 const ACCENTS = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple', 'pink'];
 
 const palette = JSON.parse(
@@ -40,6 +41,12 @@ for (const [id, v] of Object.entries(palette.variants)) {
   for (const k of ['fg', 'comment', ...ACCENTS]) {
     const r = contrast(v.palette[k], bg);
     if (r < MIN) errors.push(`${tag}: ${k} ${v.palette[k]} is ${r.toFixed(2)}:1 against bg`);
+  }
+
+  // Selection is a surface, not text, but must be clearly visible.
+  const sel = contrast(v.palette.selection, bg);
+  if (sel < MIN_SELECTION) {
+    errors.push(`${tag}: selection ${v.palette.selection} is ${sel.toFixed(2)}:1 against bg (min ${MIN_SELECTION})`);
   }
 
   // Accents are distinct from each other and from bg.

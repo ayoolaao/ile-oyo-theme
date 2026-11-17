@@ -99,7 +99,13 @@ over the draft:
 - **ANSI:** Alẹ́ brights are derived from their normal colors so they read as
   brighter. Ọ̀sán black/white swapped so black (color0 `#1A2B4C`) is text.
 
-Open points:
-- Selection stays at the draft's 1.26 (Alẹ́) and 1.16 (Ọ̀sán). Not a contrast
-  requirement, but it's faint; consider strengthening.
-- Closest accent pairs: Alẹ́ comment/cyan 0.052, red/pink 0.061 (OKLab).
+Follow-up changes (same day, by decision):
+- **Ọ̀sán bg warmed** to `#F4E6CE`, matching Alẹ́ fg (the draft mirrored the
+  two). The UI scale and ANSI 7/15 took the same warmth. On the new bg,
+  comment → `#576788` (4.61), yellow → `#876002` (4.60), ANSI 9 → `#BE3234`,
+  ANSI 11 → `#846104`; everything else in Ọ̀sán was unchanged.
+- **Selection strengthened** to ~1.55:1: Alẹ́ `#37496B`, Ọ̀sán `#C7BAA3`.
+  Line highlight and tab-drop overlays follow it. Now a checked rule (≥ 1.5).
+
+Accepted as-is: closest accent pairs, Alẹ́ comment/cyan 0.052 and red/pink
+0.061 (OKLab).

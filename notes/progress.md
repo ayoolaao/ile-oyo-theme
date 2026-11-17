@@ -13,11 +13,12 @@
 - 2026-11-16: Palette rebased on the author's draft with minimal changes
   (replaces the from-scratch OKLCH design). Alẹ́ fg switched to `#F4E6CE`.
 
+- 2026-11-16: Ọ̀sán bg warmed to `#F4E6CE`; selection strengthened to ~1.55:1
+  in both variants and added to `npm run check`.
+
 ## Open questions
 
-- Warm Ọ̀sán bg (`#F5F5DC` → e.g. `#F9EFDA`) to match the warmer Alẹ́ fg?
-- Strengthen selection (draft values: 1.26 Alẹ́, 1.16 Ọ̀sán)?
-- Alẹ́ comment/cyan and red/pink are the closest pairs; check in real code.
+- None right now.
 
 ## Next
 

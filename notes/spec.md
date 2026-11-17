@@ -70,6 +70,9 @@ pass (target 4.6:1, so hex rounding can't drop it below 4.5). Stored as hex.
   Black and white swap roles by mode: in Alẹ́ (dark), white (7, 15) is text and
   black (0) is exempt; in Ọ̀sán (light), black (0) is text and white (7, 15) is
   exempt.
+- **Selection:** `selection` must reach **1.5:1** against `bg` so highlighted
+  text is easy to see. (The line highlight and tab-drop overlays are derived
+  from it.)
 - **Distinct accents:** no two syntax accents share a hex value, and none equals
   `bg`.
 - **One source:** generated files are never hand-edited.
