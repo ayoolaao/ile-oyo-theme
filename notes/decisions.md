@@ -56,3 +56,11 @@ browser. Nothing is published to the web unless explicitly asked.
 warmed to match. Selection must reach 1.5:1 against bg (checked); both
 variants now sit near 1.55. The closest accent pairs (Alẹ́ comment/cyan,
 red/pink) are accepted for now.
+
+## 2026-11-16: Build pipeline and iTerm2 output
+- One generator per app in `scripts/targets/`, run by `npm run build` after the
+  palette passes validation. Shared rules live in `scripts/lib/palette.mjs`.
+- Generated theme files are committed (users download them), guarded by
+  `npm run build -- --check`.
+- iTerm2 presets use ASCII filenames (`Ile-Oyo-Ale`, `Ile-Oyo-Osan`) to avoid
+  Unicode filename problems across tools; colors use the sRGB color space.

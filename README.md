@@ -22,7 +22,7 @@ The palette started as the Ilé-Ọ̀yọ́ preset on [ayoola.io](https://ayoola
 | Application        | Status  |
 | ------------------ | ------- |
 | CSS (web)          | Planned |
-| iTerm2             | Planned |
+| iTerm2             | [Available](themes/iterm/) |
 | Visual Studio Code | Planned |
 
 ## How it works

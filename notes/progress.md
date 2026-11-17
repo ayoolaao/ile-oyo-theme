@@ -15,6 +15,11 @@
 
 - 2026-11-16: Ọ̀sán bg warmed to `#F4E6CE`; selection strengthened to ~1.55:1
   in both variants and added to `npm run check`.
+- 2026-11-16: PR #1 merged into `develop`.
+- 2026-11-16: Build pipeline (`npm run build`, `--check`) and iTerm2 target:
+  `themes/iterm/Ile-Oyo-{Ale,Osan}.itermcolors`. Validated with `plutil` and a
+  round-trip check (every color reads back as the palette hex). Branch
+  `feature/iterm`.
 
 ## Open questions
 
@@ -22,8 +27,6 @@
 
 ## Next
 
-1. Merge PR #1 into `develop`.
-2. Build script: palette → targets.
-3. iTerm2 generator.
-4. CSS generator.
-5. VS Code extension.
+1. Try the iTerm2 presets in iTerm itself; merge `feature/iterm`.
+2. CSS target.
+3. VS Code extension.
