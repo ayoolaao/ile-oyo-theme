@@ -33,16 +33,40 @@ Avoid attributing the palette to *adire*: it is associated with Abẹ́òkúta, 
 2. CSS: custom properties, Sass variables, JS/TS tokens
 3. Visual Studio Code: an extension with both variants
 
-## Repo layout (planned)
+## Repo layout
 
 ```
-palette/ile-oyo.json   the only place colors are defined (both variants)
-scripts/               build: palette → every target; contrast check
-themes/css/            generated output + any hand-written Sass
-themes/iterm/          generated .itermcolors files
-themes/vscode/         mapping (which color goes where) + generated theme JSON
-notes/                 these notes
+palette/ile-oyo.json        the only place colors are defined (both variants)
+scripts/lib/palette.mjs     load + validate (rules below); shared by check and build
+scripts/check-palette.mjs   npm run check
+scripts/build.mjs           npm run build: validate, then run every target
+scripts/targets/<name>.mjs  one generator per app; returns [{ path, contents }]
+scripts/preview.mjs         npm run preview (local HTML, git-ignored preview/)
+themes/iterm/               generated .itermcolors (committed) + README
+themes/css/                 planned
+themes/vscode/              planned
+notes/                      these notes
 ```
+
+Generated theme files are committed so people can download them directly.
+`npm run build -- --check` fails if any of them differs from a fresh build.
+
+## Target: iTerm2
+
+One preset per variant: `themes/iterm/Ile-Oyo-Ale.itermcolors` and
+`Ile-Oyo-Osan.itermcolors` (ASCII filenames; iTerm shows the filename as the
+preset name). Colors are written with `Color Space: sRGB` so iTerm reproduces
+the hex values exactly.
+
+| iTerm key | Palette source |
+| --------- | -------------- |
+| Ansi 0–15 | `ansi.color0`–`color15` |
+| Background | `bg` |
+| Foreground, Bold, Cursor, Selected Text | `fg` |
+| Cursor Text | `bg` |
+| Selection | `selection` |
+| Link | `blue` |
+| Cursor Guide | `selection` at 40% opacity |
 
 One repo with generators, not Dracula's one-repo-per-app layout. Targets can be
 split out later if needed.
@@ -86,6 +110,8 @@ Node.js (installed via nvm). The VS Code extension needs `vsce` for packaging.
 | Command | What it does |
 | ------- | ------------ |
 | `npm run check` | Enforces the rules above; non-zero exit on failure |
+| `npm run build` | Validates, then writes every target's files |
+| `npm run build -- --check` | Fails if a committed generated file is out of date |
 | `npm run preview` | Builds `preview/index.html` from the palette and opens it |
 | `npm run preview -- --compare <file>` | Side-by-side with another palette (either format) → `preview/compare.html` |
 
