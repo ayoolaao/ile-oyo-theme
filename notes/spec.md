@@ -137,13 +137,16 @@ pass (target 4.6:1, so hex rounding can't drop it below 4.5). Stored as hex.
 
 ## Tooling
 
-Node.js (installed via nvm). The VS Code extension needs `vsce` for packaging.
+Node.js (installed via nvm). Dev dependencies, pinned exactly: `sass` 1.83.0
+and `typescript` 5.6.3, used only by `npm test`. The build itself has no
+dependencies. The VS Code extension will need `vsce` for packaging.
 
 | Command | What it does |
 | ------- | ------------ |
 | `npm run check` | Enforces the rules above; non-zero exit on failure |
 | `npm run build` | Validates, then writes every target's files |
 | `npm run build -- --check` | Fails if a committed generated file is out of date |
+| `npm test` | All of the above, plus: JS tokens equal the palette (`node --test`), the Sass compiles (`tests/use.scss`), and the `.d.ts` type-checks (`tests/use.ts`) |
 | `npm run preview` | Builds `preview/index.html` from the palette and opens it |
 | `npm run preview -- --compare <file>` | Side-by-side with another palette (either format) → `preview/compare.html` |
 

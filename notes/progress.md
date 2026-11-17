@@ -26,11 +26,13 @@
   palette; in headless Chrome all 50 checked highlight colors match in both
   variants, the scoped `data-ile-theme` box works, and system light/dark picks
   the right variant. Branch `feature/css`.
+- 2026-11-16: `npm test` added: palette check, build check, JS token tests,
+  Sass compile, TypeScript type-check (sass and typescript as dev dependencies).
+  Each check was confirmed to fail when its file is broken.
 
 ## Open questions
 
-- Sass compile and `.d.ts` type-check not run yet: needs `sass` and
-  `typescript` (blocked one-off `npx` download). Add as devDependencies?
+- None right now.
 
 ## Next
 

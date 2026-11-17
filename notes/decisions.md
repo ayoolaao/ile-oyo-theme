@@ -72,3 +72,9 @@ by `prefers-color-scheme` and the `data-ile-theme="ale" | "osan"` attribute,
 which also works on a single element. Highlighting reads only the variables,
 so it follows the active variant. Syntax roles (which color each code token
 uses) are defined once and shared with later targets.
+
+## 2026-11-16: Dev dependencies for tests
+`sass` (1.83.0) and `typescript` (5.6.3) are pinned dev dependencies so
+`npm test` can compile the Sass output and type-check the `.d.ts`. The build
+stays dependency-free. npm skips `@parcel/watcher`'s install script (sass watch
+mode only); not needed here.
