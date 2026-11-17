@@ -99,3 +99,15 @@ mode only); not needed here.
   publisher.
 - Packaging and publishing scripts run `npm test` first. Publishing itself is
   left to the author (accounts and tokens).
+
+## 2026-11-17: License, icon, release contents
+- License: Apache-2.0 for now (author may revisit; the repository is still
+  private). `NOTICE` reserves the names Ilé-Ọ̀yọ́, Alẹ́, Ọ̀sán and the icon for
+  the original project (Apache-2.0 §6 grants no trademark rights). The build
+  copies LICENSE and NOTICE into each package.
+- Icon: concept D (Alẹ́/Ọ̀sán split joined by an àlàárì band), with a faint
+  inner edge for dark backgrounds. Source `assets/icon/icon.svg`; PNG rendered
+  by `npm run icon` (needs Google Chrome) and committed.
+- Packaging (VS Code `.vsix`, npm `ile-oyo-theme`) is part of v0.1.0.
+- v0.2 includes store listings (Chrome, Firefox, JetBrains); Notepad++ is
+  checked on a Windows VM.

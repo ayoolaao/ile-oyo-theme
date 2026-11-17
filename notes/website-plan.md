@@ -60,10 +60,30 @@ GitHub Pages.
 2. Story and Spec pages; screenshots per app.
 3. Add pages automatically as v0.2 targets land.
 
+## Domain and scope (in discussion, 2026-11-17)
+
+The site becomes the home for all of the author's Yoruba projects, not just
+the theme, and includes a merch page. The author owns two domains:
+
+| Domain | Meaning | For | Against |
+| ------ | ------- | --- | ------- |
+| akeetan.com | A small area within Ọ̀yọ́ | Ties directly to "home of Ọ̀yọ́"; distinctive and ownable; personal | Unfamiliar to non-Yoruba visitors; pronunciation needs a short explainer |
+| theiroko.com | The iroko tree, well known in Yoruba | Recognizable, evocative (strength, age) | "Iroko" is already a widely known Nigerian brand name (IROKOtv), so weaker for merch and trademarks; the iroko also carries spiritual weight in Yoruba belief |
+
+Structure: the umbrella site at the root, each project under a path (e.g.
+`/ile-oyo`), merch under `/shop`. One site and one deploy, rather than
+subdomains, keeps shared design and navigation simple.
+
+Merch options, simplest first: Stripe Payment Links; a print-on-demand
+service (Printful, Printify) with a storefront; Shopify. Worth exploring:
+products made with aṣọ-òkè weavers (e.g. from Ìsẹ̀yìn) rather than only
+printed goods.
+
 ## Open questions
 
-- Domain name? (e.g. a dedicated domain, or a path under ayoola.io)
+- Domain: akeetan.com or theiroko.com?
 - Hosting: Vercel or GitHub Pages?
+- Merch: which products, and which commerce option?
 - Should the Story page also be available in Yoruba?
 - Who writes the Story text? (Author's voice is best; I can draft from the
   notes for editing.)

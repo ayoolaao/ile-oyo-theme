@@ -103,3 +103,8 @@ ale.colors[syntax.keyword]; // the keyword color in Alẹ́
 These files are generated from `palette/ile-oyo.json` by `npm run build`.
 Don't edit them by hand; change the palette and rebuild. `demo.html` is
 hand-written.
+
+## License
+
+Apache License 2.0. See `LICENSE` and `NOTICE`; the Ilé-Ọ̀yọ́ name and icon
+are not licensed for modified versions.

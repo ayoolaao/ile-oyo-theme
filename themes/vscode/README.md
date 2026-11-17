@@ -50,3 +50,8 @@ The files in `themes/` are generated from `palette/ile-oyo.json` by
 From the repository root: `npm run package:vscode` runs the tests and writes
 `dist/ile-oyo-theme-<version>.vsix`; `npm run publish:vscode` publishes to the
 Marketplace (needs a `vsce login` for the `publisher` in `package.json`).
+
+## License
+
+Apache License 2.0. See `LICENSE` and `NOTICE`; the Ilé-Ọ̀yọ́ name and icon
+are not licensed for modified versions.

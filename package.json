@@ -4,7 +4,7 @@
   "private": true,
   "description": "Build, tests and sources for the Ilé-Ọ̀yọ́ themes (private; not published).",
   "type": "module",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "engines": {
     "node": ">=20"
   },
@@ -12,11 +12,12 @@
     "check": "node scripts/check-palette.mjs",
     "build": "node scripts/build.mjs",
     "preview": "node scripts/preview.mjs",
+    "icon": "node scripts/icon.mjs",
     "test": "npm run check && npm run build -- --check && npm run test:tokens && npm run test:sass && npm run test:types",
     "test:tokens": "node --test tests/",
     "test:sass": "sass --no-source-map tests/use.scss > /dev/null",
     "test:types": "tsc --noEmit --strict --module nodenext --moduleResolution nodenext tests/use.ts",
-    "package:vscode": "npm test && cd themes/vscode && vsce package --no-dependencies --skip-license -o ../../dist/",
+    "package:vscode": "npm test && cd themes/vscode && vsce package --no-dependencies -o ../../dist/",
     "ls:vscode": "cd themes/vscode && vsce ls --no-dependencies",
     "publish:vscode": "npm test && cd themes/vscode && vsce publish --no-dependencies",
     "pack:css": "npm test && cd themes/css && npm pack --dry-run",

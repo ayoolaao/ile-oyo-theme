@@ -45,20 +45,26 @@
   `npm pack`/`npm publish --dry-run` pass; installing the tarball in a scratch
   project resolves the JS import, `/css`, `/highlight.css`, `/scss`, and the
   types (nodenext and bundler). Version-consistency tests added; 20 tests pass.
+- 2026-11-17: License Apache-2.0 (+ NOTICE reserving the name and icon); the
+  build copies both into each package. Icon: concept D, source
+  `assets/icon/icon.svg`, rendered to `themes/vscode/icon.png` by
+  `npm run icon`. `.vsix` now 9 files incl. icon, LICENSE, NOTICE, no
+  warnings; 22 tests pass. PR `feature/packaging` → `release/v0.1.0`.
 
 ## Open questions
 
-- License (README currently says "MIT (to be added)").
-- VS Code extension icon: pick a concept (A–D).
+- Website domain: theiroko.com or akeetan.com (umbrella for the author's
+  Yoruba projects, with a merch page). See website-plan.md.
+- Vim/Neovim distribution: separate repository or subdirectory?
 - `npm audit`: 3 moderate advisories in `glob`/`minimatch` under `@vscode/vsce`
   (dev tooling only, not shipped). Revisit when vsce updates.
 
 ## Next
 
-1. v0.1.0: add LICENSE, merge `release/v0.1.0` into `main`, tag `v0.1.0`,
-   merge `main` back into `develop`.
-2. VS Code Marketplace: add the chosen icon and LICENSE; author creates the
-   publisher `ayoolaao` and runs `npm run publish:vscode`.
-3. npm: add LICENSE; author runs `npm run publish:css`.
+1. v0.1.0: merge packaging into `release/v0.1.0`, mark PR #5 ready, merge
+   into `main`, tag `v0.1.0`, merge `main` back into `develop`.
+2. VS Code Marketplace: author creates the publisher `ayoolaao` and runs
+   `npm run publish:vscode` (repository is private for now).
+3. npm: author runs `npm run publish:css`.
 4. v0.2 targets: see [roadmap-v0.2.md](roadmap-v0.2.md).
 5. Website: see [website-plan.md](website-plan.md).

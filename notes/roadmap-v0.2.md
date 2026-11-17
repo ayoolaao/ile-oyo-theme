@@ -91,9 +91,12 @@ Size: **S** about a day, **M** a few days, **L** a week or more.
 2. Vim / Neovim, Typora, JetBrains `.icls`, Terminal.app
 3. Notepad++ (needs a Windows check)
 
+## Decided (2026-11-17)
+
+- Store listings are part of v0.2: Chrome Web Store, Firefox Add-ons,
+  JetBrains Marketplace (plus the VS Code Marketplace and npm from v0.1).
+- Notepad++ is checked on a Windows VM.
+
 ## Open questions
 
-- Which store listings are part of v0.2 (Chrome Web Store, Firefox add-ons,
-  JetBrains Marketplace), and which targets ship as downloads only?
-- Is a Windows machine or VM available to check Notepad++?
 - Vim/Neovim: separate repository, or install from a subdirectory?

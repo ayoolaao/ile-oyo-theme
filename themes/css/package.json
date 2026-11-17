@@ -23,7 +23,9 @@
     "_ile-oyo.scss",
     "ile-oyo-tokens.js",
     "ile-oyo-tokens.d.ts",
-    "README.md"
+    "README.md",
+    "LICENSE",
+    "NOTICE"
   ],
   "sideEffects": [
     "*.css"
@@ -41,7 +43,7 @@
     "shiki",
     "yoruba"
   ],
-  "license": "MIT",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ayoolaao/ile-oyo-theme.git",
