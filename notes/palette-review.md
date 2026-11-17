@@ -78,19 +78,26 @@ contrast check.
 
 ## Revision v0.1.0 (2026-11-16)
 
-Now in `palette/ile-oyo.json`. All text colors pass in both variants
-(`npm run check`). Visual review page: swatches, code and terminal samples, and
-a draft-vs-revision table.
+Now in `palette/ile-oyo.json`; `npm run check` passes. Compare with the draft
+locally: `npm run preview -- --compare <draft palette.json>`.
 
-Alẹ́ (bg `#12192F`, a deeper ẹtù): fg 14.2, comment 6.3, accents 5.8–11.8.
-Ọ̀sán (bg `#F9EFDA`, sányán): fg 13.3, comment 4.8, accents 4.6–6.2.
+A first attempt redesigned the colors from scratch in OKLCH. It passed, but
+drifted from the draft's look, so it was replaced with a minimal-change pass
+over the draft:
 
-Changes from the draft:
-- Alẹ́ accents rebuilt at high lightness, same hue families.
-- Blue no longer equals bg (Alẹ́) or fg (Ọ̀sán).
-- Pink is its own hue (rose-magenta), no longer a copy of red.
-- Ọ̀sán yellow is a dark ochre (`#826905`, 4.6) instead of goldenrod (2.9).
-- Selection is easier to see: 1.59 (Alẹ́), 1.48 (Ọ̀sán).
+- **Kept exactly:** bg, fg, selection, UI scale and overlays in both variants;
+  Alẹ́ yellow; in Ọ̀sán, comment, red, orange, green, cyan and purple.
+- **Lightened (Alẹ́), same hue and chroma:** comment `#8994AA` (greyer, to stay
+  apart from blue), red `#EC6C64`, orange `#CE8154`, green `#8F9964`, cyan
+  `#6B9D9D`, purple `#BA83A5`. All land at 4.6:1.
+- **Darkened (Ọ̀sán):** yellow `#B8860B` → `#8F6705` (2.94 → 4.62).
+- **Blue** no longer equals bg (Alẹ́ `#6E9DF5`, 5.2) or fg (Ọ̀sán `#35589D`, 6.3).
+- **Pink** no longer equals red: red's hue turned halfway toward the draft's
+  plum purple (Alẹ́ `#E86A8F`, Ọ̀sán `#A12854`).
+- **ANSI:** Alẹ́ brights are derived from their normal colors so they read as
+  brighter. Ọ̀sán black/white swapped so black (color0 `#1A2B4C`) is text.
 
-Closest accent pairs (OKLab distance, lower = more alike): Alẹ́ blue/purple
-0.090; Ọ̀sán comment/cyan 0.075. Watch these in real code.
+Open points:
+- Selection stays at the draft's 1.26 (Alẹ́) and 1.16 (Ọ̀sán). Not a contrast
+  requirement, but it's faint; consider strengthening.
+- Closest accent pairs: Alẹ́ comment/cyan 0.052, red/pink 0.061 (OKLab).

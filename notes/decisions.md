@@ -36,3 +36,9 @@ Abẹ́òkúta, not Ọ̀yọ́, so it is dropped. The palette is grounded in a�
 The name is **Ilé-Ọ̀yọ́**, with the low tone on the first Ọ, matching the city
 (Ọ̀yọ́, Ọ̀yọ́ State). Earlier text spelled it "Ilé-Ọyọ́"; all files were
 updated. ASCII identifiers (repo, package and file names) stay `ile-oyo`.
+
+## 2026-11-16: Palette stays as close to the draft as accessibility allows
+The from-scratch OKLCH redesign was replaced. Draft colors that pass are kept
+exactly; failing ones keep hue and chroma and change only lightness, to 4.6:1.
+Duplicates (blue = bg/fg, pink = red) were resolved with the nearest distinct
+color. Details in palette-review.md.

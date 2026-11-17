@@ -58,8 +58,9 @@ Borrowed from Dracula, per variant:
 - `ansi`: color0–color15 for terminals
 - `other`: translucent overlays (line highlight, tab drop, etc.)
 
-Colors are designed in OKLCH (even lightness steps across hues) and stored as
-hex. Accents sit at L ≈ 0.69–0.87 in Alẹ́ and L ≈ 0.47–0.53 in Ọ̀sán.
+Colors start from the author's draft palette. A draft color that fails a rule
+keeps its OKLCH hue and chroma; only its lightness moves, just far enough to
+pass (target 4.6:1, so hex rounding can't drop it below 4.5). Stored as hex.
 
 ## Rules
 
