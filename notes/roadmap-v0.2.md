@@ -15,7 +15,6 @@ Size: **S** about a day, **M** a few days, **L** a week or more.
 | Firefox | Static theme extension, `theme` + `dark_theme` | S | `web-ext lint`; load temporarily in Firefox | addons.mozilla.org (free) |
 | Kate | KSyntaxHighlighting `.theme` (JSON) | S | JSON structure checks; open in Kate | File download |
 | Zsh | zsh-syntax-highlighting styles + an oh-my-zsh prompt | S | `zsh -n` syntax check; source in a test shell | File download / plugin managers |
-| Vim / Neovim | Vimscript colorscheme (works in both) | M | Load headless in `vim` and `nvim`, check highlight groups | Plugin managers (see risks) |
 | Typora | Theme CSS (built on the CSS target) | M | Render sample Markdown in Typora; Chrome screenshot of the markup | File download |
 | JetBrains | `.icls` editor color scheme (XML) | M | XML checks; import in a JetBrains IDE | File download; Marketplace later |
 | Terminal.app | `.terminal` property list with archived `NSColor` data | M | `plutil -lint`; decode colors back; open in Terminal | File download |
@@ -56,16 +55,6 @@ Size: **S** about a day, **M** a few days, **L** a week or more.
   - An oh-my-zsh prompt theme using ANSI color names, so it follows whatever
     terminal theme is active (ours or not).
 
-### Vim / Neovim
-- `colors/ile-oyo.vim` picks Alẹ́ or Ọ̀sán from `&background`;
-  `ile-oyo-ale.vim` and `ile-oyo-osan.vim` force one.
-- Covers standard groups, diagnostics, Tree-sitter (`@keyword`, …) and LSP
-  semantic groups (`@lsp.type.*`) from the syntax roles, and terminal colors.
-- `termguicolors` uses the exact hex; a 256-color fallback is approximated.
-- **Risk:** plugin managers expect `colors/` at the repository root. Options:
-  a separate `ile-oyo.nvim` repository fed by the build, or documenting the
-  `rtp` subdirectory option.
-
 ### Typora
 - Typora themes are CSS for its own editor markup (`#write`, `.md-fences`,
   CodeMirror `cm-*` classes for code). Built on `ile-oyo.css`; one theme file
@@ -88,15 +77,25 @@ Size: **S** about a day, **M** a few days, **L** a week or more.
 ## Suggested order
 
 1. Xcode, Firefox, Chrome, Kate, Zsh (small, easy to verify here)
-2. Vim / Neovim, Typora, JetBrains `.icls`, Terminal.app
+2. Typora, JetBrains `.icls`, Terminal.app
 3. Notepad++ (needs a Windows check)
 
 ## Decided (2026-11-17)
 
+- Vim / Neovim removed from v0.2 scope.
 - Store listings are part of v0.2: Chrome Web Store, Firefox Add-ons,
   JetBrains Marketplace (plus the VS Code Marketplace and npm from v0.1).
 - Notepad++ is checked on a Windows VM.
 
-## Open questions
+## Out of scope for v0.2
 
-- Vim/Neovim: separate repository, or install from a subdirectory?
+- **Vim / Neovim** (removed 2026-11-17). Notes kept for later:
+  - `colors/ile-oyo.vim` picks Alẹ́ or Ọ̀sán from `&background`;
+    `ile-oyo-ale.vim` and `ile-oyo-osan.vim` force one.
+  - Covers standard groups, diagnostics, Tree-sitter (`@keyword`, …) and LSP
+    semantic groups (`@lsp.type.*`) from the syntax roles, and terminal colors.
+  - `termguicolors` uses the exact hex; a 256-color fallback is approximated.
+  - **Risk:** plugin managers expect `colors/` at the repository root. Options:
+    a separate `ile-oyo.nvim` repository fed by the build, or documenting the
+    `rtp` subdirectory option.
+

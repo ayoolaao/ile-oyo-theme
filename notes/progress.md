@@ -53,9 +53,8 @@
 
 ## Open questions
 
-- Website domain: theiroko.com or akeetan.com (umbrella for the author's
-  Yoruba projects, with a merch page). See website-plan.md.
-- Vim/Neovim distribution: separate repository or subdirectory?
+- Website: confirm `ile-oyo.jazzykid.com`, hosting (Cloudflare Pages
+  recommended) and store (Shopify recommended). See website-plan.md.
 - `npm audit`: 3 moderate advisories in `glob`/`minimatch` under `@vscode/vsce`
   (dev tooling only, not shipped). Revisit when vsce updates.
 

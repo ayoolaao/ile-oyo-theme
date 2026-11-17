@@ -111,3 +111,9 @@ mode only); not needed here.
 - Packaging (VS Code `.vsix`, npm `ile-oyo-theme`) is part of v0.1.0.
 - v0.2 includes store listings (Chrome, Firefox, JetBrains); Notepad++ is
   checked on a Windows VM.
+
+## 2026-11-17: Scope and website direction
+- Vim / Neovim removed from v0.2 (notes kept in roadmap-v0.2.md).
+- Personal projects live under jazzykid.com; the theme site is proposed at
+  `ile-oyo.jazzykid.com`. Merch covers apparel and arts and crafts. Hosting
+  and store are recommended (Cloudflare Pages, Shopify) but not yet decided.
