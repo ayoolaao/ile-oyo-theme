@@ -12,7 +12,6 @@
 - 2026-11-16: Local preview added (`npm run preview`, `--compare` for side by side).
 - 2026-11-16: Palette rebased on the author's draft with minimal changes
   (replaces the from-scratch OKLCH design). Alẹ́ fg switched to `#F4E6CE`.
-
 - 2026-11-16: Ọ̀sán bg warmed to `#F4E6CE`; selection strengthened to ~1.55:1
   in both variants and added to `npm run check`.
 - 2026-11-16: PR #1 merged into `develop`.
@@ -35,12 +34,21 @@
   to `scripts/lib/syntax.mjs`. Added `ui.muted` to the palette after the tests
   found Ọ̀sán's secondary UI text at 3.96–4.26:1. `tests/vscode.test.mjs`: 16
   tests pass. Smoke-tested in VS Code. Branch `feature/vscode`, PR #4 into `develop`.
+- 2026-11-16: PR #4 merged into `develop`.
+- 2026-11-16: Release v0.1.0 prepared on `release/v0.1.0` (CHANGELOG); draft PR
+  into `main`, waiting on the license choice.
 
 ## Open questions
 
-- None right now.
+- License (README currently says "MIT (to be added)").
+- VS Code extension icon: pick a concept.
 
 ## Next
 
-1. Merge PR #4 into `develop`.
-2. Later: package (`vsce`), Marketplace publisher, icon.
+1. v0.1.0: add LICENSE, merge `release/v0.1.0` into `main`, tag `v0.1.0`,
+   merge `main` back into `develop`.
+2. VS Code Marketplace: icon, `vsce` packaging (publishing needs the author's
+   publisher account).
+3. npm package for the CSS (publishing needs the author's npm account).
+4. v0.2 targets: see [roadmap-v0.2.md](roadmap-v0.2.md).
+5. Website: see [website-plan.md](website-plan.md).
