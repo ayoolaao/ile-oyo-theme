@@ -29,6 +29,12 @@
 - 2026-11-16: `npm test` added: palette check, build check, JS token tests,
   Sass compile, TypeScript type-check (sass and typescript as dev dependencies).
   Each check was confirmed to fail when its file is broken.
+- 2026-11-16: PR #3 merged into `develop`.
+- 2026-11-16: VS Code target: extension in `themes/vscode/` with Alẹ́ and Ọ̀sán
+  themes (257 UI colors, TextMate + semantic code colors). Syntax roles moved
+  to `scripts/lib/syntax.mjs`. Added `ui.muted` to the palette after the tests
+  found Ọ̀sán's secondary UI text at 3.96–4.26:1. `tests/vscode.test.mjs`: 16
+  tests pass. Smoke-tested in VS Code. Branch `feature/vscode`, PR #4 into `develop`.
 
 ## Open questions
 
@@ -36,5 +42,5 @@
 
 ## Next
 
-1. Merge PR #3 into `develop`.
-2. VS Code extension (reuse the syntax roles).
+1. Merge PR #4 into `develop`.
+2. Later: package (`vsce`), Marketplace publisher, icon.

@@ -7,8 +7,9 @@ import { dirname, join } from 'node:path';
 import { ROOT, loadPalette, validate } from './lib/palette.mjs';
 import iterm from './targets/iterm.mjs';
 import css from './targets/css.mjs';
+import vscode from './targets/vscode.mjs';
 
-const TARGETS = { iterm, css };
+const TARGETS = { iterm, css, vscode };
 const checkOnly = process.argv.includes('--check');
 
 const palette = loadPalette();

@@ -26,7 +26,8 @@
         "bg_dark": "#152540",
         "bg_light": "#253550",
         "bg_lighter": "#354560",
-        "float": "#253550"
+        "float": "#253550",
+        "muted": "#8994AA"
       },
       "ansi": {
         "color0": "#0F1F3C",
@@ -75,7 +76,8 @@
         "bg_dark": "#EEDDC2",
         "bg_light": "#F3EDE4",
         "bg_lighter": "#FFFFFF",
-        "float": "#F3EDE4"
+        "float": "#F3EDE4",
+        "muted": "#4D5D7E"
       },
       "ansi": {
         "color0": "#1A2B4C",

@@ -78,3 +78,13 @@ uses) are defined once and shared with later targets.
 `npm test` can compile the Sass output and type-check the `.d.ts`. The build
 stays dependency-free. npm skips `@parcel/watcher`'s install script (sass watch
 mode only); not needed here.
+
+## 2026-11-16: VS Code theme design
+- Workbench surfaces step from `ui.bg_darker` (title/activity/status bars) to
+  `ui.bg_dark` (side bar, panels) to `bg` (editor); widgets use `ui.bg_light`.
+- Àlàárì red is the brand accent (active borders, badges, progress); blue is
+  for buttons and links, so red doesn't read as "destructive" on every button.
+- New palette color `ui.muted` for secondary UI text, required to pass 4.5:1 on
+  every surface. Ọ̀sán's comment color failed on the darker panels (as low as
+  3.96:1); Alẹ́'s comment already passed, so its `ui.muted` equals `comment`.
+- Not yet: packaging and Marketplace publishing (needs a publisher account).

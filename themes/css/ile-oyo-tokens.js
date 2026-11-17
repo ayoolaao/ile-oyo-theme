@@ -23,7 +23,8 @@ export const ale = {
     "bgDark": "#152540",
     "bgLight": "#253550",
     "bgLighter": "#354560",
-    "float": "#253550"
+    "float": "#253550",
+    "muted": "#8994AA"
   },
   ansi: [
     "#0F1F3C",
@@ -72,7 +73,8 @@ export const osan = {
     "bgDark": "#EEDDC2",
     "bgLight": "#F3EDE4",
     "bgLighter": "#FFFFFF",
-    "float": "#F3EDE4"
+    "float": "#F3EDE4",
+    "muted": "#4D5D7E"
   },
   ansi: [
     "#1A2B4C",

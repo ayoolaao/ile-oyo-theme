@@ -26,6 +26,7 @@
   --ile-ui-bg-light: #F3EDE4;
   --ile-ui-bg-lighter: #FFFFFF;
   --ile-ui-float: #F3EDE4;
+  --ile-ui-muted: #4D5D7E;
   --ile-line-highlight: #C7BAA375;
   --ile-non-text: #0000001A;
   --ile-tab-drop-bg: #C7BAA370;
@@ -67,6 +68,7 @@
     --ile-ui-bg-light: #253550;
     --ile-ui-bg-lighter: #354560;
     --ile-ui-float: #253550;
+    --ile-ui-muted: #8994AA;
     --ile-line-highlight: #37496B75;
     --ile-non-text: #FFFFFF1A;
     --ile-tab-drop-bg: #37496B70;
@@ -108,6 +110,7 @@
   --ile-ui-bg-light: #253550;
   --ile-ui-bg-lighter: #354560;
   --ile-ui-float: #253550;
+  --ile-ui-muted: #8994AA;
   --ile-line-highlight: #37496B75;
   --ile-non-text: #FFFFFF1A;
   --ile-tab-drop-bg: #37496B70;

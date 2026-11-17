@@ -56,6 +56,14 @@ export function validate(palette) {
       errors.push(`${tag}: selection ${v.palette.selection} is ${sel.toFixed(2)}:1 against bg (min ${MIN_SELECTION})`);
     }
 
+    // Muted UI text (inactive tabs, descriptions, placeholders) is still text:
+    // it must pass on the editor and on every panel surface.
+    for (const s of ['bg', 'bg_dark', 'bg_darker']) {
+      const surface = s === 'bg' ? bg : v.ui[s];
+      const r = contrast(v.ui.muted, surface);
+      if (r < MIN) errors.push(`${tag}: ui.muted ${v.ui.muted} is ${r.toFixed(2)}:1 against ${s} ${surface}`);
+    }
+
     // Accents are distinct from each other and from bg.
     const seen = new Map();
     for (const k of ACCENTS) {

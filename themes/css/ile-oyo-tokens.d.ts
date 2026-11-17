@@ -24,6 +24,7 @@ export interface IleOyoVariant {
     bgLight: string;
     bgLighter: string;
     float: string;
+    muted: string;
   };
   /** ANSI colors 0–15. */
   ansi: string[];

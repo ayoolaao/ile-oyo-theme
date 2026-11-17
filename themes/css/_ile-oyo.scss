@@ -20,6 +20,7 @@ $ile-ale-ui-bg-dark: #152540 !default;
 $ile-ale-ui-bg-light: #253550 !default;
 $ile-ale-ui-bg-lighter: #354560 !default;
 $ile-ale-ui-float: #253550 !default;
+$ile-ale-ui-muted: #8994AA !default;
 $ile-ale-line-highlight: #37496B75 !default;
 $ile-ale-non-text: #FFFFFF1A !default;
 $ile-ale-tab-drop-bg: #37496B70 !default;
@@ -57,6 +58,7 @@ $ile-ale: (
   'ui-bg-light': $ile-ale-ui-bg-light,
   'ui-bg-lighter': $ile-ale-ui-bg-lighter,
   'ui-float': $ile-ale-ui-float,
+  'ui-muted': $ile-ale-ui-muted,
   'line-highlight': $ile-ale-line-highlight,
   'non-text': $ile-ale-non-text,
   'tab-drop-bg': $ile-ale-tab-drop-bg,
@@ -96,6 +98,7 @@ $ile-osan-ui-bg-dark: #EEDDC2 !default;
 $ile-osan-ui-bg-light: #F3EDE4 !default;
 $ile-osan-ui-bg-lighter: #FFFFFF !default;
 $ile-osan-ui-float: #F3EDE4 !default;
+$ile-osan-ui-muted: #4D5D7E !default;
 $ile-osan-line-highlight: #C7BAA375 !default;
 $ile-osan-non-text: #0000001A !default;
 $ile-osan-tab-drop-bg: #C7BAA370 !default;
@@ -133,6 +136,7 @@ $ile-osan: (
   'ui-bg-light': $ile-osan-ui-bg-light,
   'ui-bg-lighter': $ile-osan-ui-bg-lighter,
   'ui-float': $ile-osan-ui-float,
+  'ui-muted': $ile-osan-ui-muted,
   'line-highlight': $ile-osan-line-highlight,
   'non-text': $ile-osan-non-text,
   'tab-drop-bg': $ile-osan-tab-drop-bg,
