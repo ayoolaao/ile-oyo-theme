@@ -88,3 +88,44 @@ mode only); not needed here.
   every surface. Ọ̀sán's comment color failed on the darker panels (as low as
   3.96:1); Alẹ́'s comment already passed, so its `ui.muted` equals `comment`.
 - Not yet: packaging and Marketplace publishing (needs a publisher account).
+
+## 2026-11-16: Packaging
+- npm package name `ile-oyo-theme` (free on npm), published from
+  `themes/css`; ES module only, with `/css`, `/highlight.css` and `/scss`
+  subpaths. The private root package is renamed `ile-oyo-theme-repo` to avoid
+  confusion.
+- VS Code extension packaged with `@vscode/vsce` 3.2.1 into `dist/`
+  (git-ignored). Publisher ID `ayoolaao` must match the author's Marketplace
+  publisher.
+- Packaging and publishing scripts run `npm test` first. Publishing itself is
+  left to the author (accounts and tokens).
+
+## 2026-11-17: License, icon, release contents
+- License: Apache-2.0 for now (author may revisit; the repository is still
+  private). `NOTICE` reserves the names Ilé-Ọ̀yọ́, Alẹ́, Ọ̀sán and the icon for
+  the original project (Apache-2.0 §6 grants no trademark rights). The build
+  copies LICENSE and NOTICE into each package.
+- Icon: concept D (Alẹ́/Ọ̀sán split joined by an àlàárì band), with a faint
+  inner edge for dark backgrounds. Source `assets/icon/icon.svg`; PNG rendered
+  by `npm run icon` (needs Google Chrome) and committed.
+- Packaging (VS Code `.vsix`, npm `ile-oyo-theme`) is part of v0.1.0.
+- v0.2 includes store listings (Chrome, Firefox, JetBrains); Notepad++ is
+  checked on a Windows VM.
+
+## 2026-11-17: Scope and website direction
+- Vim / Neovim removed from v0.2 (notes kept in roadmap-v0.2.md).
+- Personal projects live under jazzykid.com; the theme site is proposed at
+  `ile-oyo.jazzykid.com`. Merch covers apparel and arts and crafts. Hosting
+  and store are recommended (Cloudflare Pages, Shopify) but not yet decided.
+
+## 2026-11-17: Website decisions
+Supersedes "proposed" in the previous entry. Theme site at
+`ile-oyo.jazzykid.com`, built with Astro and hosted on Cloudflare Pages (free,
+private repos, PR previews, commercial use allowed). Merch store on Shopify at
+akeetan.com (apparel via print-on-demand, arts and crafts as own inventory),
+linked from the theme site. theiroko.com is kept for now.
+
+## 2026-11-17: Site language
+The site launches in English, Story page included. A Yoruba translation is a
+planned milestone (Astro i18n, `/yo/`), translated by a fluent speaker rather
+than by machine. A Story draft is in story-draft.md for the author to edit.

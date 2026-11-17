@@ -33,4 +33,6 @@ See [`notes/`](notes/) for the spec, design decisions, and progress log.
 
 ## License
 
-MIT (to be added)
+[Apache License 2.0](LICENSE). The names Ilé-Ọ̀yọ́, Alẹ́ and Ọ̀sán and the
+icon identify this project; modified versions need their own name and icon
+(see [NOTICE](NOTICE)).
