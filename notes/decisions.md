@@ -42,3 +42,11 @@ The from-scratch OKLCH redesign was replaced. Draft colors that pass are kept
 exactly; failing ones keep hue and chroma and change only lightness, to 4.6:1.
 Duplicates (blue = bg/fg, pink = red) were resolved with the nearest distinct
 color. Details in palette-review.md.
+
+## 2026-11-16: Alẹ́ text color
+Alẹ́ fg is the warmer sányán `#F4E6CE` (11.4:1 on `#1A2B4C`) instead of the
+draft's `#F5F5DC`, by preference. ANSI 7 matches it.
+
+## 2026-11-16: Previews stay local
+Previews are built as local files (`npm run preview`) and opened in the
+browser. Nothing is published to the web unless explicitly asked.
