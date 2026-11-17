@@ -36,19 +36,29 @@
   tests pass. Smoke-tested in VS Code. Branch `feature/vscode`, PR #4 into `develop`.
 - 2026-11-16: PR #4 merged into `develop`.
 - 2026-11-16: Release v0.1.0 prepared on `release/v0.1.0` (CHANGELOG); draft PR
-  into `main`, waiting on the license choice.
+  into `main` (#5), waiting on the license choice. v0.2 roadmap and website
+  plan written.
+- 2026-11-16: Icon concepts A–D drawn (`preview/icons.html`, local only).
+- 2026-11-16: Packaging on `feature/packaging`: `@vscode/vsce` added;
+  `npm run package:vscode` builds a 9 KB `.vsix` with no warnings (license
+  skipped until chosen). npm package `ile-oyo-theme` in `themes/css`:
+  `npm pack`/`npm publish --dry-run` pass; installing the tarball in a scratch
+  project resolves the JS import, `/css`, `/highlight.css`, `/scss`, and the
+  types (nodenext and bundler). Version-consistency tests added; 20 tests pass.
 
 ## Open questions
 
 - License (README currently says "MIT (to be added)").
-- VS Code extension icon: pick a concept.
+- VS Code extension icon: pick a concept (A–D).
+- `npm audit`: 3 moderate advisories in `glob`/`minimatch` under `@vscode/vsce`
+  (dev tooling only, not shipped). Revisit when vsce updates.
 
 ## Next
 
 1. v0.1.0: add LICENSE, merge `release/v0.1.0` into `main`, tag `v0.1.0`,
    merge `main` back into `develop`.
-2. VS Code Marketplace: icon, `vsce` packaging (publishing needs the author's
-   publisher account).
-3. npm package for the CSS (publishing needs the author's npm account).
+2. VS Code Marketplace: add the chosen icon and LICENSE; author creates the
+   publisher `ayoolaao` and runs `npm run publish:vscode`.
+3. npm: add LICENSE; author runs `npm run publish:css`.
 4. v0.2 targets: see [roadmap-v0.2.md](roadmap-v0.2.md).
 5. Website: see [website-plan.md](website-plan.md).

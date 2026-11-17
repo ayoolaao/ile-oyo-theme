@@ -88,3 +88,14 @@ mode only); not needed here.
   every surface. Ọ̀sán's comment color failed on the darker panels (as low as
   3.96:1); Alẹ́'s comment already passed, so its `ui.muted` equals `comment`.
 - Not yet: packaging and Marketplace publishing (needs a publisher account).
+
+## 2026-11-16: Packaging
+- npm package name `ile-oyo-theme` (free on npm), published from
+  `themes/css`; ES module only, with `/css`, `/highlight.css` and `/scss`
+  subpaths. The private root package is renamed `ile-oyo-theme-repo` to avoid
+  confusion.
+- VS Code extension packaged with `@vscode/vsce` 3.2.1 into `dist/`
+  (git-ignored). Publisher ID `ayoolaao` must match the author's Marketplace
+  publisher.
+- Packaging and publishing scripts run `npm test` first. Publishing itself is
+  left to the author (accounts and tokens).

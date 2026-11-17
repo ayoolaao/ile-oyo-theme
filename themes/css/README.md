@@ -10,6 +10,27 @@ Shiki. Open [`demo.html`](demo.html) in a browser to see them.
 | `_ile-oyo.scss` | Sass variables and maps |
 | `ile-oyo-tokens.js` / `.d.ts` | JS/TS tokens (ES module) |
 
+## Install
+
+```sh
+npm install ile-oyo-theme
+```
+
+| Import | File |
+| ------ | ---- |
+| `ile-oyo-theme/css` | `ile-oyo.css` |
+| `ile-oyo-theme/highlight.css` | `ile-oyo-highlight.css` |
+| `ile-oyo-theme/scss` | `_ile-oyo.scss` |
+| `ile-oyo-theme` | JS/TS tokens (ES module only) |
+
+```js
+import 'ile-oyo-theme/css';
+import 'ile-oyo-theme/highlight.css';
+import { ale, osan } from 'ile-oyo-theme';
+```
+
+Or copy the files from this folder.
+
 ## Variables
 
 ```html
@@ -72,7 +93,7 @@ Every variable is `!default`, so you can override it before `@use ... with (...)
 ## JavaScript / TypeScript
 
 ```js
-import { ale, osan, syntax } from './ile-oyo-tokens.js';
+import { ale, osan, syntax } from 'ile-oyo-theme';
 
 ale.colors.bg;              // "#1A2B4C"
 osan.ansi[1];               // ANSI red in Ọ̀sán

@@ -1,0 +1,52 @@
+{
+  "name": "ile-oyo-theme",
+  "version": "0.1.0",
+  "description": "Ilé-Ọ̀yọ́ color theme for the web: CSS variables, syntax highlighting for Prism, highlight.js and Shiki, Sass variables, and JS/TS tokens. Alẹ́ (dark) and Ọ̀sán (light).",
+  "type": "module",
+  "main": "./ile-oyo-tokens.js",
+  "types": "./ile-oyo-tokens.d.ts",
+  "style": "./ile-oyo.css",
+  "sass": "./_ile-oyo.scss",
+  "exports": {
+    ".": {
+      "types": "./ile-oyo-tokens.d.ts",
+      "default": "./ile-oyo-tokens.js"
+    },
+    "./css": "./ile-oyo.css",
+    "./highlight.css": "./ile-oyo-highlight.css",
+    "./scss": "./_ile-oyo.scss",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "ile-oyo.css",
+    "ile-oyo-highlight.css",
+    "_ile-oyo.scss",
+    "ile-oyo-tokens.js",
+    "ile-oyo-tokens.d.ts",
+    "README.md"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "keywords": [
+    "theme",
+    "color-theme",
+    "css-variables",
+    "design-tokens",
+    "dark-theme",
+    "light-theme",
+    "syntax-highlighting",
+    "prism",
+    "highlightjs",
+    "shiki",
+    "yoruba"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayoolaao/ile-oyo-theme.git",
+    "directory": "themes/css"
+  },
+  "homepage": "https://github.com/ayoolaao/ile-oyo-theme/tree/main/themes/css#readme",
+  "bugs": "https://github.com/ayoolaao/ile-oyo-theme/issues"
+}
