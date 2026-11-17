@@ -1,5 +1,25 @@
 # Spec
 
+## Name
+
+**Ilé-Ọ̀yọ́** means *"home of Ọ̀yọ́"*, after the historic Yoruba city and empire.
+(Not "House of Beauty"; that gloss was an early draft and is retired.)
+
+Palette sources come from Ọ̀yọ́ specifically, chiefly *aṣọ-òkè* (*aṣọ òfì*),
+the woven cloth of Ọ̀yọ́'s *agbádá* and *ìró àti bùbá*. Each is tied to a role:
+
+| Source | Role in the palette |
+| ------ | ------------------- |
+| *Ẹtù* (indigo aṣọ-òkè) | Alẹ́ background, blues |
+| *Sányán* (beige wild-silk aṣọ-òkè) | foreground (Alẹ́), background (Ọ̀sán) |
+| *Àlàárì* (crimson aṣọ-òkè) | primary red |
+| Coral beads (*iyùn*) | pink/coral |
+| Gold thread | yellow |
+| Clay and earth | browns, oranges, UI surfaces |
+
+Avoid attributing the palette to *adire*: it is associated with Abẹ́òkúta, not
+Ọ̀yọ́.
+
 ## Variants
 
 | Variant | Meaning   | Mode  |

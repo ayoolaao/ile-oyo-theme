@@ -38,7 +38,7 @@ color12 is 1.3.
 **Fix:** keep the hues, raise lightness. Dark-mode accents should sit around
 OKLCH L 0.72–0.85 (e.g. brick red → a light coral-terracotta, olive → a
 sage/leaf green, brown → a warm amber-orange). Blue must differ from bg; an
-Adire-indigo hue at high lightness works. Comment needs to be a muted
+ẹtù-indigo hue at high lightness works. Comment needs to be a muted
 light color (≈ 4.5:1), not a slightly lighter navy.
 
 ## Ọ̀sán (light): small fixes
@@ -62,7 +62,7 @@ mid-indigo, distinct from fg.
 ## Both variants
 
 - **red == pink** (`#A52A2A`), and ANSI color1 == color5, color9 == color13.
-  Pink needs its own hue: a coral-bead coral or a camwood rose.
+  Pink needs its own hue: a coral-bead coral.
 - **Accents are close in brightness and saturation**, so even where they pass
   contrast they're hard to tell apart. Spread them out in hue.
 - **Selection** is 1.16–1.26 against bg: too faint to see. Aim for a clearly

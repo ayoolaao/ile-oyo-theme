@@ -1,16 +1,21 @@
-# Ilé-Ọyọ́ Theme
+# Ilé-Ọ̀yọ́ Theme
 
-> A Yoruba-inspired color theme: warm, earthy, and culturally rooted.
+**Ilé-Ọ̀yọ́** (Yoruba: *"home of Ọ̀yọ́"*) is a color theme named for Ọ̀yọ́, the
+historic Yoruba city and empire. Its palette is woven from *aṣọ-òkè* (*aṣọ
+òfì*), the hand-loomed cloth of Ọ̀yọ́'s *agbádá* and *ìró àti bùbá*: the deep
+indigo of *ẹtù*, the warm beige of *sányán*, and the crimson of *àlàárì*,
+finished with the red of coral beads, the shine of gold thread, and the earth
+tones of the clay beneath them all. Warm, grounded, and made to be lived in,
+like a home.
 
-**Ilé-Ọyọ́** comes in two variants:
+It comes in two variants:
 
 | Variant | Meaning   | Mode  |
 | ------- | --------- | ----- |
 | **Alẹ́**  | evening   | Dark  |
 | **Ọ̀sán** | afternoon | Light |
 
-The palette draws on indigo night skies, cream cloth, brick red, goldenrod, and
-earth tones. It started as the Ilé-Ọyọ́ preset on [ayoola.io](https://ayoola.io).
+The palette started as the Ilé-Ọ̀yọ́ preset on [ayoola.io](https://ayoola.io).
 
 ## Supported applications
 

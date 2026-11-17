@@ -1,6 +1,6 @@
 # Notes
 
-Working notes for the Ilé-Ọyọ́ theme. Start here.
+Working notes for the Ilé-Ọ̀yọ́ theme. Start here.
 
 | File | What it holds |
 | ---- | ------------- |
