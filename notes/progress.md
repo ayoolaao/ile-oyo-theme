@@ -53,8 +53,6 @@
 
 ## Open questions
 
-- Website: confirm `ile-oyo.jazzykid.com`, hosting (Cloudflare Pages
-  recommended) and store (Shopify recommended). See website-plan.md.
 - `npm audit`: 3 moderate advisories in `glob`/`minimatch` under `@vscode/vsce`
   (dev tooling only, not shipped). Revisit when vsce updates.
 
@@ -66,4 +64,5 @@
    `npm run publish:vscode` (repository is private for now).
 3. npm: author runs `npm run publish:css`.
 4. v0.2 targets: see [roadmap-v0.2.md](roadmap-v0.2.md).
-5. Website: see [website-plan.md](website-plan.md).
+5. Website at `ile-oyo.jazzykid.com` (Astro on Cloudflare Pages); store on
+   Shopify at akeetan.com. See [website-plan.md](website-plan.md).

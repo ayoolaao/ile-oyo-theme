@@ -117,3 +117,10 @@ mode only); not needed here.
 - Personal projects live under jazzykid.com; the theme site is proposed at
   `ile-oyo.jazzykid.com`. Merch covers apparel and arts and crafts. Hosting
   and store are recommended (Cloudflare Pages, Shopify) but not yet decided.
+
+## 2026-11-17: Website decisions
+Supersedes "proposed" in the previous entry. Theme site at
+`ile-oyo.jazzykid.com`, built with Astro and hosted on Cloudflare Pages (free,
+private repos, PR previews, commercial use allowed). Merch store on Shopify at
+akeetan.com (apparel via print-on-demand, arts and crafts as own inventory),
+linked from the theme site. theiroko.com is kept for now.
