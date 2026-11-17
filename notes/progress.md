@@ -20,6 +20,15 @@
   `themes/iterm/Ile-Oyo-{Ale,Osan}.itermcolors`. Validated with `plutil` and a
   round-trip check (every color reads back as the palette hex). Reviewed in
   iTerm2. Branch `feature/iterm`, PR #2 into `develop`.
+- 2026-11-16: PR #2 merged into `develop`.
+- 2026-11-16: CSS target (variables, highlighting for Prism/highlight.js/Shiki,
+  Sass, JS/TS tokens) and `themes/css/demo.html`. Verified: JS tokens match the
+  palette; in headless Chrome all 50 checked highlight colors match in both
+  variants, the scoped `data-ile-theme` box works, and system light/dark picks
+  the right variant. Demo reviewed. Branch `feature/css`, PR #3 into `develop`.
+- 2026-11-16: `npm test` added: palette check, build check, JS token tests,
+  Sass compile, TypeScript type-check (sass and typescript as dev dependencies).
+  Each check was confirmed to fail when its file is broken.
 
 ## Open questions
 
@@ -27,6 +36,5 @@
 
 ## Next
 
-1. Merge PR #2 into `develop`.
-2. CSS target.
-3. VS Code extension.
+1. Merge PR #3 into `develop`.
+2. VS Code extension (reuse the syntax roles).

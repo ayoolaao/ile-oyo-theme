@@ -11,6 +11,14 @@
   "scripts": {
     "check": "node scripts/check-palette.mjs",
     "build": "node scripts/build.mjs",
-    "preview": "node scripts/preview.mjs"
+    "preview": "node scripts/preview.mjs",
+    "test": "npm run check && npm run build -- --check && npm run test:tokens && npm run test:sass && npm run test:types",
+    "test:tokens": "node --test tests/",
+    "test:sass": "sass --no-source-map tests/use.scss > /dev/null",
+    "test:types": "tsc --noEmit --strict --module nodenext --moduleResolution nodenext tests/use.ts"
+  },
+  "devDependencies": {
+    "sass": "1.83.0",
+    "typescript": "5.6.3"
   }
 }

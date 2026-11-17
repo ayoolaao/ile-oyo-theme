@@ -43,7 +43,7 @@ scripts/build.mjs           npm run build: validate, then run every target
 scripts/targets/<name>.mjs  one generator per app; returns [{ path, contents }]
 scripts/preview.mjs         npm run preview (local HTML, git-ignored preview/)
 themes/iterm/               generated .itermcolors (committed) + README
-themes/css/                 planned
+themes/css/                 generated CSS/Sass/JS (committed), demo.html, README
 themes/vscode/              planned
 notes/                      these notes
 ```
@@ -67,6 +67,38 @@ the hex values exactly.
 | Selection | `selection` |
 | Link | `blue` |
 | Cursor Guide | `selection` at 40% opacity |
+
+## Syntax roles
+
+Which palette color each kind of code token uses. Defined once in
+`scripts/targets/css.mjs` (`SYNTAX`, also exported from the JS tokens) and
+reused by every target that colors code (CSS highlighting now, VS Code next).
+
+| Role | Color | Role | Color |
+| ---- | ----- | ---- | ----- |
+| keyword, operator | pink | comment | comment (italic) |
+| function, property | green | variable, punctuation | fg |
+| string | yellow | link | cyan |
+| number, boolean, constant | purple | deleted | red |
+| type, class, built-in | cyan | inserted | green |
+| parameter | orange (italic) | changed | orange |
+| tag | pink | heading | purple |
+| regex | red | emphasis / strong | yellow / orange |
+
+## Target: CSS
+
+Files in `themes/css/`:
+
+| File | Contents |
+| ---- | -------- |
+| `ile-oyo.css` | `--ile-*` variables for both variants |
+| `ile-oyo-highlight.css` | Prism + highlight.js token rules and Shiki `--shiki-*` variables, all via `--ile-*` |
+| `_ile-oyo.scss` | `$ile-<variant>-<token>` (all `!default`), maps `$ile-ale`, `$ile-osan`, `$ile-oyo` |
+| `ile-oyo-tokens.js`, `.d.ts` | ES module: `ale`, `osan`, `syntax`, default export |
+
+Variant selection: Ọ̀sán by default, Alẹ́ under `prefers-color-scheme: dark`;
+`data-ile-theme="ale" | "osan"` on any element overrides it for that subtree.
+`demo.html` is hand-written and uses only the variables.
 
 One repo with generators, not Dracula's one-repo-per-app layout. Targets can be
 split out later if needed.
@@ -105,13 +137,16 @@ pass (target 4.6:1, so hex rounding can't drop it below 4.5). Stored as hex.
 
 ## Tooling
 
-Node.js (installed via nvm). The VS Code extension needs `vsce` for packaging.
+Node.js (installed via nvm). Dev dependencies, pinned exactly: `sass` 1.83.0
+and `typescript` 5.6.3, used only by `npm test`. The build itself has no
+dependencies. The VS Code extension will need `vsce` for packaging.
 
 | Command | What it does |
 | ------- | ------------ |
 | `npm run check` | Enforces the rules above; non-zero exit on failure |
 | `npm run build` | Validates, then writes every target's files |
 | `npm run build -- --check` | Fails if a committed generated file is out of date |
+| `npm test` | All of the above, plus: JS tokens equal the palette (`node --test`), the Sass compiles (`tests/use.scss`), and the `.d.ts` type-checks (`tests/use.ts`) |
 | `npm run preview` | Builds `preview/index.html` from the palette and opens it |
 | `npm run preview -- --compare <file>` | Side-by-side with another palette (either format) → `preview/compare.html` |
 
