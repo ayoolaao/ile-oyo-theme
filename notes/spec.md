@@ -172,15 +172,30 @@ pass (target 4.6:1, so hex rounding can't drop it below 4.5). Stored as hex.
 ## Tooling
 
 Node.js (installed via nvm). Dev dependencies, pinned exactly: `sass` 1.83.0
-and `typescript` 5.6.3, used only by `npm test`. The build itself has no
-dependencies. The VS Code extension will need `vsce` for packaging.
+and `typescript` 5.6.3 (tests), `@vscode/vsce` 3.2.1 (packaging). The build
+itself has no dependencies. The root `package.json` is private
+(`ile-oyo-theme-repo`) and never published.
+
+## Packages
+
+| Package | Folder | Name | Contents |
+| ------- | ------ | ---- | -------- |
+| VS Code extension | `themes/vscode` | `ayoolaao.ile-oyo-theme` | manifest, README, both themes (+ LICENSE, icon once chosen) |
+| npm | `themes/css` | `ile-oyo-theme` | CSS, highlight CSS, Sass, JS tokens + types; ES module only. Subpaths: `/css`, `/highlight.css`, `/scss` |
+
+Every package's version must equal `palette.version`, and `CHANGELOG.md` must
+have an entry for it (`tests/versions.test.mjs`).
 
 | Command | What it does |
 | ------- | ------------ |
 | `npm run check` | Enforces the rules above; non-zero exit on failure |
 | `npm run build` | Validates, then writes every target's files |
 | `npm run build -- --check` | Fails if a committed generated file is out of date |
-| `npm test` | All of the above, plus: JS tokens equal the palette (`node --test`), the Sass compiles (`tests/use.scss`), and the `.d.ts` type-checks (`tests/use.ts`) |
+| `npm test` | All of the above, plus: JS tokens equal the palette (`node --test`), the Sass compiles (`tests/use.scss`), the `.d.ts` type-checks (`tests/use.ts`), VS Code theme checks, and package versions match the palette |
+| `npm run package:vscode` | Tests, then `dist/ile-oyo-theme-<version>.vsix` |
+| `npm run publish:vscode` | Tests, then `vsce publish` (author runs it; needs `vsce login`) |
+| `npm run pack:css` | Tests, then `npm pack --dry-run` of `themes/css` |
+| `npm run publish:css` | Tests, then `npm publish` of `themes/css` (author runs it; needs `npm login`) |
 | `npm run preview` | Builds `preview/index.html` from the palette and opens it |
 | `npm run preview -- --compare <file>` | Side-by-side with another palette (either format) → `preview/compare.html` |
 

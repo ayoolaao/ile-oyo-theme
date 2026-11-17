@@ -4,7 +4,8 @@
   "description": "Home of Ọ̀yọ́: a color theme woven from aṣọ-òkè, with Alẹ́ (dark) and Ọ̀sán (light) variants.",
   "version": "0.1.0",
   "publisher": "ayoolaao",
-  "license": "MIT",
+  "icon": "icon.png",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/ayoolaao/ile-oyo-theme.git"

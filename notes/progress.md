@@ -12,7 +12,6 @@
 - 2026-11-16: Local preview added (`npm run preview`, `--compare` for side by side).
 - 2026-11-16: Palette rebased on the author's draft with minimal changes
   (replaces the from-scratch OKLCH design). Alẹ́ fg switched to `#F4E6CE`.
-
 - 2026-11-16: Ọ̀sán bg warmed to `#F4E6CE`; selection strengthened to ~1.55:1
   in both variants and added to `npm run check`.
 - 2026-11-16: PR #1 merged into `develop`.
@@ -35,12 +34,44 @@
   to `scripts/lib/syntax.mjs`. Added `ui.muted` to the palette after the tests
   found Ọ̀sán's secondary UI text at 3.96–4.26:1. `tests/vscode.test.mjs`: 16
   tests pass. Smoke-tested in VS Code. Branch `feature/vscode`, PR #4 into `develop`.
+- 2026-11-16: PR #4 merged into `develop`.
+- 2026-11-16: Release v0.1.0 prepared on `release/v0.1.0` (CHANGELOG); draft PR
+  into `main` (#5), waiting on the license choice. v0.2 roadmap and website
+  plan written.
+- 2026-11-16: Icon concepts A–D drawn (`preview/icons.html`, local only).
+- 2026-11-16: Packaging on `feature/packaging`: `@vscode/vsce` added;
+  `npm run package:vscode` builds a 9 KB `.vsix` with no warnings (license
+  skipped until chosen). npm package `ile-oyo-theme` in `themes/css`:
+  `npm pack`/`npm publish --dry-run` pass; installing the tarball in a scratch
+  project resolves the JS import, `/css`, `/highlight.css`, `/scss`, and the
+  types (nodenext and bundler). Version-consistency tests added; 20 tests pass.
+- 2026-11-17: License Apache-2.0 (+ NOTICE reserving the name and icon); the
+  build copies both into each package. Icon: concept D, source
+  `assets/icon/icon.svg`, rendered to `themes/vscode/icon.png` by
+  `npm run icon`. `.vsix` now 9 files incl. icon, LICENSE, NOTICE, no
+  warnings; 22 tests pass. PR `feature/packaging` → `release/v0.1.0`.
+- 2026-11-17: PR #6 merged into `release/v0.1.0`. Release check on a clean
+  `npm ci`: 22 tests pass; npm dry run OK. Fixed `package:vscode` failing when
+  `dist/` doesn't exist yet. PR #5 marked ready.
+- 2026-11-17: **v0.1.0 released.** PR #5 merged into `main` (merge commit
+  `9881615`); annotated tag `v0.1.0`; GitHub Release with the `.vsix` and both
+  `.itermcolors` files (built from `main` after `npm ci`; downloaded assets
+  verified by SHA-256). `main` merged back into `develop`.
 
 ## Open questions
 
-- None right now.
+- `npm audit`: 3 moderate advisories in `glob`/`minimatch` under `@vscode/vsce`
+  (dev tooling only, not shipped). Revisit when vsce updates.
 
 ## Next
 
-1. Merge PR #4 into `develop`.
-2. Later: package (`vsce`), Marketplace publisher, icon.
+1. Publish (2026-11-18, once the author has the accounts):
+   - VS Code Marketplace: create publisher `ayoolaao` (must match
+     `themes/vscode/package.json`), `npx vsce login ayoolaao`, then
+     `npm run publish:vscode` from `main`.
+   - npm: `npm login`, then `npm run publish:css` from `main`.
+   - Both make the theme files public even while the repository is private.
+2. Update the release notes' "npm package coming soon" line once published.
+3. v0.2 targets: see [roadmap-v0.2.md](roadmap-v0.2.md).
+4. Website at `ile-oyo.jazzykid.com` (Astro on Cloudflare Pages); store on
+   Shopify at akeetan.com. See [website-plan.md](website-plan.md).

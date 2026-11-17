@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Ilé-Ọ̀yọ́ icon (concept D): Alẹ́ (ẹtù indigo) and Ọ̀sán (sányán beige)
+       joined by a woven àlàárì band. Source for themes/vscode/icon.png;
+       render with `npm run icon`. -->
+  <defs>
+    <clipPath id="r"><rect width="128" height="128" rx="22"/></clipPath>
+  </defs>
+  <g clip-path="url(#r)">
+    <rect width="128" height="128" fill="#F4E6CE"/>
+    <path d="M0 0 H128 L0 128 Z" fill="#1A2B4C"/>
+    <path d="M-10 118 L118 -10 L138 10 L10 138 Z" fill="#A52A2A"/>
+    <path d="M-2 126 L126 -2" stroke="#F4E6CE" stroke-width="3" stroke-dasharray="7 6"/>
+    <circle cx="38" cy="38" r="12" fill="#F4E6CE"/>
+    <circle cx="92" cy="92" r="12" fill="#DAA520"/>
+  </g>
+  <!-- Faint inner edge so the indigo half stays visible on dark backgrounds. -->
+  <rect x="1" y="1" width="126" height="126" rx="21" fill="none" stroke="#F4E6CE" stroke-opacity="0.22" stroke-width="2"/>
+</svg>

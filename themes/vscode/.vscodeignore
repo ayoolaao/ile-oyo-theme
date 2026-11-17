@@ -1,0 +1,4 @@
+# Only ship the manifest, README, CHANGELOG, LICENSE, icon and themes.
+**/*.map
+.vscode/**
+*.vsix

@@ -80,6 +80,20 @@ for (const [id, t] of Object.entries(themes)) {
   });
 }
 
+test('extension icon is a 256×256 PNG referenced by the manifest', () => {
+  assert.equal(manifest.icon, 'icon.png');
+  const png = readFileSync(join(dir, 'icon.png'));
+  assert.equal(png.toString('latin1', 1, 4), 'PNG');
+  assert.equal(png.readUInt32BE(16), 256);
+  assert.equal(png.readUInt32BE(20), 256);
+});
+
+test('extension ships LICENSE and NOTICE identical to the repository root', () => {
+  for (const f of ['LICENSE', 'NOTICE']) {
+    assert.equal(readFileSync(join(dir, f), 'utf8'), readFileSync(join(ROOT, f), 'utf8'), f);
+  }
+});
+
 test('manifest lists both themes with matching labels, types and files', () => {
   const entries = manifest.contributes.themes;
   assert.equal(entries.length, Object.keys(FILES).length);
