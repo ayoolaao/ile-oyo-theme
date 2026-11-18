@@ -77,7 +77,10 @@
 - 2026-11-17: **v0.1.1 released.** PR #9 merged into `main` (`feeeba8`);
   annotated tag `v0.1.1`; GitHub Release with the `.vsix` (publisher
   `jazzykid`) and both `.itermcolors` files, built from `main` after `npm ci`
-  (22 tests pass; downloaded assets verified by SHA-256).
+  (22 tests pass; downloaded assets verified by SHA-256). PR #9 was merged
+  before its last commit (`91480ab`: hand-upload notes, Trusted Publishing on
+  the roadmap, one sentence in the VS Code README) was pushed; that commit
+  reaches `develop` through the back-merge and `main` with the next release.
 
 ## Open questions
 
@@ -90,9 +93,11 @@
 ## Next
 
 1. Publish v0.1.1 (author):
-   - VS Code Marketplace: publisher `jazzykid` exists (owner account
-     jazzykid0629@outlook.com); `npx vsce login jazzykid` with a personal
-     access token, then `npm run publish:vscode`.
+   - VS Code Marketplace: upload `ile-oyo-theme-0.1.1.vsix` from the GitHub
+     Release by hand at marketplace.visualstudio.com/manage → `jazzykid` →
+     New extension (no token). Global Azure DevOps PATs are retired
+     2026-12-01, so `npm run publish:vscode` (PAT-based) is not the path
+     forward.
    - npm: `npm login`, then `npm run publish:css` from `main`.
 2. Once published, update the v0.1.1 GitHub Release notes ("publishing in
    progress" → Marketplace and npm links).

@@ -151,3 +151,13 @@ release is v0.1.1. iTerm2 shots are captured by `npm run screenshot:iterm`
 (temporary dynamic profiles, `screencapture -l`), replacing the manual steps
 in the previous entry.
 
+## 2026-11-17: Publishing without long-lived tokens
+Azure DevOps retires global personal access tokens on 2026-12-01, and the
+pinned vsce 3.2.1 has no `--oidc` option. v0.1.1 goes to the Marketplace as
+a hand upload of the release `.vsix` (the same file as the GitHub Release),
+and to npm with `npm login` (2FA) plus `npm run publish:css`. From v0.2, a
+GitHub Actions `release.yml` on `v*` tags publishes both through Trusted
+Publishing (OIDC): `vsce publish --oidc` for the Marketplace, and npm trusted
+publishing with provenance. npm can only set up a trusted publisher once the
+package exists, so the first npm publish is manual.
+
