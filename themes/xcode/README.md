@@ -9,16 +9,16 @@ Two source editor themes:
 
 ## Install
 
-1. Copy the files into Xcode's themes folder (create it if it doesn't exist):
+1. Download `Ile-Oyo-Ale.xccolortheme` and `Ile-Oyo-Osan.xccolortheme` (from
+   a GitHub release, or this folder).
+2. In Xcode, open **Settings → Themes**.
+3. Click **Choose…**, then **Import…**, and select a downloaded file. Repeat
+   for the other variant.
+4. Select **Ile-Oyo-Ale** or **Ile-Oyo-Osan**.
 
-   ```sh
-   mkdir -p ~/Library/Developer/Xcode/UserData/FontAndColorThemes
-   cp Ile-Oyo-*.xccolortheme ~/Library/Developer/Xcode/UserData/FontAndColorThemes/
-   ```
-
-2. Restart Xcode.
-3. Open **Xcode → Settings → Themes** and choose **Ile-Oyo-Ale** or
-   **Ile-Oyo-Osan**.
+Checked in Xcode 27.2. Copying the files into
+`~/Library/Developer/Xcode/UserData/FontAndColorThemes/` alone isn't enough
+there; import them as above.
 
 ## What's in each theme
 

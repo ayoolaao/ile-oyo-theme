@@ -65,7 +65,7 @@ const notes = `${changelogSection(readFileSync(join(ROOT, 'CHANGELOG.md'), 'utf8
 - **VS Code**: [Marketplace](https://marketplace.visualstudio.com/items?itemName=jazzykid.ile-oyo-theme) (\`code --install-extension jazzykid.ile-oyo-theme\`), or \`code --install-extension ile-oyo-theme-${version}.vsix\`.
   Then pick **Ilé-Ọ̀yọ́ Alẹ́** or **Ilé-Ọ̀yọ́ Ọ̀sán** under Preferences: Color Theme.
 - **iTerm2**: double-click an \`.itermcolors\` file, or iTerm2 → Settings → Profiles → Colors → Color Presets → Import.
-- **Xcode**: copy the \`.xccolortheme\` files to \`~/Library/Developer/Xcode/UserData/FontAndColorThemes/\`, restart Xcode, then pick the theme in Settings → Themes.
+- **Xcode**: Settings → Themes → Choose… → Import…, then select an \`.xccolortheme\` file.
 - **CSS**: [\`npm install ile-oyo-theme\`](https://www.npmjs.com/package/ile-oyo-theme), or copy the files from \`themes/css/\`.
 
 ### SHA-256
