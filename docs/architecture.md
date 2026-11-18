@@ -223,7 +223,10 @@ Connect), so no publishing tokens exist anywhere.
    - **build**: `npm test`, then `scripts/release.mjs --tag`, which fails
      unless the tag matches the palette version;
    - **publish-vscode**: `vsce publish --oidc` with the built `.vsix`;
-   - **publish-npm**: `npm publish` with the built `.tgz`, with provenance;
+   - **publish-npm**: `npm stage publish` with the built `.tgz`, with
+     provenance. The trusted publisher is stage-only, so the version waits
+     until you approve it with 2FA (`npm stage approve <id>`, or Staged
+     Packages on npmjs.com);
    - **github-release**: the GitHub Release with the `.vsix`, both
      `.itermcolors` and `release-notes.md`, only after both stores succeed.
 
@@ -233,7 +236,9 @@ before they start. Trusted Publishing policies name this repository,
 
 - Marketplace: publisher `jazzykid` → Trusted Publishing.
 - npm: package `ile-oyo-theme` → Settings → Trusted publisher (GitHub
-  Actions).
+  Actions), with "Allow npm publish" and "Allow npm dist-tag" left unchecked
+  (stage-only). Publishing access: "Require two-factor authentication and
+  disallow tokens".
 
 `.github/workflows/ci.yml` runs `npm run release:dist` on every push and pull
 request, so problems show up before a tag is pushed. Fallback if Actions is
