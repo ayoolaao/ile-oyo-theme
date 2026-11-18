@@ -47,6 +47,7 @@ scripts/targets/<name>.mjs  one generator per app; returns [{ path, contents }]
 scripts/preview.mjs         npm run preview (local HTML, git-ignored preview/)
 scripts/screenshot-vscode.mjs  npm run screenshot:vscode (real VS Code, sample in scripts/screenshot/)
 scripts/screenshot-iterm.sh npm run screenshot:iterm (real iTerm2, temporary dynamic profiles)
+scripts/screenshot-xcode.sh npm run screenshot:xcode -- ale|osan (real Xcode, theme picked by hand)
 scripts/terminal-demo.sh    npm run demo:terminal (fixed scene for terminal screenshots)
 assets/screenshots/         README images (committed; Marketplace links them from main)
 themes/iterm/               generated .itermcolors (committed) + README
@@ -217,7 +218,7 @@ have a dated entry for it, `## <version> (YYYY-MM-DD)` (`tests/versions.test.mjs
 | `npm run package:vscode` | Tests, then `dist/ile-oyo-theme-<version>.vsix` |
 | `npm run pack:css` | Tests, then `npm pack --dry-run` of `themes/css` |
 | `npm run release:dist` | Tests, then every release file into `dist/`: `.vsix`, npm `.tgz`, both `.itermcolors` and `.xccolortheme`, `release-notes.md` (CHANGELOG entry, install lines, SHA-256) |
-| `npm run screenshot:vscode`, `screenshot:iterm` | Retake the README screenshots (macOS) |
+| `npm run screenshot:vscode`, `screenshot:iterm`, `screenshot:xcode -- ale\|osan` | Retake the README screenshots (macOS) |
 | `npm run preview` | Builds `preview/index.html` from the palette and opens it |
 | `npm run preview -- --compare <file>` | Side-by-side with another palette (either format) → `preview/compare.html` |
 
