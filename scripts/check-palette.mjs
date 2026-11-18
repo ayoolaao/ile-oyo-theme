@@ -1,4 +1,4 @@
-// Checks palette/ile-oyo.json against the rules in notes/spec.md.
+// Checks palette/ile-oyo.json against the rules in docs/architecture.md.
 // Exits non-zero if any rule fails.
 import { loadPalette, validate, MIN } from './lib/palette.mjs';
 

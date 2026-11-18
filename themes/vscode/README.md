@@ -31,7 +31,7 @@ code --install-extension jazzykid.ile-oyo-theme
 `npm run package:vscode`):
 
 ```sh
-code --install-extension ile-oyo-theme-0.1.1.vsix
+code --install-extension ile-oyo-theme-<version>.vsix
 ```
 
 **From this repository:**
@@ -65,8 +65,8 @@ Code profile (macOS). They are linked from `main`, so they update on the
 Marketplace when the new images reach `main`.
 
 From the repository root: `npm run package:vscode` runs the tests and writes
-`dist/ile-oyo-theme-<version>.vsix`; `npm run publish:vscode` publishes to the
-Marketplace (needs a `vsce login` for the `publisher` in `package.json`).
+`dist/ile-oyo-theme-<version>.vsix`, the file that is published to the
+Marketplace.
 
 ## License
 

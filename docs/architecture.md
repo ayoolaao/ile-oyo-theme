@@ -1,4 +1,7 @@
-# Spec
+# Architecture
+
+How Ilé-Ọ̀yọ́ is built: the palette, the rules it must pass, and how each
+app's theme is generated from it.
 
 ## Name
 
@@ -49,7 +52,7 @@ assets/screenshots/         README images (committed; Marketplace links them fro
 themes/iterm/               generated .itermcolors (committed) + README
 themes/css/                 generated CSS/Sass/JS (committed), demo.html, README
 themes/vscode/              extension: package.json + README (hand-written), themes/*.json (generated)
-notes/                      these notes
+docs/                       this document
 ```
 
 Generated theme files are committed so people can download them directly.
@@ -176,7 +179,7 @@ pass (target 4.6:1, so hex rounding can't drop it below 4.5). Stored as hex.
 ## Tooling
 
 Node.js (installed via nvm). Dev dependencies, pinned exactly: `sass` 1.83.0
-and `typescript` 5.6.3 (tests), `@vscode/vsce` 3.2.1 (packaging). The build
+and `typescript` 5.6.3 (tests), `@vscode/vsce` 4.1.0 (packaging and publishing). The build
 itself has no dependencies. The root `package.json` is private
 (`ile-oyo-theme-repo`) and never published.
 
@@ -184,11 +187,11 @@ itself has no dependencies. The root `package.json` is private
 
 | Package | Folder | Name | Contents |
 | ------- | ------ | ---- | -------- |
-| VS Code extension | `themes/vscode` | `jazzykid.ile-oyo-theme` | manifest, README, both themes (+ LICENSE, icon once chosen) |
+| VS Code extension | `themes/vscode` | `jazzykid.ile-oyo-theme` | manifest, README, both themes, icon, LICENSE, NOTICE |
 | npm | `themes/css` | `ile-oyo-theme` | CSS, highlight CSS, Sass, JS tokens + types; ES module only. Subpaths: `/css`, `/highlight.css`, `/scss` |
 
 Every package's version must equal `palette.version`, and `CHANGELOG.md` must
-have an entry for it (`tests/versions.test.mjs`).
+have a dated entry for it, `## <version> (YYYY-MM-DD)` (`tests/versions.test.mjs`).
 
 | Command | What it does |
 | ------- | ------------ |
@@ -197,11 +200,47 @@ have an entry for it (`tests/versions.test.mjs`).
 | `npm run build -- --check` | Fails if a committed generated file is out of date |
 | `npm test` | All of the above, plus: JS tokens equal the palette (`node --test`), the Sass compiles (`tests/use.scss`), the `.d.ts` type-checks (`tests/use.ts`), VS Code theme checks, and package versions match the palette |
 | `npm run package:vscode` | Tests, then `dist/ile-oyo-theme-<version>.vsix` |
-| `npm run publish:vscode` | Tests, then `vsce publish` (author runs it; needs `vsce login`) |
 | `npm run pack:css` | Tests, then `npm pack --dry-run` of `themes/css` |
-| `npm run publish:css` | Tests, then `npm publish` of `themes/css` (author runs it; needs `npm login`) |
+| `npm run release:dist` | Tests, then every release file into `dist/`: `.vsix`, npm `.tgz`, both `.itermcolors`, `release-notes.md` (CHANGELOG entry, install lines, SHA-256) |
+| `npm run screenshot:vscode`, `screenshot:iterm` | Retake the README screenshots (macOS) |
 | `npm run preview` | Builds `preview/index.html` from the palette and opens it |
 | `npm run preview -- --compare <file>` | Side-by-side with another palette (either format) → `preview/compare.html` |
 
 Previews are local files in the git-ignored `preview/` folder. Nothing is
 published to the web.
+
+## Releasing
+
+Releases are published by GitHub Actions with Trusted Publishing (OpenID
+Connect), so no publishing tokens exist anywhere.
+
+1. On a release branch: bump `version` in `palette/ile-oyo.json` and the three
+   `package.json` files, run `npm run build`, add a dated `CHANGELOG.md`
+   entry, and merge to `main`.
+2. Tag the merge commit: `git tag -a v<version> -m "Ilé-Ọ̀yọ́ v<version>"` and
+   push the tag.
+3. `.github/workflows/release.yml` then:
+   - **build**: `npm test`, then `scripts/release.mjs --tag`, which fails
+     unless the tag matches the palette version;
+   - **publish-vscode**: `vsce publish --oidc` with the built `.vsix`;
+   - **publish-npm**: `npm stage publish` with the built `.tgz`, with
+     provenance. The trusted publisher is stage-only, so the version waits
+     until you approve it with 2FA (`npm stage approve <id>`, or Staged
+     Packages on npmjs.com);
+   - **github-release**: the GitHub Release with the `.vsix`, both
+     `.itermcolors` and `release-notes.md`, only after both stores succeed.
+
+The publish jobs run in the `release` environment, which can require approval
+before they start. Trusted Publishing policies name this repository,
+`release.yml` and the `release` environment:
+
+- Marketplace: publisher `jazzykid` → Trusted Publishing.
+- npm: package `ile-oyo-theme` → Settings → Trusted publisher (GitHub
+  Actions), with "Allow npm publish" and "Allow npm dist-tag" left unchecked
+  (stage-only). Publishing access: "Require two-factor authentication and
+  disallow tokens".
+
+`.github/workflows/ci.yml` runs `npm run release:dist` on every push and pull
+request, so problems show up before a tag is pushed. Fallback if Actions is
+unavailable: upload the `.vsix` by hand on the Marketplace's manage page, and
+`npm publish` the `.tgz` after `npm login`.
