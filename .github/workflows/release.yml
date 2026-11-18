@@ -3,6 +3,8 @@
 # 1. build: tests, then builds every release file once (scripts/release.mjs).
 # 2. publish-vscode and publish-npm: publish those exact files with Trusted
 #    Publishing (OpenID Connect). No tokens are stored in this repository.
+#    npm is stage-only: the version waits on npmjs.com until a maintainer
+#    approves it with 2FA (npm stage approve, or Staged Packages on the site).
 # 3. github-release: creates the GitHub Release, only after both stores
 #    succeed.
 #
@@ -78,21 +80,15 @@ jobs:
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
-      # npm trusted publishing needs npm 11.5.1 or newer.
-      - name: Check npm version
-        run: |
-          node -e '
-            const [a, b, c] = process.argv[1].split(".").map(Number);
-            if (a < 11 || (a === 11 && (b < 5 || (b === 5 && c < 1)))) {
-              console.error(`npm ${process.argv[1]} is too old for trusted publishing (needs 11.5.1+)`);
-              process.exit(1);
-            }' "$(npm --version)"
+      # npm stage publish needs npm 11.15.0 or newer; pin a known version.
+      - run: npm install -g npm@11.21.1 && npm --version
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: release
           path: dist
-      # Trusted publishing adds provenance automatically.
-      - run: npm publish dist/ile-oyo-theme-*.tgz --access public
+      # Stages the version (trusted publishing adds provenance). It becomes
+      # installable only after a maintainer approves it with 2FA.
+      - run: npm stage publish dist/ile-oyo-theme-*.tgz
 
   github-release:
     needs: [publish-vscode, publish-npm]
