@@ -4,6 +4,12 @@ All notable changes to Ilé-Ọ̀yọ́ are listed here. Versions follow
 [Semantic Versioning](https://semver.org/): a color change that alters how a
 theme looks is a minor version; a fix that doesn't is a patch.
 
+## Unreleased
+
+- Releases are published by GitHub Actions with Trusted Publishing: no
+  publishing tokens. CI builds every release file on each pull request.
+- `@vscode/vsce` 4.1.0.
+
 ## 0.1.1 (2026-11-17)
 
 First Marketplace and npm release.

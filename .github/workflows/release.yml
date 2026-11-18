@@ -1,0 +1,115 @@
+# Publishes a release when a v* tag is pushed (for example v0.2.0).
+#
+# 1. build: tests, then builds every release file once (scripts/release.mjs).
+# 2. publish-vscode and publish-npm: publish those exact files with Trusted
+#    Publishing (OpenID Connect). No tokens are stored in this repository.
+# 3. github-release: creates the GitHub Release, only after both stores
+#    succeed.
+#
+# The publish jobs use the "release" environment. Trusted Publishing policies
+# on the Marketplace (publisher jazzykid) and npm (package ile-oyo-theme) name
+# this repository, this file and that environment. See docs/architecture.md,
+# "Releasing".
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions: {}
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+      - run: npm ci --ignore-scripts
+      - run: npm test
+      # Fails unless the tag is v<palette version>.
+      - run: node scripts/release.mjs --tag "$GITHUB_REF_NAME"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release
+          path: dist/
+          retention-days: 30
+
+  publish-vscode:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+      # Installs the pinned vsce from the lockfile.
+      - run: npm ci --ignore-scripts
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: release
+          path: dist
+      - run: npx vsce publish --oidc --packagePath dist/ile-oyo-theme-*.vsix
+
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      # npm trusted publishing needs npm 11.5.1 or newer.
+      - name: Check npm version
+        run: |
+          node -e '
+            const [a, b, c] = process.argv[1].split(".").map(Number);
+            if (a < 11 || (a === 11 && (b < 5 || (b === 5 && c < 1)))) {
+              console.error(`npm ${process.argv[1]} is too old for trusted publishing (needs 11.5.1+)`);
+              process.exit(1);
+            }' "$(npm --version)"
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: release
+          path: dist
+      # Trusted publishing adds provenance automatically.
+      - run: npm publish dist/ile-oyo-theme-*.tgz --access public
+
+  github-release:
+    needs: [publish-vscode, publish-npm]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: release
+          path: dist
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+        run: >
+          gh release create "$TAG" --verify-tag
+          --title "Ilé-Ọ̀yọ́ $TAG"
+          --notes-file dist/release-notes.md
+          dist/ile-oyo-theme-*.vsix dist/Ile-Oyo-Ale.itermcolors dist/Ile-Oyo-Osan.itermcolors
