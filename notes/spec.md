@@ -42,6 +42,10 @@ scripts/check-palette.mjs   npm run check
 scripts/build.mjs           npm run build: validate, then run every target
 scripts/targets/<name>.mjs  one generator per app; returns [{ path, contents }]
 scripts/preview.mjs         npm run preview (local HTML, git-ignored preview/)
+scripts/screenshot-vscode.mjs  npm run screenshot:vscode (real VS Code, sample in scripts/screenshot/)
+scripts/screenshot-iterm.sh npm run screenshot:iterm (real iTerm2, temporary dynamic profiles)
+scripts/terminal-demo.sh    npm run demo:terminal (fixed scene for terminal screenshots)
+assets/screenshots/         README images (committed; Marketplace links them from main)
 themes/iterm/               generated .itermcolors (committed) + README
 themes/css/                 generated CSS/Sass/JS (committed), demo.html, README
 themes/vscode/              extension: package.json + README (hand-written), themes/*.json (generated)
@@ -105,7 +109,7 @@ Variant selection: Ọ̀sán by default, Alẹ́ under `prefers-color-scheme: da
 ## Target: VS Code
 
 Extension in `themes/vscode/`: `package.json` (manifest, hand-written; publisher
-`ayoolaao` until a Marketplace publisher exists) and generated
+`jazzykid`, the author's Marketplace publisher) and generated
 `themes/ile-oyo-ale.json` / `ile-oyo-osan.json` (labels "Ilé-Ọ̀yọ́ Alẹ́",
 "Ilé-Ọ̀yọ́ Ọ̀sán").
 
@@ -180,7 +184,7 @@ itself has no dependencies. The root `package.json` is private
 
 | Package | Folder | Name | Contents |
 | ------- | ------ | ---- | -------- |
-| VS Code extension | `themes/vscode` | `ayoolaao.ile-oyo-theme` | manifest, README, both themes (+ LICENSE, icon once chosen) |
+| VS Code extension | `themes/vscode` | `jazzykid.ile-oyo-theme` | manifest, README, both themes (+ LICENSE, icon once chosen) |
 | npm | `themes/css` | `ile-oyo-theme` | CSS, highlight CSS, Sass, JS tokens + types; ES module only. Subpaths: `/css`, `/highlight.css`, `/scss` |
 
 Every package's version must equal `palette.version`, and `CHANGELOG.md` must

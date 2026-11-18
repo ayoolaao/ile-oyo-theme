@@ -1,6 +1,6 @@
 {
   "name": "ile-oyo-theme-repo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Build, tests and sources for the Ilé-Ọ̀yọ́ themes (private; not published).",
   "type": "module",
@@ -13,6 +13,9 @@
     "build": "node scripts/build.mjs",
     "preview": "node scripts/preview.mjs",
     "icon": "node scripts/icon.mjs",
+    "screenshot:vscode": "node scripts/screenshot-vscode.mjs",
+    "screenshot:iterm": "bash scripts/screenshot-iterm.sh",
+    "demo:terminal": "bash scripts/terminal-demo.sh",
     "test": "npm run check && npm run build -- --check && npm run test:tokens && npm run test:sass && npm run test:types",
     "test:tokens": "node --test tests/",
     "test:sass": "sass --no-source-map tests/use.scss > /dev/null",

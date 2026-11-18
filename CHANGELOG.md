@@ -4,6 +4,14 @@ All notable changes to Ilé-Ọ̀yọ́ are listed here. Versions follow
 [Semantic Versioning](https://semver.org/): a color change that alters how a
 theme looks is a minor version; a fix that doesn't is a patch.
 
+## 0.1.1 (2026-11-17)
+
+First Marketplace and npm release.
+
+- Screenshots of both variants in VS Code and iTerm2, linked from the READMEs.
+- VS Code publisher is now `jazzykid` (extension ID `jazzykid.ile-oyo-theme`).
+  If you installed the v0.1.0 `.vsix` (`ayoolaao.ile-oyo-theme`), uninstall it.
+
 ## 0.1.0 (2026-11-16)
 
 First release.
