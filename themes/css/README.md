@@ -3,6 +3,13 @@
 Color tokens for the web, plus syntax highlighting for Prism, highlight.js and
 Shiki. Open [`demo.html`](demo.html) in a browser to see them.
 
+![The CSS demo page in Alẹ́](https://raw.githubusercontent.com/ayoolaao/ile-oyo-theme/main/assets/screenshots/firefox-ale.png)
+
+![The CSS demo page in Ọ̀sán](https://raw.githubusercontent.com/ayoolaao/ile-oyo-theme/main/assets/screenshots/firefox-osan.png)
+
+The demo page in Alẹ́ (dark) and Ọ̀sán (light), shown in Firefox with the
+Ilé-Ọ̀yọ́ Firefox theme.
+
 | File | What it is |
 | ---- | ---------- |
 | `ile-oyo.css` | CSS variables (`--ile-*`) for both variants |

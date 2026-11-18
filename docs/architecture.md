@@ -48,11 +48,14 @@ scripts/preview.mjs         npm run preview (local HTML, git-ignored preview/)
 scripts/screenshot-vscode.mjs  npm run screenshot:vscode (real VS Code, sample in scripts/screenshot/)
 scripts/screenshot-iterm.sh npm run screenshot:iterm (real iTerm2, temporary dynamic profiles)
 scripts/screenshot-xcode.sh npm run screenshot:xcode -- ale|osan (real Xcode, theme picked by hand)
+scripts/screenshot-firefox.sh npm run screenshot:firefox -- ale|osan (real Firefox, theme loaded by hand)
+scripts/lib/window-id.js    finds an app's window number for screencapture -l
 scripts/terminal-demo.sh    npm run demo:terminal (fixed scene for terminal screenshots)
 assets/screenshots/         README images (committed; Marketplace links them from main)
 themes/iterm/               generated .itermcolors (committed) + README
 themes/css/                 generated CSS/Sass/JS (committed), demo.html, README
 themes/xcode/               generated .xccolortheme (committed) + README
+themes/firefox/             generated manifest.json (committed) + README
 themes/vscode/              extension: package.json + README (hand-written), themes/*.json (generated)
 docs/                       this document
 ```
@@ -125,6 +128,18 @@ preprocessor directives and attributes, which use orange. Fonts are SF Mono
 Medium 12 pt; comments are italic, and doc-comment keywords and `MARK:` lines
 bold, as in Xcode.
 
+## Target: Firefox
+
+One static theme extension in `themes/firefox/` (`scripts/targets/firefox.mjs`),
+Manifest V3, ID `ile-oyo-theme@jazzykid.com`. `theme` is Ọ̀sán and
+`dark_theme` is Alẹ́; Firefox switches between them with its light/dark color
+scheme. Surfaces follow the VS Code theme: frame `ui.bg_darker`, selected tab
+and toolbar `bg` with a red tab line, inactive tab text `ui.muted`, fields like
+VS Code's inputs, popups `ui.bg_light`, sidebar `ui.bg_dark`.
+`tests/firefox.test.mjs` checks the keys against MDN's list, that every color
+is a palette color, and 4.5:1 for 12 text/background pairs. `npm test` also
+runs `web-ext lint` (Mozilla's add-on linter) with warnings as errors.
+
 ## Target: VS Code
 
 Extension in `themes/vscode/`: `package.json` (manifest, hand-written; publisher
@@ -195,7 +210,7 @@ pass (target 4.6:1, so hex rounding can't drop it below 4.5). Stored as hex.
 ## Tooling
 
 Node.js (installed via nvm). Dev dependencies, pinned exactly: `sass` 1.83.0
-and `typescript` 5.6.3 (tests), `@vscode/vsce` 4.1.0 (packaging and publishing). The build
+and `typescript` 5.6.3 (tests), `@vscode/vsce` 4.1.0 (packaging and publishing), `web-ext` 10.8.0 (Firefox lint and packaging). The build
 itself has no dependencies. The root `package.json` is private
 (`ile-oyo-theme-repo`) and never published.
 
@@ -217,8 +232,8 @@ have a dated entry for it, `## <version> (YYYY-MM-DD)` (`tests/versions.test.mjs
 | `npm test` | All of the above, plus: JS tokens equal the palette (`node --test`), the Sass compiles (`tests/use.scss`), the `.d.ts` type-checks (`tests/use.ts`), VS Code theme checks, and package versions match the palette |
 | `npm run package:vscode` | Tests, then `dist/ile-oyo-theme-<version>.vsix` |
 | `npm run pack:css` | Tests, then `npm pack --dry-run` of `themes/css` |
-| `npm run release:dist` | Tests, then every release file into `dist/`: `.vsix`, npm `.tgz`, both `.itermcolors` and `.xccolortheme`, `release-notes.md` (CHANGELOG entry, install lines, SHA-256) |
-| `npm run screenshot:vscode`, `screenshot:iterm`, `screenshot:xcode -- ale\|osan` | Retake the README screenshots (macOS) |
+| `npm run release:dist` | Tests, then every release file into `dist/`: `.vsix`, npm `.tgz`, both `.itermcolors` and `.xccolortheme`, the Firefox `.zip`, `release-notes.md` (CHANGELOG entry, install lines, SHA-256) |
+| `npm run screenshot:vscode`, `screenshot:iterm`, `screenshot:xcode`, `screenshot:firefox` (`-- ale\|osan`) | Retake the README screenshots (macOS) |
 | `npm run preview` | Builds `preview/index.html` from the palette and opens it |
 | `npm run preview -- --compare <file>` | Side-by-side with another palette (either format) → `preview/compare.html` |
 
@@ -244,7 +259,7 @@ Connect), so no publishing tokens exist anywhere.
      until you approve it with 2FA (`npm stage approve <id>`, or Staged
      Packages on npmjs.com);
    - **github-release**: the GitHub Release with the `.vsix`, the
-     `.itermcolors` and `.xccolortheme` files and `release-notes.md`, only after both stores succeed.
+     `.itermcolors` and `.xccolortheme` files, the Firefox `.zip` and `release-notes.md`, only after both stores succeed.
 
 The publish jobs run in the `release` environment, which can require approval
 before they start. Trusted Publishing policies name this repository,
