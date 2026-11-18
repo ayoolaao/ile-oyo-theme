@@ -86,6 +86,13 @@ Size: **S** about a day, **M** a few days, **L** a week or more.
 - Store listings are part of v0.2: Chrome Web Store, Firefox Add-ons,
   JetBrains Marketplace (plus the VS Code Marketplace and npm from v0.1).
 - Notepad++ is checked on a Windows VM.
+- Release automation: a GitHub Actions `release.yml` on `v*` tags runs the
+  tests and publishes through Trusted Publishing (OIDC), with no stored tokens:
+  `vsce publish --oidc` for the Marketplace (update the pinned vsce to a
+  version with `--oidc`), and npm trusted publishing with provenance. It
+  replaces the PAT-based `publish:vscode` script (Azure DevOps retires PATs on
+  2026-12-01). Set up the policies on the Marketplace publisher page and the
+  npm package page. See decisions.md, 2026-11-17.
 
 ## Out of scope for v0.2
 

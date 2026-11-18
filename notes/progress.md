@@ -87,9 +87,10 @@
 1. Merge `release/v0.1.1` into `main`; tag `v0.1.1`; GitHub Release with the
    `.vsix` and `.itermcolors`; merge `main` back into `develop`.
 2. Publish v0.1.1 from `main`:
-   - VS Code Marketplace: publisher `jazzykid` exists (owner account
-     jazzykid0629@outlook.com); `npx vsce login jazzykid` with a personal
-     access token, then `npm run publish:vscode`.
+   - VS Code Marketplace: upload the release `.vsix` by hand at
+     marketplace.visualstudio.com/manage → `jazzykid` → New extension (no
+     token). Global Azure DevOps PATs are retired 2026-12-01, so
+     `npm run publish:vscode` (PAT-based) is not the path forward.
    - npm: `npm login`, then `npm run publish:css` from `main`.
 3. Update the release notes' "npm package coming soon" line once published.
 4. v0.2 targets: see [roadmap-v0.2.md](roadmap-v0.2.md).
