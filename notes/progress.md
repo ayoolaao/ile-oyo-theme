@@ -74,6 +74,11 @@
   pass; `.vsix` identity `jazzykid` 0.1.1 (9 files); npm dry run 0.1.1 (9
   files); the npm name `ile-oyo-theme` is still free.
 
+- 2026-11-17: **v0.1.1 released.** PR #9 merged into `main` (`feeeba8`);
+  annotated tag `v0.1.1`; GitHub Release with the `.vsix` (publisher
+  `jazzykid`) and both `.itermcolors` files, built from `main` after `npm ci`
+  (22 tests pass; downloaded assets verified by SHA-256).
+
 ## Open questions
 
 - Revisit the fg color (author's request, later). After any palette change,
@@ -84,14 +89,13 @@
 
 ## Next
 
-1. Merge `release/v0.1.1` into `main`; tag `v0.1.1`; GitHub Release with the
-   `.vsix` and `.itermcolors`; merge `main` back into `develop`.
-2. Publish v0.1.1 from `main`:
+1. Publish v0.1.1 (author):
    - VS Code Marketplace: publisher `jazzykid` exists (owner account
      jazzykid0629@outlook.com); `npx vsce login jazzykid` with a personal
      access token, then `npm run publish:vscode`.
    - npm: `npm login`, then `npm run publish:css` from `main`.
-3. Update the release notes' "npm package coming soon" line once published.
-4. v0.2 targets: see [roadmap-v0.2.md](roadmap-v0.2.md).
-5. Website at `ile-oyo.jazzykid.com` (Astro on Cloudflare Pages); store on
+2. Once published, update the v0.1.1 GitHub Release notes ("publishing in
+   progress" → Marketplace and npm links).
+3. v0.2 targets: see [roadmap-v0.2.md](roadmap-v0.2.md).
+4. Website at `ile-oyo.jazzykid.com` (Astro on Cloudflare Pages); store on
    Shopify at akeetan.com. See [website-plan.md](website-plan.md).
