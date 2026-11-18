@@ -9,9 +9,10 @@ import iterm from './targets/iterm.mjs';
 import css from './targets/css.mjs';
 import vscode from './targets/vscode.mjs';
 import xcode from './targets/xcode.mjs';
+import firefox from './targets/firefox.mjs';
 import legal from './targets/legal.mjs';
 
-const TARGETS = { iterm, css, vscode, xcode, legal };
+const TARGETS = { iterm, css, vscode, xcode, firefox, legal };
 const checkOnly = process.argv.includes('--check');
 
 const palette = loadPalette();

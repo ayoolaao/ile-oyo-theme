@@ -8,6 +8,9 @@ theme looks is a minor version; a fix that doesn't is a patch.
 
 - **Xcode**: Alẹ́ and Ọ̀sán source editor themes (`themes/xcode/`), with
   screenshots. Install with Settings → Appearance → Themes → Choose… → Import….
+- **Firefox**: one theme that switches between Ọ̀sán (light) and Alẹ́ (dark)
+  with the system setting (`themes/firefox/`), with screenshots.
+- **CSS**: screenshots of the demo page in both variants.
 
 ## 0.1.3 (2026-11-18)
 
