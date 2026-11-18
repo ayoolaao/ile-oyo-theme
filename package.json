@@ -1,6 +1,6 @@
 {
   "name": "ile-oyo-theme-repo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Build, tests and sources for the Ilé-Ọ̀yọ́ themes (private; not published).",
   "type": "module",
