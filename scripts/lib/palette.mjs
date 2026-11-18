@@ -28,7 +28,7 @@ export function contrast(a, b) {
   return (hi + 0.05) / (lo + 0.05);
 }
 
-/** Returns a list of rule violations (empty when the palette is valid). See notes/spec.md. */
+/** Returns a list of rule violations (empty when the palette is valid). See docs/architecture.md. */
 export function validate(palette) {
   const errors = [];
   const hexRe = /^#[0-9A-F]{6}([0-9A-F]{2})?$/;

@@ -20,13 +20,18 @@ Every text color meets WCAG 2.1 AA contrast (4.5:1) against its background.
 
 ## Install
 
-Not on the Marketplace yet. Two ways to install it now:
-
-**From a `.vsix` file** (built with `npm run package:vscode`, or attached to a
-GitHub release):
+**From the Marketplace:** search for **Ilé-Ọ̀yọ́** in the Extensions view, or
+run:
 
 ```sh
-code --install-extension ile-oyo-theme-0.1.0.vsix
+code --install-extension jazzykid.ile-oyo-theme
+```
+
+**From a `.vsix` file** (attached to each GitHub release, or built with
+`npm run package:vscode`):
+
+```sh
+code --install-extension ile-oyo-theme-0.1.1.vsix
 ```
 
 **From this repository:**
@@ -60,8 +65,8 @@ Code profile (macOS). They are linked from `main`, so they update on the
 Marketplace when the new images reach `main`.
 
 From the repository root: `npm run package:vscode` runs the tests and writes
-`dist/ile-oyo-theme-<version>.vsix`; `npm run publish:vscode` publishes to the
-Marketplace (needs a `vsce login` for the `publisher` in `package.json`).
+`dist/ile-oyo-theme-<version>.vsix`, the file that is published to the
+Marketplace.
 
 ## License
 
