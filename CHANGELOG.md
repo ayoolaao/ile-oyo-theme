@@ -6,7 +6,8 @@ theme looks is a minor version; a fix that doesn't is a patch.
 
 ## Unreleased
 
-- **Xcode**: Alẹ́ and Ọ̀sán source editor themes (`themes/xcode/`).
+- **Xcode**: Alẹ́ and Ọ̀sán source editor themes (`themes/xcode/`), with
+  screenshots. Install with Settings → Appearance → Themes → Choose… → Import….
 
 ## 0.1.3 (2026-11-18)
 
