@@ -40,6 +40,9 @@ jobs:
       - run: npm test
       # Fails unless the tag is v<palette version>.
       - run: node scripts/release.mjs --tag "$GITHUB_REF_NAME"
+      # Catches a bad package spec before anything is published. Keep the
+      # ./ prefix: without it npm reads dist/<file> as a GitHub repo.
+      - run: npm publish --dry-run ./dist/ile-oyo-theme-*.tgz
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: release
@@ -66,7 +69,8 @@ jobs:
         with:
           name: release
           path: dist
-      - run: npx vsce publish --oidc --packagePath dist/ile-oyo-theme-*.vsix
+      # --skip-duplicate makes a rerun safe once this version is live.
+      - run: npx vsce publish --oidc --skip-duplicate --packagePath ./dist/ile-oyo-theme-*.vsix
 
   publish-npm:
     needs: build
@@ -88,7 +92,8 @@ jobs:
           path: dist
       # Stages the version (trusted publishing adds provenance). It becomes
       # installable only after a maintainer approves it with 2FA.
-      - run: npm stage publish dist/ile-oyo-theme-*.tgz
+      # Keep the ./ prefix: without it npm reads dist/<file> as a GitHub repo.
+      - run: npm stage publish ./dist/ile-oyo-theme-*.tgz
 
   github-release:
     needs: [publish-vscode, publish-npm]

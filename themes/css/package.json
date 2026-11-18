@@ -1,6 +1,6 @@
 {
   "name": "ile-oyo-theme",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Ilé-Ọ̀yọ́ color theme for the web: CSS variables, syntax highlighting for Prism, highlight.js and Shiki, Sass variables, and JS/TS tokens. Alẹ́ (dark) and Ọ̀sán (light).",
   "type": "module",
   "main": "./ile-oyo-tokens.js",
