@@ -6,6 +6,7 @@
 // - ile-oyo-theme-<version>.vsix   VS Code extension
 // - ile-oyo-theme-<version>.tgz    npm package (themes/css)
 // - Ile-Oyo-{Ale,Osan}.itermcolors iTerm2 presets
+// - Ile-Oyo-{Ale,Osan}.xccolortheme Xcode themes
 // - release-notes.md               CHANGELOG section, install lines, SHA-256
 //
 // With --tag, fails unless the tag is v<palette version>. The release
@@ -38,9 +39,17 @@ run(join(ROOT, 'node_modules/.bin/vsce'), ['package', '--no-dependencies', '-o',
 run('npm', ['pack', '--silent', '--pack-destination', DIST], join(ROOT, 'themes/css'));
 for (const v of ['Ale', 'Osan']) {
   copyFileSync(join(ROOT, `themes/iterm/Ile-Oyo-${v}.itermcolors`), join(DIST, `Ile-Oyo-${v}.itermcolors`));
+  copyFileSync(join(ROOT, `themes/xcode/Ile-Oyo-${v}.xccolortheme`), join(DIST, `Ile-Oyo-${v}.xccolortheme`));
 }
 
-const expected = [`ile-oyo-theme-${version}.vsix`, `ile-oyo-theme-${version}.tgz`, 'Ile-Oyo-Ale.itermcolors', 'Ile-Oyo-Osan.itermcolors'];
+const expected = [
+  `ile-oyo-theme-${version}.vsix`,
+  `ile-oyo-theme-${version}.tgz`,
+  'Ile-Oyo-Ale.itermcolors',
+  'Ile-Oyo-Osan.itermcolors',
+  'Ile-Oyo-Ale.xccolortheme',
+  'Ile-Oyo-Osan.xccolortheme',
+];
 const found = readdirSync(DIST).sort();
 if (JSON.stringify(found) !== JSON.stringify([...expected].sort())) {
   throw new Error(`dist/ has ${found.join(', ')}; expected ${expected.join(', ')}`);
@@ -56,6 +65,7 @@ const notes = `${changelogSection(readFileSync(join(ROOT, 'CHANGELOG.md'), 'utf8
 - **VS Code**: [Marketplace](https://marketplace.visualstudio.com/items?itemName=jazzykid.ile-oyo-theme) (\`code --install-extension jazzykid.ile-oyo-theme\`), or \`code --install-extension ile-oyo-theme-${version}.vsix\`.
   Then pick **Ilé-Ọ̀yọ́ Alẹ́** or **Ilé-Ọ̀yọ́ Ọ̀sán** under Preferences: Color Theme.
 - **iTerm2**: double-click an \`.itermcolors\` file, or iTerm2 → Settings → Profiles → Colors → Color Presets → Import.
+- **Xcode**: Settings → Themes → Choose… → Import…, then select an \`.xccolortheme\` file.
 - **CSS**: [\`npm install ile-oyo-theme\`](https://www.npmjs.com/package/ile-oyo-theme), or copy the files from \`themes/css/\`.
 
 ### SHA-256

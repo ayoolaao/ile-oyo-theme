@@ -8,9 +8,10 @@ import { ROOT, loadPalette, validate } from './lib/palette.mjs';
 import iterm from './targets/iterm.mjs';
 import css from './targets/css.mjs';
 import vscode from './targets/vscode.mjs';
+import xcode from './targets/xcode.mjs';
 import legal from './targets/legal.mjs';
 
-const TARGETS = { iterm, css, vscode, legal };
+const TARGETS = { iterm, css, vscode, xcode, legal };
 const checkOnly = process.argv.includes('--check');
 
 const palette = loadPalette();
