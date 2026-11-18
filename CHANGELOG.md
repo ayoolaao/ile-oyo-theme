@@ -4,6 +4,10 @@ All notable changes to Ilé-Ọ̀yọ́ are listed here. Versions follow
 [Semantic Versioning](https://semver.org/): a color change that alters how a
 theme looks is a minor version; a fix that doesn't is a patch.
 
+## Unreleased
+
+- **Xcode**: Alẹ́ and Ọ̀sán source editor themes (`themes/xcode/`).
+
 ## 0.1.3 (2026-11-18)
 
 No color changes.

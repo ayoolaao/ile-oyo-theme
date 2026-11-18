@@ -51,6 +51,7 @@ scripts/terminal-demo.sh    npm run demo:terminal (fixed scene for terminal scre
 assets/screenshots/         README images (committed; Marketplace links them from main)
 themes/iterm/               generated .itermcolors (committed) + README
 themes/css/                 generated CSS/Sass/JS (committed), demo.html, README
+themes/xcode/               generated .xccolortheme (committed) + README
 themes/vscode/              extension: package.json + README (hand-written), themes/*.json (generated)
 docs/                       this document
 ```
@@ -108,6 +109,20 @@ Files in `themes/css/`:
 Variant selection: Ọ̀sán by default, Alẹ́ under `prefers-color-scheme: dark`;
 `data-ile-theme="ale" | "osan"` on any element overrides it for that subtree.
 `demo.html` is hand-written and uses only the variables.
+
+## Target: Xcode
+
+One `.xccolortheme` property list per variant in `themes/xcode/`
+(`scripts/targets/xcode.mjs`). The key set matches Xcode's own "Default
+(Dark)" theme (`SourceEditor.framework`), checked by `tests/xcode.test.mjs`
+when Xcode is installed. Colors are `"r g b a"` strings; semi-transparent
+palette colors (the current-line highlight) are blended onto the background
+so they're opaque.
+
+Each Xcode syntax type maps to a syntax role (below), except macros,
+preprocessor directives and attributes, which use orange. Fonts are SF Mono
+Medium 12 pt; comments are italic, and doc-comment keywords and `MARK:` lines
+bold, as in Xcode.
 
 ## Target: VS Code
 
@@ -201,7 +216,7 @@ have a dated entry for it, `## <version> (YYYY-MM-DD)` (`tests/versions.test.mjs
 | `npm test` | All of the above, plus: JS tokens equal the palette (`node --test`), the Sass compiles (`tests/use.scss`), the `.d.ts` type-checks (`tests/use.ts`), VS Code theme checks, and package versions match the palette |
 | `npm run package:vscode` | Tests, then `dist/ile-oyo-theme-<version>.vsix` |
 | `npm run pack:css` | Tests, then `npm pack --dry-run` of `themes/css` |
-| `npm run release:dist` | Tests, then every release file into `dist/`: `.vsix`, npm `.tgz`, both `.itermcolors`, `release-notes.md` (CHANGELOG entry, install lines, SHA-256) |
+| `npm run release:dist` | Tests, then every release file into `dist/`: `.vsix`, npm `.tgz`, both `.itermcolors` and `.xccolortheme`, `release-notes.md` (CHANGELOG entry, install lines, SHA-256) |
 | `npm run screenshot:vscode`, `screenshot:iterm` | Retake the README screenshots (macOS) |
 | `npm run preview` | Builds `preview/index.html` from the palette and opens it |
 | `npm run preview -- --compare <file>` | Side-by-side with another palette (either format) → `preview/compare.html` |
@@ -227,8 +242,8 @@ Connect), so no publishing tokens exist anywhere.
      provenance. The trusted publisher is stage-only, so the version waits
      until you approve it with 2FA (`npm stage approve <id>`, or Staged
      Packages on npmjs.com);
-   - **github-release**: the GitHub Release with the `.vsix`, both
-     `.itermcolors` and `release-notes.md`, only after both stores succeed.
+   - **github-release**: the GitHub Release with the `.vsix`, the
+     `.itermcolors` and `.xccolortheme` files and `release-notes.md`, only after both stores succeed.
 
 The publish jobs run in the `release` environment, which can require approval
 before they start. Trusted Publishing policies name this repository,
