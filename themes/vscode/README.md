@@ -31,7 +31,7 @@ code --install-extension jazzykid.ile-oyo-theme
 `npm run package:vscode`):
 
 ```sh
-code --install-extension ile-oyo-theme-0.1.1.vsix
+code --install-extension ile-oyo-theme-<version>.vsix
 ```
 
 **From this repository:**

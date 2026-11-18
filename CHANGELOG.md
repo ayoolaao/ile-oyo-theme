@@ -4,10 +4,15 @@ All notable changes to Ilé-Ọ̀yọ́ are listed here. Versions follow
 [Semantic Versioning](https://semver.org/): a color change that alters how a
 theme looks is a minor version; a fix that doesn't is a patch.
 
-## Unreleased
+## 0.1.2 (2026-11-18)
+
+No color changes. First release published by the new release workflow.
 
 - Releases are published by GitHub Actions with Trusted Publishing: no
-  publishing tokens. CI builds every release file on each pull request.
+  publishing tokens. The npm package is staged and goes live after the
+  maintainer approves it with 2FA, and it carries provenance.
+- CI builds every release file on each pull request.
+- The build and palette rules are documented in `docs/architecture.md`.
 - `@vscode/vsce` 4.1.0.
 
 ## 0.1.1 (2026-11-17)
