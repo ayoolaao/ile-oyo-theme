@@ -25,7 +25,7 @@ The palette started as the Ilé-Ọ̀yọ́ preset on [ayoola.io](https://ayoola
 
 | Application        | Status  |
 | ------------------ | ------- |
-| CSS (web)          | [Available](themes/css/) |
+| CSS (web)          | [Available](themes/css/) ([npm](https://www.npmjs.com/package/ile-oyo-theme)) |
 | iTerm2             | [Available](themes/iterm/) |
 | Visual Studio Code | [Available](themes/vscode/) ([Marketplace](https://marketplace.visualstudio.com/items?itemName=jazzykid.ile-oyo-theme)) |
 
@@ -33,7 +33,8 @@ The palette started as the Ilé-Ọ̀yọ́ preset on [ayoola.io](https://ayoola
 
 All colors are defined once in a single palette file. A build step generates
 the theme for each application from that file, so every port stays in sync.
-See [`notes/`](notes/) for the spec, design decisions, and progress log.
+See [docs/architecture.md](docs/architecture.md) for the palette rules and
+how each theme is generated.
 
 ## License
 

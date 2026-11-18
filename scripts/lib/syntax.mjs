@@ -1,6 +1,6 @@
 // Syntax roles: which palette color each kind of code token uses.
 // Shared by every target that colors code (CSS highlighting, VS Code).
-// Documented in notes/spec.md under "Syntax roles".
+// Documented in docs/architecture.md under "Syntax roles".
 export const SYNTAX = {
   keyword: 'pink',      // if, return, const, import, operators
   function: 'green',    // function and method names

@@ -1,4 +1,7 @@
-# Spec
+# Architecture
+
+How Ilé-Ọ̀yọ́ is built: the palette, the rules it must pass, and how each
+app's theme is generated from it.
 
 ## Name
 
@@ -49,7 +52,7 @@ assets/screenshots/         README images (committed; Marketplace links them fro
 themes/iterm/               generated .itermcolors (committed) + README
 themes/css/                 generated CSS/Sass/JS (committed), demo.html, README
 themes/vscode/              extension: package.json + README (hand-written), themes/*.json (generated)
-notes/                      these notes
+docs/                       this document
 ```
 
 Generated theme files are committed so people can download them directly.
