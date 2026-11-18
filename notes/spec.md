@@ -42,6 +42,9 @@ scripts/check-palette.mjs   npm run check
 scripts/build.mjs           npm run build: validate, then run every target
 scripts/targets/<name>.mjs  one generator per app; returns [{ path, contents }]
 scripts/preview.mjs         npm run preview (local HTML, git-ignored preview/)
+scripts/screenshot-vscode.mjs  npm run screenshot:vscode (real VS Code, sample in scripts/screenshot/)
+scripts/terminal-demo.sh    npm run demo:terminal (fixed scene for terminal screenshots)
+assets/screenshots/         README images (committed; Marketplace links them from main)
 themes/iterm/               generated .itermcolors (committed) + README
 themes/css/                 generated CSS/Sass/JS (committed), demo.html, README
 themes/vscode/              extension: package.json + README (hand-written), themes/*.json (generated)

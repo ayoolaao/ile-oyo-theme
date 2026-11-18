@@ -129,3 +129,14 @@ linked from the theme site. theiroko.com is kept for now.
 The site launches in English, Story page included. A Yoruba translation is a
 planned milestone (Astro i18n, `/yo/`), translated by a fluent speaker rather
 than by machine. A Story draft is in story-draft.md for the author to edit.
+
+## 2026-11-17: Public repo and screenshots before publishing
+No website needed before publishing; the Marketplace and npm pages are the
+homepage for now. The repository goes public before the first publish so the
+`repository`, `homepage` and `bugs` links work. README screenshots are real
+captures, committed in `assets/screenshots/`. VS Code shots come from a
+throwaway VS Code profile captured over the DevTools protocol
+(`npm run screenshot:vscode`), so no screen-recording permission is needed.
+The Marketplace README links them by absolute `raw.githubusercontent.com` URL
+on `main`. iTerm2 can't be captured that way, so the author takes those shots
+by hand after running `npm run demo:terminal`, for a fixed scene.

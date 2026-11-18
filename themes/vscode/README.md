@@ -8,6 +8,14 @@ beige of *sányán*, and the crimson of *àlàárì*.
 | **Ilé-Ọ̀yọ́ Alẹ́** | evening, dark |
 | **Ilé-Ọ̀yọ́ Ọ̀sán** | afternoon, light |
 
+**Alẹ́**
+
+![Ilé-Ọ̀yọ́ Alẹ́](https://raw.githubusercontent.com/ayoolaao/ile-oyo-theme/main/assets/screenshots/vscode-ale.png)
+
+**Ọ̀sán**
+
+![Ilé-Ọ̀yọ́ Ọ̀sán](https://raw.githubusercontent.com/ayoolaao/ile-oyo-theme/main/assets/screenshots/vscode-osan.png)
+
 Every text color meets WCAG 2.1 AA contrast (4.5:1) against its background.
 
 ## Install
@@ -46,6 +54,10 @@ To match your system's light/dark setting, add to `settings.json`:
 
 The files in `themes/` are generated from `palette/ile-oyo.json` by
 `npm run build` at the repository root. Don't edit them by hand.
+
+`npm run screenshot:vscode` retakes the screenshots above in a throwaway VS
+Code profile (macOS). They are linked from `main`, so they update on the
+Marketplace when the new images reach `main`.
 
 From the repository root: `npm run package:vscode` runs the tests and writes
 `dist/ile-oyo-theme-<version>.vsix`; `npm run publish:vscode` publishes to the

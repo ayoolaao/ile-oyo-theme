@@ -58,20 +58,29 @@
   `.itermcolors` files (built from `main` after `npm ci`; downloaded assets
   verified by SHA-256). `main` merged back into `develop`.
 
+- 2026-11-17: Screenshots (branch `feature/screenshots`): VS Code Alẹ́ and
+  Ọ̀sán captured by `npm run screenshot:vscode` (2560×1600) and linked from
+  the root and VS Code READMEs. `npm run demo:terminal` added for the iTerm2
+  shots, which the author takes by hand (this session can't capture the screen).
+
 ## Open questions
+
+- Revisit the fg color (author's request, later). After any palette change,
+  rerun `npm run screenshot:vscode` and retake the iTerm2 shots.
 
 - `npm audit`: 3 moderate advisories in `glob`/`minimatch` under `@vscode/vsce`
   (dev tooling only, not shipped). Revisit when vsce updates.
 
 ## Next
 
-1. Publish (2026-11-18, once the author has the accounts):
+1. Before publishing: iTerm2 screenshots into `assets/screenshots/`, merge
+   screenshots to `main`, and make the repository public.
+2. Publish (2026-11-18, once the author has the accounts):
    - VS Code Marketplace: create publisher `ayoolaao` (must match
      `themes/vscode/package.json`), `npx vsce login ayoolaao`, then
      `npm run publish:vscode` from `main`.
    - npm: `npm login`, then `npm run publish:css` from `main`.
-   - Both make the theme files public even while the repository is private.
-2. Update the release notes' "npm package coming soon" line once published.
-3. v0.2 targets: see [roadmap-v0.2.md](roadmap-v0.2.md).
-4. Website at `ile-oyo.jazzykid.com` (Astro on Cloudflare Pages); store on
+3. Update the release notes' "npm package coming soon" line once published.
+4. v0.2 targets: see [roadmap-v0.2.md](roadmap-v0.2.md).
+5. Website at `ile-oyo.jazzykid.com` (Astro on Cloudflare Pages); store on
    Shopify at akeetan.com. See [website-plan.md](website-plan.md).
