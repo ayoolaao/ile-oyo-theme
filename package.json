@@ -14,6 +14,7 @@
     "preview": "node scripts/preview.mjs",
     "icon": "node scripts/icon.mjs",
     "screenshot:vscode": "node scripts/screenshot-vscode.mjs",
+    "screenshot:iterm": "bash scripts/screenshot-iterm.sh",
     "demo:terminal": "bash scripts/terminal-demo.sh",
     "test": "npm run check && npm run build -- --check && npm run test:tokens && npm run test:sass && npm run test:types",
     "test:tokens": "node --test tests/",

@@ -28,14 +28,17 @@ echo "$(fg 31)error$r strip 9 has a $(fg 31)broken thread$r"
 echo "$(fg 32)done$r  wove $(fg 35)12$r strips in $(fg 35)3.4s$r"
 echo
 echo "$p colors"
+# Numbers above the swatches, so none disappear into a swatch of the same color.
 for row in 0 1; do
-  line=""
+  labels=""; blocks=""
   for i in 0 1 2 3 4 5 6 7; do
     n=$((row * 8 + i))
     if [ $row -eq 0 ]; then code=$((40 + i)); else code=$((100 + i)); fi
-    line+="$(printf '%s[%sm %2d  %s' "$e" "$code" "$n" "$r") "
+    labels+="$(printf ' %-5s' "$n")"
+    blocks+="$(printf '%s[%sm     %s ' "$e" "$code" "$r")"
   done
-  echo "$line"
+  echo "$labels"
+  echo "$blocks"
 done
 echo
 printf '%s ' "$p"

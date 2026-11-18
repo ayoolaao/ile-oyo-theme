@@ -140,3 +140,14 @@ throwaway VS Code profile captured over the DevTools protocol
 The Marketplace README links them by absolute `raw.githubusercontent.com` URL
 on `main`. iTerm2 can't be captured that way, so the author takes those shots
 by hand after running `npm run demo:terminal`, for a fixed scene.
+
+## 2026-11-17: Publisher `jazzykid`, iTerm2 screenshots automated
+Marketplace publisher ID and name `jazzykid`, owned by the jazzykid0629
+Microsoft account (the umbrella for personal projects, not the personal
+email). npm uses the same email because npm shows maintainer emails publicly.
+The extension ID becomes `jazzykid.ile-oyo-theme`, so the v0.1.0 `.vsix`
+(`ayoolaao.ile-oyo-theme`) is a different extension; the first Marketplace
+release is v0.1.1. iTerm2 shots are captured by `npm run screenshot:iterm`
+(temporary dynamic profiles, `screencapture -l`), replacing the manual steps
+in the previous entry.
+

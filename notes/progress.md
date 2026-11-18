@@ -61,7 +61,12 @@
 - 2026-11-17: Screenshots (branch `feature/screenshots`): VS Code Alẹ́ and
   Ọ̀sán captured by `npm run screenshot:vscode` (2560×1600) and linked from
   the root and VS Code READMEs. `npm run demo:terminal` added for the iTerm2
-  shots, which the author takes by hand (this session can't capture the screen).
+  shots.
+- 2026-11-17: Repository made public. Marketplace publisher created: ID and
+  name `jazzykid`, owned by the jazzykid0629@outlook.com Microsoft account;
+  manifest `publisher` changed to match. iTerm2 shots captured by
+  `npm run screenshot:iterm` (after Screen Recording was allowed for VS Code)
+  and linked from the iTerm2 README.
 
 ## Open questions
 
@@ -73,12 +78,12 @@
 
 ## Next
 
-1. Before publishing: iTerm2 screenshots into `assets/screenshots/`, merge
-   screenshots to `main`, and make the repository public.
-2. Publish (2026-11-18, once the author has the accounts):
-   - VS Code Marketplace: create publisher `ayoolaao` (must match
-     `themes/vscode/package.json`), `npx vsce login ayoolaao`, then
-     `npm run publish:vscode` from `main`.
+1. Merge `feature/screenshots`, then release **v0.1.1** (screenshots,
+   publisher `jazzykid`) to `main`.
+2. Publish v0.1.1 from `main`:
+   - VS Code Marketplace: publisher `jazzykid` exists (owner account
+     jazzykid0629@outlook.com); `npx vsce login jazzykid` with a personal
+     access token, then `npm run publish:vscode`.
    - npm: `npm login`, then `npm run publish:css` from `main`.
 3. Update the release notes' "npm package coming soon" line once published.
 4. v0.2 targets: see [roadmap-v0.2.md](roadmap-v0.2.md).
