@@ -29,13 +29,14 @@ The palette started as the Ilé-Ọ̀yọ́ preset on [ayoola.io](https://ayoola
 | CSS (web) | [npm `ile-oyo-theme`](https://www.npmjs.com/package/ile-oyo-theme) · [details](themes/css/) |
 | Kate | [`themes/kate`](themes/kate/) (in GitHub Releases from v0.2.0) |
 | Terminal.app | [`themes/terminal`](themes/terminal/) (in GitHub Releases from v0.2.0) |
+| Typora | [`themes/typora`](themes/typora/) (in GitHub Releases from v0.2.0) |
 | Firefox | [`themes/firefox`](themes/firefox/) (addons.mozilla.org coming soon) |
 | iTerm2 | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/iterm/) |
 | Visual Studio Code | [Marketplace](https://marketplace.visualstudio.com/items?itemName=jazzykid.ile-oyo-theme) · [details](themes/vscode/) |
 | Xcode | [`themes/xcode`](themes/xcode/) (in GitHub Releases from v0.2.0) |
 | Zsh (zsh-syntax-highlighting, fast-syntax-highlighting) | [`themes/zsh`](themes/zsh/) (in GitHub Releases from v0.2.0) |
 
-More are on the way: Typora, JetBrains and Notepad++.
+More are on the way: JetBrains and Notepad++.
 
 ## How it works
 

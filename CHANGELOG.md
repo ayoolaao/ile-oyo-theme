@@ -20,6 +20,8 @@ theme looks is a minor version; a fix that doesn't is a patch.
   (`themes/zsh/`), with screenshots.
 - **Terminal.app**: Alẹ́ and Ọ̀sán profiles with the iTerm2 colors
   (`themes/terminal/`), with screenshots.
+- **Typora**: Alẹ́ and Ọ̀sán themes (`themes/typora/`) for the document,
+  code blocks, source mode and Typora's interface, with screenshots.
 - **CSS**: screenshots of the demo page in both variants.
 
 ## 0.1.3 (2026-11-18)

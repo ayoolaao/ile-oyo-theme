@@ -42,10 +42,11 @@ Avoid attributing the palette to *adire*: it is associated with Abẹ́òkúta, 
 | Chrome | `themes/chrome/` | `chrome.mjs` | one theme extension each | Chrome Web Store (coming), GitHub Releases |
 | Kate | `themes/kate/` | `kate.mjs` | one `.theme` each | GitHub Releases |
 | Terminal.app | `themes/terminal/` | `terminal.mjs` | one `.terminal` profile each | GitHub Releases |
+| Typora | `themes/typora/` | `typora.mjs` | one theme `.css` each | GitHub Releases |
 | Zsh | `themes/zsh/` | `zsh.mjs` | one `.zsh` (zsh-syntax-highlighting) and one `.ini` (fast-syntax-highlighting) each | GitHub Releases |
 
 Generators live in `scripts/targets/`. More apps are planned for v0.2
-(Typora, JetBrains, Notepad++).
+(JetBrains, Notepad++).
 
 ## Repo layout
 
@@ -69,9 +70,11 @@ scripts/screenshot-xcode.sh    npm run screenshot:xcode -- ale|osan (real Xcode;
 scripts/screenshot-firefox.sh  npm run screenshot:firefox -- ale|osan (real Firefox; theme loaded by hand)
 scripts/screenshot-chrome.mjs  npm run screenshot:chrome (real Chrome, throwaway profile)
 scripts/screenshot-kate.sh     npm run screenshot:kate (real Kate; settings restored afterwards)
+scripts/screenshot-typora.sh   npm run screenshot:typora (real Typora; sample in scripts/screenshot/sample-markdown/)
 scripts/screenshot-zsh.sh      npm run screenshot:zsh (real zsh + fast-syntax-highlighting in iTerm2)
 scripts/terminal-demo.sh       npm run demo:terminal (fixed scene for terminal screenshots)
 scripts/lib/window-id.js       finds an app's window number for screencapture -l
+scripts/lib/crop-top.js        crops a screenshot to an aspect ratio, keeping the top
 
 themes/<app>/                  generated files (committed) + a hand-written README per app
 tests/                         node --test suites, plus use.scss and use.ts (API checks)
@@ -276,6 +279,23 @@ checks the 21 color keys from Terminal's bundled profiles, decodes every
 color back from its archive, checks contrast, and on macOS runs `plutil -lint`
 and decodes every color with `NSKeyedUnarchiver`, requiring exact sRGB.
 
+## Target: Typora
+
+One self-contained theme CSS per variant in `themes/typora/`
+(`scripts/targets/typora.mjs`); Typora lists them by file name (Ile Oyo Ale,
+Ile Oyo Osan). It sets every color variable Typora reads (`:root`), styles
+the document (headings, links, quotes, tables, code, task lists, GitHub
+alerts), CodeMirror tokens in code blocks (`.cm-s-inner`, mapped to the
+syntax roles) and in Markdown source mode (`.cm-s-typora-default`), and
+Typora's interface (sidebar, file list with an àlàárì-red active marker,
+menus, dialogs, search). Code blocks and menus use `bg_dark` in Alẹ́ and
+`bg_light` in Ọ̀sán: surfaces that move away from the text color, so every
+accent keeps 4.5:1. The current line and search hits are palette colors
+blended onto the background. `tests/typora.test.mjs` checks that every color
+is a palette color or one of those two blends, 4.5:1 for 43 text/background
+pairs, that every Typora color variable is set and every `var()` used is
+defined, and that the CSS is well-formed.
+
 ## Target: Zsh
 
 Command-line highlighting, one file per variant per plugin, in `themes/zsh/`
@@ -320,12 +340,12 @@ have a dated entry for it, `## <version> (YYYY-MM-DD)` (`tests/versions.test.mjs
 | `npm run check` | Enforces the palette rules; non-zero exit on failure |
 | `npm run build` | Validates, then writes every target's files |
 | `npm run build -- --check` | Fails if a committed generated file is out of date |
-| `npm test` | `check` and `build -- --check`, plus the `node --test` suites (JS tokens, VS Code, Xcode, Firefox, Chrome, Kate, Zsh, Terminal.app, versions), the Sass compile (`tests/use.scss`), the `.d.ts` type-check (`tests/use.ts`), and `web-ext lint` on the Firefox theme |
+| `npm test` | `check` and `build -- --check`, plus the `node --test` suites (JS tokens, VS Code, Xcode, Firefox, Chrome, Kate, Zsh, Terminal.app, Typora, versions), the Sass compile (`tests/use.scss`), the `.d.ts` type-check (`tests/use.ts`), and `web-ext lint` on the Firefox theme |
 | `npm run lint:firefox` | Mozilla's add-on linter on `themes/firefox`, warnings as errors |
 | `npm run package:vscode` | Tests, then `dist/ile-oyo-theme-<version>.vsix` |
 | `npm run pack:css` | Tests, then `npm pack --dry-run` of `themes/css` |
-| `npm run release:dist` | Tests, then every release file into `dist/`: `.vsix`, npm `.tgz`, both `.itermcolors`, `.terminal` and `.xccolortheme`, the Firefox `.zip`, both Chrome `.zip`s, both Kate `.theme` files, the Zsh `.zsh` and `.ini` files, `release-notes.md` (CHANGELOG entry, install lines, SHA-256) |
-| `npm run screenshot:vscode`, `screenshot:iterm`, `screenshot:terminal`, `screenshot:chrome`, `screenshot:kate`, `screenshot:zsh`, `screenshot:xcode` and `screenshot:firefox` (`-- ale\|osan`) | Retake the README screenshots (macOS) |
+| `npm run release:dist` | Tests, then every release file into `dist/`: `.vsix`, npm `.tgz`, both `.itermcolors`, `.terminal` and `.xccolortheme`, the Firefox `.zip`, both Chrome `.zip`s, both Kate `.theme` files, both Typora `.css` files, the Zsh `.zsh` and `.ini` files, `release-notes.md` (CHANGELOG entry, install lines, SHA-256) |
+| `npm run screenshot:vscode`, `screenshot:iterm`, `screenshot:terminal`, `screenshot:chrome`, `screenshot:kate`, `screenshot:typora`, `screenshot:zsh`, `screenshot:xcode` and `screenshot:firefox` (`-- ale\|osan`) | Retake the README screenshots (macOS) |
 | `npm run preview` | Builds `preview/index.html` from the palette and opens it |
 | `npm run preview -- --compare <file>` | Side-by-side with another palette (either format) → `preview/compare.html` |
 
@@ -351,7 +371,7 @@ Connect), so no publishing tokens exist anywhere.
      until you approve it with 2FA (`npm stage approve <id>`, or Staged
      Packages on npmjs.com);
    - **github-release**: the GitHub Release with the `.vsix`, the
-     `.itermcolors`, `.terminal` and `.xccolortheme` files, the Firefox and Chrome `.zip`s, the Kate `.theme` and Zsh files and `release-notes.md`, only after both stores succeed.
+     `.itermcolors`, `.terminal` and `.xccolortheme` files, the Firefox and Chrome `.zip`s, the Kate, Typora and Zsh files and `release-notes.md`, only after both stores succeed.
 
 The publish jobs run in the `release` environment, which can require approval
 before they start. Trusted Publishing policies name this repository,
