@@ -11,6 +11,7 @@
 // - ile-oyo-firefox-<version>.zip  Firefox theme (for addons.mozilla.org)
 // - ile-oyo-chrome-{ale,osan}-<version>.zip  Chrome themes (Chrome Web Store)
 // - ile-oyo-{ale,osan}.theme      Kate themes
+// - ile-oyo-{ale,osan}.css        Typora themes
 // - ile-oyo-{ale,osan}.zsh, .ini  Zsh highlighting (zsh-syntax-highlighting, fast-syntax-highlighting)
 // - release-notes.md               CHANGELOG section, install lines, SHA-256
 //
@@ -58,6 +59,7 @@ for (const v of ['Ale', 'Osan']) {
   copyFileSync(join(ROOT, `themes/terminal/Ile-Oyo-${v}.terminal`), join(DIST, `Ile-Oyo-${v}.terminal`));
 }
 for (const f of ['ile-oyo-ale.theme', 'ile-oyo-osan.theme']) copyFileSync(join(ROOT, 'themes/kate', f), join(DIST, f));
+for (const f of ['ile-oyo-ale.css', 'ile-oyo-osan.css']) copyFileSync(join(ROOT, 'themes/typora', f), join(DIST, f));
 for (const id of ['ale', 'osan']) {
   copyFileSync(join(ROOT, `themes/zsh/ile-oyo-${id}.zsh`), join(DIST, `ile-oyo-${id}.zsh`));
   copyFileSync(join(ROOT, `themes/zsh/fast-syntax-highlighting/ile-oyo-${id}.ini`), join(DIST, `ile-oyo-${id}.ini`));
@@ -77,6 +79,8 @@ const expected = [
   `ile-oyo-chrome-osan-${version}.zip`,
   'ile-oyo-ale.theme',
   'ile-oyo-osan.theme',
+  'ile-oyo-ale.css',
+  'ile-oyo-osan.css',
   'ile-oyo-ale.zsh',
   'ile-oyo-osan.zsh',
   'ile-oyo-ale.ini',
@@ -102,6 +106,7 @@ const notes = `${changelogSection(readFileSync(join(ROOT, 'CHANGELOG.md'), 'utf8
 - **Firefox**: addons.mozilla.org listing coming soon. To try it now: \`about:debugging\` → This Firefox → Load Temporary Add-on… → select \`ile-oyo-firefox-${version}.zip\`.
 - **Chrome** (and other Chromium browsers): Chrome Web Store listing coming soon. To try it now: unzip \`ile-oyo-chrome-ale-${version}.zip\` (dark) or \`ile-oyo-chrome-osan-${version}.zip\` (light), open \`chrome://extensions\`, turn on Developer mode, click Load unpacked and select the unzipped folder.
 - **Kate** (and KWrite, KDevelop): Settings → Configure Kate… (macOS: Kate → Settings…) → Color Themes → Import…, then select an \`ile-oyo-*.theme\` file.
+- **Typora**: Settings → Appearance → Open Theme Folder, copy \`ile-oyo-ale.css\` / \`ile-oyo-osan.css\` there, restart Typora and pick Ile Oyo Ale or Ile Oyo Osan from the Themes menu.
 - **Zsh**: with zsh-syntax-highlighting, add \`source /path/to/ile-oyo-ale.zsh\` (or \`ile-oyo-osan.zsh\`) to \`~/.zshrc\` after the plugin; it also colors zsh-autosuggestions. With fast-syntax-highlighting, run \`fast-theme /path/to/ile-oyo-ale.ini\` once.
 - **CSS**: [\`npm install ile-oyo-theme\`](https://www.npmjs.com/package/ile-oyo-theme), or copy the files from \`themes/css/\`.
 

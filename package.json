@@ -18,6 +18,7 @@
     "screenshot:terminal": "bash scripts/screenshot-terminal.sh",
     "screenshot:chrome": "node scripts/screenshot-chrome.mjs",
     "screenshot:kate": "bash scripts/screenshot-kate.sh",
+    "screenshot:typora": "bash scripts/screenshot-typora.sh",
     "screenshot:zsh": "bash scripts/screenshot-zsh.sh",
     "screenshot:xcode": "bash scripts/screenshot-xcode.sh",
     "screenshot:firefox": "bash scripts/screenshot-firefox.sh",
