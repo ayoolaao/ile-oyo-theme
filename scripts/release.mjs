@@ -7,6 +7,7 @@
 // - ile-oyo-theme-<version>.tgz    npm package (themes/css)
 // - Ile-Oyo-{Ale,Osan}.itermcolors iTerm2 presets
 // - Ile-Oyo-{Ale,Osan}.terminal   Terminal.app profiles
+// - Ile-Oyo-{Ale,Osan}.icls       JetBrains editor color schemes
 // - Ile-Oyo-{Ale,Osan}.xccolortheme Xcode themes
 // - ile-oyo-firefox-<version>.zip  Firefox theme (for addons.mozilla.org)
 // - ile-oyo-chrome-{ale,osan}-<version>.zip  Chrome themes (Chrome Web Store)
@@ -57,6 +58,7 @@ for (const v of ['Ale', 'Osan']) {
   copyFileSync(join(ROOT, `themes/iterm/Ile-Oyo-${v}.itermcolors`), join(DIST, `Ile-Oyo-${v}.itermcolors`));
   copyFileSync(join(ROOT, `themes/xcode/Ile-Oyo-${v}.xccolortheme`), join(DIST, `Ile-Oyo-${v}.xccolortheme`));
   copyFileSync(join(ROOT, `themes/terminal/Ile-Oyo-${v}.terminal`), join(DIST, `Ile-Oyo-${v}.terminal`));
+  copyFileSync(join(ROOT, `themes/jetbrains/Ile-Oyo-${v}.icls`), join(DIST, `Ile-Oyo-${v}.icls`));
 }
 for (const f of ['ile-oyo-ale.theme', 'ile-oyo-osan.theme']) copyFileSync(join(ROOT, 'themes/kate', f), join(DIST, f));
 for (const f of ['ile-oyo-ale.css', 'ile-oyo-osan.css']) copyFileSync(join(ROOT, 'themes/typora', f), join(DIST, f));
@@ -72,6 +74,8 @@ const expected = [
   'Ile-Oyo-Osan.itermcolors',
   'Ile-Oyo-Ale.terminal',
   'Ile-Oyo-Osan.terminal',
+  'Ile-Oyo-Ale.icls',
+  'Ile-Oyo-Osan.icls',
   'Ile-Oyo-Ale.xccolortheme',
   'Ile-Oyo-Osan.xccolortheme',
   `ile-oyo-firefox-${version}.zip`,
@@ -105,6 +109,7 @@ const notes = `${changelogSection(readFileSync(join(ROOT, 'CHANGELOG.md'), 'utf8
 - **Xcode**: Settings → Appearance → Themes → Choose… → Import…, then select an \`.xccolortheme\` file.
 - **Firefox**: addons.mozilla.org listing coming soon. To try it now: \`about:debugging\` → This Firefox → Load Temporary Add-on… → select \`ile-oyo-firefox-${version}.zip\`.
 - **Chrome** (and other Chromium browsers): Chrome Web Store listing coming soon. To try it now: unzip \`ile-oyo-chrome-ale-${version}.zip\` (dark) or \`ile-oyo-chrome-osan-${version}.zip\` (light), open \`chrome://extensions\`, turn on Developer mode, click Load unpacked and select the unzipped folder.
+- **JetBrains IDEs** (IntelliJ IDEA, PyCharm, WebStorm, …): Settings → Editor → Color Scheme → ⚙ → Import Scheme…, then select an \`.icls\` file.
 - **Kate** (and KWrite, KDevelop): Settings → Configure Kate… (macOS: Kate → Settings…) → Color Themes → Import…, then select an \`ile-oyo-*.theme\` file.
 - **Typora**: Settings → Appearance → Open Theme Folder, copy \`ile-oyo-ale.css\` / \`ile-oyo-osan.css\` there, restart Typora and pick Ile Oyo Ale or Ile Oyo Osan from the Themes menu.
 - **Zsh**: with zsh-syntax-highlighting, add \`source /path/to/ile-oyo-ale.zsh\` (or \`ile-oyo-osan.zsh\`) to \`~/.zshrc\` after the plugin; it also colors zsh-autosuggestions. With fast-syntax-highlighting, run \`fast-theme /path/to/ile-oyo-ale.ini\` once.
