@@ -18,6 +18,8 @@ theme looks is a minor version; a fix that doesn't is a patch.
 - **Zsh**: command-line highlighting for zsh-syntax-highlighting (with the
   zsh-autosuggestions color) and fast-syntax-highlighting, Alẹ́ and Ọ̀sán
   (`themes/zsh/`), with screenshots.
+- **Terminal.app**: Alẹ́ and Ọ̀sán profiles with the iTerm2 colors
+  (`themes/terminal/`), with screenshots.
 - **CSS**: screenshots of the demo page in both variants.
 
 ## 0.1.3 (2026-11-18)

@@ -114,4 +114,4 @@ jobs:
           gh release create "$TAG" --verify-tag
           --title "Ilé-Ọ̀yọ́ $TAG"
           --notes-file dist/release-notes.md
-          dist/ile-oyo-theme-*.vsix dist/Ile-Oyo-*.itermcolors dist/Ile-Oyo-*.xccolortheme dist/ile-oyo-firefox-*.zip dist/ile-oyo-chrome-*.zip dist/ile-oyo-*.theme dist/ile-oyo-*.zsh dist/ile-oyo-*.ini
+          dist/ile-oyo-theme-*.vsix dist/Ile-Oyo-*.itermcolors dist/Ile-Oyo-*.terminal dist/Ile-Oyo-*.xccolortheme dist/ile-oyo-firefox-*.zip dist/ile-oyo-chrome-*.zip dist/ile-oyo-*.theme dist/ile-oyo-*.zsh dist/ile-oyo-*.ini
