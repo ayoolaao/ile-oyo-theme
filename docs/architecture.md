@@ -423,7 +423,7 @@ Connect), so no publishing tokens exist anywhere.
      until you approve it with 2FA (`npm stage approve <id>`, or Staged
      Packages on npmjs.com);
    - **github-release**: the GitHub Release with the `.vsix`, the
-     `.itermcolors`, `.terminal`, `.icls` and `.xccolortheme` files, the Firefox and Chrome `.zip`s, the Kate, Typora and Zsh files and `release-notes.md`, only after both stores succeed.
+     `.itermcolors`, `.terminal`, `.icls` and `.xccolortheme` files, the JetBrains plugin `.jar`, the Firefox and Chrome `.zip`s, the Kate, Typora and Zsh files and `release-notes.md`, only after both stores succeed.
 
 The publish jobs run in the `release` environment, which can require approval
 before they start. Trusted Publishing policies name this repository,
