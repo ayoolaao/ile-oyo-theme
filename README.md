@@ -23,13 +23,16 @@ The palette started as the Ilé-Ọ̀yọ́ preset on [ayoola.io](https://ayoola
 
 ## Supported applications
 
-| Application        | Status  |
-| ------------------ | ------- |
-| CSS (web)          | [Available](themes/css/) ([npm](https://www.npmjs.com/package/ile-oyo-theme)) |
-| iTerm2             | [Available](themes/iterm/) |
-| Xcode              | [Available](themes/xcode/) |
-| Firefox            | [Available](themes/firefox/) (addons.mozilla.org coming soon) |
-| Visual Studio Code | [Available](themes/vscode/) ([Marketplace](https://marketplace.visualstudio.com/items?itemName=jazzykid.ile-oyo-theme)) |
+| Application | Get it |
+| ----------- | ------ |
+| CSS (web) | [npm `ile-oyo-theme`](https://www.npmjs.com/package/ile-oyo-theme) · [details](themes/css/) |
+| Firefox | [`themes/firefox`](themes/firefox/) (addons.mozilla.org coming soon) |
+| iTerm2 | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/iterm/) |
+| Visual Studio Code | [Marketplace](https://marketplace.visualstudio.com/items?itemName=jazzykid.ile-oyo-theme) · [details](themes/vscode/) |
+| Xcode | [`themes/xcode`](themes/xcode/) (in GitHub Releases from v0.2.0) |
+
+More are on the way: Chrome, Kate, Zsh, Typora, JetBrains, Terminal.app and
+Notepad++.
 
 ## How it works
 

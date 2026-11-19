@@ -30,146 +30,52 @@ Avoid attributing the palette to *adire*: it is associated with Abẹ́òkúta, 
 | Alẹ́     | evening   | Dark  |
 | Ọ̀sán    | afternoon | Light |
 
-## First targets
+## Targets
 
-1. iTerm2: a `.itermcolors` file per variant
-2. CSS: custom properties, Sass variables, JS/TS tokens
-3. Visual Studio Code: an extension with both variants
+| App | Folder | Generator | Variants | How people get it |
+| --- | ------ | --------- | -------- | ----------------- |
+| iTerm2 | `themes/iterm/` | `iterm.mjs` | one `.itermcolors` each | GitHub Releases |
+| CSS | `themes/css/` | `css.mjs` | both in one stylesheet | npm `ile-oyo-theme` |
+| VS Code | `themes/vscode/` | `vscode.mjs` | two themes in one extension | Marketplace `jazzykid.ile-oyo-theme`, GitHub Releases |
+| Xcode | `themes/xcode/` | `xcode.mjs` | one `.xccolortheme` each | GitHub Releases |
+| Firefox | `themes/firefox/` | `firefox.mjs` | one theme, switches with the system | addons.mozilla.org (coming), GitHub Releases |
+
+Generators live in `scripts/targets/`. More apps are planned for v0.2
+(Chrome, Kate, Zsh, Typora, JetBrains, Terminal.app, Notepad++).
 
 ## Repo layout
 
 ```
-palette/ile-oyo.json        the only place colors are defined (both variants)
-scripts/lib/palette.mjs     load + validate (rules below); shared by check and build
-scripts/check-palette.mjs   npm run check
-scripts/build.mjs           npm run build: validate, then run every target
-scripts/targets/<name>.mjs  one generator per app; returns [{ path, contents }]
-scripts/preview.mjs         npm run preview (local HTML, git-ignored preview/)
-scripts/screenshot-vscode.mjs  npm run screenshot:vscode (real VS Code, sample in scripts/screenshot/)
-scripts/screenshot-iterm.sh npm run screenshot:iterm (real iTerm2, temporary dynamic profiles)
-scripts/screenshot-xcode.sh npm run screenshot:xcode -- ale|osan (real Xcode, theme picked by hand)
-scripts/screenshot-firefox.sh npm run screenshot:firefox -- ale|osan (real Firefox, theme loaded by hand)
-scripts/lib/window-id.js    finds an app's window number for screencapture -l
-scripts/terminal-demo.sh    npm run demo:terminal (fixed scene for terminal screenshots)
-assets/screenshots/         README images (committed; Marketplace links them from main)
-themes/iterm/               generated .itermcolors (committed) + README
-themes/css/                 generated CSS/Sass/JS (committed), demo.html, README
-themes/xcode/               generated .xccolortheme (committed) + README
-themes/firefox/             generated manifest.json (committed) + README
-themes/vscode/              extension: package.json + README (hand-written), themes/*.json (generated)
-docs/                       this document
+palette/ile-oyo.json           the only place colors are defined (both variants)
+
+scripts/lib/palette.mjs        load + validate (rules below); shared by check and build
+scripts/lib/syntax.mjs         syntax roles (below), shared by every code-coloring target
+scripts/lib/changelog.mjs      reads one version's CHANGELOG entry
+scripts/check-palette.mjs      npm run check
+scripts/build.mjs              npm run build: validate, then run every target
+scripts/targets/<name>.mjs     one generator per app; returns [{ path, contents }]
+scripts/release.mjs            npm run release:dist: every release file into dist/
+scripts/preview.mjs            npm run preview (local HTML, git-ignored preview/)
+scripts/icon.mjs               npm run icon: renders assets/icon/icon.svg to the VS Code icon
+
+scripts/screenshot-vscode.mjs  npm run screenshot:vscode (real VS Code; sample in scripts/screenshot/sample/)
+scripts/screenshot-iterm.sh    npm run screenshot:iterm (real iTerm2, temporary dynamic profiles)
+scripts/screenshot-xcode.sh    npm run screenshot:xcode -- ale|osan (real Xcode; theme picked by hand)
+scripts/screenshot-firefox.sh  npm run screenshot:firefox -- ale|osan (real Firefox; theme loaded by hand)
+scripts/terminal-demo.sh       npm run demo:terminal (fixed scene for terminal screenshots)
+scripts/lib/window-id.js       finds an app's window number for screencapture -l
+
+themes/<app>/                  generated files (committed) + a hand-written README per app
+tests/                         node --test suites, plus use.scss and use.ts (API checks)
+assets/icon/                   icon source (SVG)
+assets/screenshots/            README images (Marketplace and npm link them from main)
+docs/                          this document
+.github/workflows/             ci.yml (every push/PR) and release.yml (v* tags)
 ```
 
 Generated theme files are committed so people can download them directly.
 `npm run build -- --check` fails if any of them differs from a fresh build.
-
-## Target: iTerm2
-
-One preset per variant: `themes/iterm/Ile-Oyo-Ale.itermcolors` and
-`Ile-Oyo-Osan.itermcolors` (ASCII filenames; iTerm shows the filename as the
-preset name). Colors are written with `Color Space: sRGB` so iTerm reproduces
-the hex values exactly.
-
-| iTerm key | Palette source |
-| --------- | -------------- |
-| Ansi 0–15 | `ansi.color0`–`color15` |
-| Background | `bg` |
-| Foreground, Bold, Cursor, Selected Text | `fg` |
-| Cursor Text | `bg` |
-| Selection | `selection` |
-| Link | `blue` |
-| Cursor Guide | `selection` at 40% opacity |
-
-## Syntax roles
-
-Which palette color each kind of code token uses. Defined once in
-`scripts/targets/css.mjs` (`SYNTAX`, also exported from the JS tokens) and
-reused by every target that colors code (CSS highlighting and VS Code). Now
-lives in `scripts/lib/syntax.mjs` with `STYLE` (italic: comment, parameter;
-bold: heading, strong).
-
-| Role | Color | Role | Color |
-| ---- | ----- | ---- | ----- |
-| keyword, operator | pink | comment | comment (italic) |
-| function, property | green | variable, punctuation | fg |
-| string | yellow | link | cyan |
-| number, boolean, constant | purple | deleted | red |
-| type, class, built-in | cyan | inserted | green |
-| parameter | orange (italic) | changed | orange |
-| tag | pink | heading | purple |
-| regex | red | emphasis / strong | yellow / orange |
-
-## Target: CSS
-
-Files in `themes/css/`:
-
-| File | Contents |
-| ---- | -------- |
-| `ile-oyo.css` | `--ile-*` variables for both variants |
-| `ile-oyo-highlight.css` | Prism + highlight.js token rules and Shiki `--shiki-*` variables, all via `--ile-*` |
-| `_ile-oyo.scss` | `$ile-<variant>-<token>` (all `!default`), maps `$ile-ale`, `$ile-osan`, `$ile-oyo` |
-| `ile-oyo-tokens.js`, `.d.ts` | ES module: `ale`, `osan`, `syntax`, default export |
-
-Variant selection: Ọ̀sán by default, Alẹ́ under `prefers-color-scheme: dark`;
-`data-ile-theme="ale" | "osan"` on any element overrides it for that subtree.
-`demo.html` is hand-written and uses only the variables.
-
-## Target: Xcode
-
-One `.xccolortheme` property list per variant in `themes/xcode/`
-(`scripts/targets/xcode.mjs`). The key set matches Xcode's own "Default
-(Dark)" theme (`SourceEditor.framework`), checked by `tests/xcode.test.mjs`
-when Xcode is installed. Colors are `"r g b a"` strings; semi-transparent
-palette colors (the current-line highlight) are blended onto the background
-so they're opaque.
-
-Each Xcode syntax type maps to a syntax role (below), except macros,
-preprocessor directives and attributes, which use orange. Fonts are SF Mono
-Medium 12 pt; comments are italic, and doc-comment keywords and `MARK:` lines
-bold, as in Xcode.
-
-## Target: Firefox
-
-One static theme extension in `themes/firefox/` (`scripts/targets/firefox.mjs`),
-Manifest V3, ID `ile-oyo-theme@jazzykid.com`. `theme` is Ọ̀sán and
-`dark_theme` is Alẹ́; Firefox switches between them with its light/dark color
-scheme. Surfaces follow the VS Code theme: frame `ui.bg_darker`, selected tab
-and toolbar `bg` with a red tab line, inactive tab text `ui.muted`, fields like
-VS Code's inputs, popups `ui.bg_light`, sidebar `ui.bg_dark`.
-`tests/firefox.test.mjs` checks the keys against MDN's list, that every color
-is a palette color, and 4.5:1 for 12 text/background pairs. `npm test` also
-runs `web-ext lint` (Mozilla's add-on linter) with warnings as errors.
-
-## Target: VS Code
-
-Extension in `themes/vscode/`: `package.json` (manifest, hand-written; publisher
-`jazzykid`, the author's Marketplace publisher) and generated
-`themes/ile-oyo-ale.json` / `ile-oyo-osan.json` (labels "Ilé-Ọ̀yọ́ Alẹ́",
-"Ilé-Ọ̀yọ́ Ọ̀sán").
-
-Workbench layout, outermost to innermost: title bar, activity bar and status
-bar on `ui.bg_darker`; side bar, panels and inactive tabs on `ui.bg_dark`;
-editor and active tab on `bg`; widgets, menus and notifications on
-`ui.bg_light`.
-
-| Role | Color |
-| ---- | ----- |
-| Brand accent: active tab/panel/activity border, badges, progress, peek border | red (àlàárì) |
-| Buttons, links, info | blue |
-| Errors / warnings | red / yellow |
-| Secondary text | `ui.muted` |
-| Selection, active list item | `selection` |
-| Git: modified, added/untracked, deleted, conflict, ignored | orange, green, red, pink, `comment` |
-| Terminal | `ansi.color0`–`color15` |
-
-Code colors: TextMate scopes per syntax role, plus semantic token colors for
-the same roles (`semanticHighlighting: true`). `tests/vscode.test.mjs` checks
-UI text contrast (4.5:1; icons 3:1), that code colors come from the palette,
-the terminal colors, the manifest, and that every color key is registered by
-the installed VS Code.
-
-One repo with generators, not Dracula's one-repo-per-app layout. Targets can be
-split out later if needed.
+`themes/vscode/package.json` and the READMEs are hand-written.
 
 ## Palette shape
 
@@ -207,6 +113,114 @@ pass (target 4.6:1, so hex rounding can't drop it below 4.5). Stored as hex.
 - **Enforced:** `npm run check` (scripts/check-palette.mjs) tests all of the
   above and exits non-zero on any failure.
 
+## Syntax roles
+
+Which palette color each kind of code token uses. Defined once in
+`scripts/targets/css.mjs` (`SYNTAX`, also exported from the JS tokens) and
+reused by every target that colors code (CSS highlighting and VS Code). Now
+lives in `scripts/lib/syntax.mjs` with `STYLE` (italic: comment, parameter;
+bold: heading, strong).
+
+| Role | Color | Role | Color |
+| ---- | ----- | ---- | ----- |
+| keyword, operator | pink | comment | comment (italic) |
+| function, property | green | variable, punctuation | fg |
+| string | yellow | link | cyan |
+| number, boolean, constant | purple | deleted | red |
+| type, class, built-in | cyan | inserted | green |
+| parameter | orange (italic) | changed | orange |
+| tag | pink | heading | purple |
+| regex | red | emphasis / strong | yellow / orange |
+
+## Target: iTerm2
+
+One preset per variant: `themes/iterm/Ile-Oyo-Ale.itermcolors` and
+`Ile-Oyo-Osan.itermcolors` (ASCII filenames; iTerm shows the filename as the
+preset name). Colors are written with `Color Space: sRGB` so iTerm reproduces
+the hex values exactly.
+
+| iTerm key | Palette source |
+| --------- | -------------- |
+| Ansi 0–15 | `ansi.color0`–`color15` |
+| Background | `bg` |
+| Foreground, Bold, Cursor, Selected Text | `fg` |
+| Cursor Text | `bg` |
+| Selection | `selection` |
+| Link | `blue` |
+| Cursor Guide | `selection` at 40% opacity |
+
+## Target: CSS
+
+Files in `themes/css/`:
+
+| File | Contents |
+| ---- | -------- |
+| `ile-oyo.css` | `--ile-*` variables for both variants |
+| `ile-oyo-highlight.css` | Prism + highlight.js token rules and Shiki `--shiki-*` variables, all via `--ile-*` |
+| `_ile-oyo.scss` | `$ile-<variant>-<token>` (all `!default`), maps `$ile-ale`, `$ile-osan`, `$ile-oyo` |
+| `ile-oyo-tokens.js`, `.d.ts` | ES module: `ale`, `osan`, `syntax`, default export |
+
+Variant selection: Ọ̀sán by default, Alẹ́ under `prefers-color-scheme: dark`;
+`data-ile-theme="ale" | "osan"` on any element overrides it for that subtree.
+`demo.html` is hand-written and uses only the variables.
+
+## Target: VS Code
+
+Extension in `themes/vscode/`: `package.json` (manifest, hand-written; publisher
+`jazzykid`, the author's Marketplace publisher) and generated
+`themes/ile-oyo-ale.json` / `ile-oyo-osan.json` (labels "Ilé-Ọ̀yọ́ Alẹ́",
+"Ilé-Ọ̀yọ́ Ọ̀sán").
+
+Workbench layout, outermost to innermost: title bar, activity bar and status
+bar on `ui.bg_darker`; side bar, panels and inactive tabs on `ui.bg_dark`;
+editor and active tab on `bg`; widgets, menus and notifications on
+`ui.bg_light`.
+
+| Role | Color |
+| ---- | ----- |
+| Brand accent: active tab/panel/activity border, badges, progress, peek border | red (àlàárì) |
+| Buttons, links, info | blue |
+| Errors / warnings | red / yellow |
+| Secondary text | `ui.muted` |
+| Selection, active list item | `selection` |
+| Git: modified, added/untracked, deleted, conflict, ignored | orange, green, red, pink, `comment` |
+| Terminal | `ansi.color0`–`color15` |
+
+Code colors: TextMate scopes per syntax role, plus semantic token colors for
+the same roles (`semanticHighlighting: true`). `tests/vscode.test.mjs` checks
+UI text contrast (4.5:1; icons 3:1), that code colors come from the palette,
+the terminal colors, the manifest, and that every color key is registered by
+the installed VS Code.
+
+One repo with generators, not Dracula's one-repo-per-app layout. Targets can be
+split out later if needed.
+
+## Target: Xcode
+
+One `.xccolortheme` property list per variant in `themes/xcode/`
+(`scripts/targets/xcode.mjs`). The key set matches Xcode's own "Default
+(Dark)" theme (`SourceEditor.framework`), checked by `tests/xcode.test.mjs`
+when Xcode is installed. Colors are `"r g b a"` strings; semi-transparent
+palette colors (the current-line highlight) are blended onto the background
+so they're opaque.
+
+Each Xcode syntax type maps to a syntax role (above), except macros,
+preprocessor directives and attributes, which use orange. Fonts are SF Mono
+Medium 12 pt; comments are italic, and doc-comment keywords and `MARK:` lines
+bold, as in Xcode.
+
+## Target: Firefox
+
+One static theme extension in `themes/firefox/` (`scripts/targets/firefox.mjs`),
+Manifest V3, ID `ile-oyo-theme@jazzykid.com`. `theme` is Ọ̀sán and
+`dark_theme` is Alẹ́; Firefox switches between them with its light/dark color
+scheme. Surfaces follow the VS Code theme: frame `ui.bg_darker`, selected tab
+and toolbar `bg` with a red tab line, inactive tab text `ui.muted`, fields like
+VS Code's inputs, popups `ui.bg_light`, sidebar `ui.bg_dark`.
+`tests/firefox.test.mjs` checks the keys against MDN's list, that every color
+is a palette color, and 4.5:1 for 12 text/background pairs. `npm test` also
+runs `web-ext lint` (Mozilla's add-on linter) with warnings as errors.
+
 ## Tooling
 
 Node.js (installed via nvm). Dev dependencies, pinned exactly: `sass` 1.83.0
@@ -220,16 +234,21 @@ itself has no dependencies. The root `package.json` is private
 | ------- | ------ | ---- | -------- |
 | VS Code extension | `themes/vscode` | `jazzykid.ile-oyo-theme` | manifest, README, both themes, icon, LICENSE, NOTICE |
 | npm | `themes/css` | `ile-oyo-theme` | CSS, highlight CSS, Sass, JS tokens + types; ES module only. Subpaths: `/css`, `/highlight.css`, `/scss` |
+| Firefox add-on | `themes/firefox` | `ile-oyo-theme@jazzykid.com` | manifest (both variants), README, LICENSE, NOTICE |
 
-Every package's version must equal `palette.version`, and `CHANGELOG.md` must
+Every package's version (and the Firefox manifest's) must equal
+`palette.version`, and `CHANGELOG.md` must
 have a dated entry for it, `## <version> (YYYY-MM-DD)` (`tests/versions.test.mjs`).
+
+## Commands
 
 | Command | What it does |
 | ------- | ------------ |
-| `npm run check` | Enforces the rules above; non-zero exit on failure |
+| `npm run check` | Enforces the palette rules; non-zero exit on failure |
 | `npm run build` | Validates, then writes every target's files |
 | `npm run build -- --check` | Fails if a committed generated file is out of date |
-| `npm test` | All of the above, plus: JS tokens equal the palette (`node --test`), the Sass compiles (`tests/use.scss`), the `.d.ts` type-checks (`tests/use.ts`), VS Code theme checks, and package versions match the palette |
+| `npm test` | `check` and `build -- --check`, plus the `node --test` suites (JS tokens, VS Code, Xcode, Firefox, versions), the Sass compile (`tests/use.scss`), the `.d.ts` type-check (`tests/use.ts`), and `web-ext lint` on the Firefox theme |
+| `npm run lint:firefox` | Mozilla's add-on linter on `themes/firefox`, warnings as errors |
 | `npm run package:vscode` | Tests, then `dist/ile-oyo-theme-<version>.vsix` |
 | `npm run pack:css` | Tests, then `npm pack --dry-run` of `themes/css` |
 | `npm run release:dist` | Tests, then every release file into `dist/`: `.vsix`, npm `.tgz`, both `.itermcolors` and `.xccolortheme`, the Firefox `.zip`, `release-notes.md` (CHANGELOG entry, install lines, SHA-256) |
