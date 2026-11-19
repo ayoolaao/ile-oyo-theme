@@ -39,9 +39,10 @@ Avoid attributing the palette to *adire*: it is associated with Abẹ́òkúta, 
 | VS Code | `themes/vscode/` | `vscode.mjs` | two themes in one extension | Marketplace `jazzykid.ile-oyo-theme`, GitHub Releases |
 | Xcode | `themes/xcode/` | `xcode.mjs` | one `.xccolortheme` each | GitHub Releases |
 | Firefox | `themes/firefox/` | `firefox.mjs` | one theme, switches with the system | addons.mozilla.org (coming), GitHub Releases |
+| Chrome | `themes/chrome/` | `chrome.mjs` | one theme extension each | Chrome Web Store (coming), GitHub Releases |
 
 Generators live in `scripts/targets/`. More apps are planned for v0.2
-(Chrome, Kate, Zsh, Typora, JetBrains, Terminal.app, Notepad++).
+(Kate, Zsh, Typora, JetBrains, Terminal.app, Notepad++).
 
 ## Repo layout
 
@@ -56,12 +57,13 @@ scripts/build.mjs              npm run build: validate, then run every target
 scripts/targets/<name>.mjs     one generator per app; returns [{ path, contents }]
 scripts/release.mjs            npm run release:dist: every release file into dist/
 scripts/preview.mjs            npm run preview (local HTML, git-ignored preview/)
-scripts/icon.mjs               npm run icon: renders assets/icon/icon.svg to the VS Code icon
+scripts/icon.mjs               npm run icon: renders assets/icon/icon.svg to the VS Code and Chrome icons
 
 scripts/screenshot-vscode.mjs  npm run screenshot:vscode (real VS Code; sample in scripts/screenshot/sample/)
 scripts/screenshot-iterm.sh    npm run screenshot:iterm (real iTerm2, temporary dynamic profiles)
 scripts/screenshot-xcode.sh    npm run screenshot:xcode -- ale|osan (real Xcode; theme picked by hand)
 scripts/screenshot-firefox.sh  npm run screenshot:firefox -- ale|osan (real Firefox; theme loaded by hand)
+scripts/screenshot-chrome.mjs  npm run screenshot:chrome (real Chrome, throwaway profile)
 scripts/terminal-demo.sh       npm run demo:terminal (fixed scene for terminal screenshots)
 scripts/lib/window-id.js       finds an app's window number for screencapture -l
 
@@ -221,6 +223,21 @@ VS Code's inputs, popups `ui.bg_light`, sidebar `ui.bg_dark`.
 is a palette color, and 4.5:1 for 12 text/background pairs. `npm test` also
 runs `web-ext lint` (Mozilla's add-on linter) with warnings as errors.
 
+## Target: Chrome
+
+One static theme extension per variant in `themes/chrome/ale/` and
+`themes/chrome/osan/` (`scripts/targets/chrome.mjs`), Manifest V3. Chrome
+themes can't follow the system's light/dark setting, so the variants are
+separate extensions. Colors are `[r, g, b]` arrays and must be opaque.
+Surfaces match the Firefox theme: frame and inactive tabs `ui.bg_darker`,
+selected tab and toolbar `bg`, inactive tab text `ui.muted`, the address bar
+like VS Code's inputs, new tab page `bg` with blue links. Incognito colors are
+left to Chrome so incognito windows still look different. Chrome has no
+tab-line color. Each folder carries a 128 px icon (`npm run icon`), LICENSE
+and NOTICE. `tests/chrome.test.mjs` checks the keys against Chromium's
+`kOverwritableColorTable` (`chrome/browser/themes/browser_theme_pack.cc`),
+that every color is a palette color, and 4.5:1 for 8 text/background pairs.
+
 ## Tooling
 
 Node.js (installed via nvm). Dev dependencies, pinned exactly: `sass` 1.83.0
@@ -235,8 +252,9 @@ itself has no dependencies. The root `package.json` is private
 | VS Code extension | `themes/vscode` | `jazzykid.ile-oyo-theme` | manifest, README, both themes, icon, LICENSE, NOTICE |
 | npm | `themes/css` | `ile-oyo-theme` | CSS, highlight CSS, Sass, JS tokens + types; ES module only. Subpaths: `/css`, `/highlight.css`, `/scss` |
 | Firefox add-on | `themes/firefox` | `ile-oyo-theme@jazzykid.com` | manifest (both variants), README, LICENSE, NOTICE |
+| Chrome themes | `themes/chrome/{ale,osan}` | Ilé-Ọ̀yọ́ Alẹ́, Ilé-Ọ̀yọ́ Ọ̀sán | manifest, icon, LICENSE, NOTICE |
 
-Every package's version (and the Firefox manifest's) must equal
+Every package's version (and the Firefox and Chrome manifests') must equal
 `palette.version`, and `CHANGELOG.md` must
 have a dated entry for it, `## <version> (YYYY-MM-DD)` (`tests/versions.test.mjs`).
 
@@ -247,12 +265,12 @@ have a dated entry for it, `## <version> (YYYY-MM-DD)` (`tests/versions.test.mjs
 | `npm run check` | Enforces the palette rules; non-zero exit on failure |
 | `npm run build` | Validates, then writes every target's files |
 | `npm run build -- --check` | Fails if a committed generated file is out of date |
-| `npm test` | `check` and `build -- --check`, plus the `node --test` suites (JS tokens, VS Code, Xcode, Firefox, versions), the Sass compile (`tests/use.scss`), the `.d.ts` type-check (`tests/use.ts`), and `web-ext lint` on the Firefox theme |
+| `npm test` | `check` and `build -- --check`, plus the `node --test` suites (JS tokens, VS Code, Xcode, Firefox, Chrome, versions), the Sass compile (`tests/use.scss`), the `.d.ts` type-check (`tests/use.ts`), and `web-ext lint` on the Firefox theme |
 | `npm run lint:firefox` | Mozilla's add-on linter on `themes/firefox`, warnings as errors |
 | `npm run package:vscode` | Tests, then `dist/ile-oyo-theme-<version>.vsix` |
 | `npm run pack:css` | Tests, then `npm pack --dry-run` of `themes/css` |
-| `npm run release:dist` | Tests, then every release file into `dist/`: `.vsix`, npm `.tgz`, both `.itermcolors` and `.xccolortheme`, the Firefox `.zip`, `release-notes.md` (CHANGELOG entry, install lines, SHA-256) |
-| `npm run screenshot:vscode`, `screenshot:iterm`, `screenshot:xcode`, `screenshot:firefox` (`-- ale\|osan`) | Retake the README screenshots (macOS) |
+| `npm run release:dist` | Tests, then every release file into `dist/`: `.vsix`, npm `.tgz`, both `.itermcolors` and `.xccolortheme`, the Firefox `.zip`, both Chrome `.zip`s, `release-notes.md` (CHANGELOG entry, install lines, SHA-256) |
+| `npm run screenshot:vscode`, `screenshot:iterm`, `screenshot:chrome`, `screenshot:xcode` and `screenshot:firefox` (`-- ale\|osan`) | Retake the README screenshots (macOS) |
 | `npm run preview` | Builds `preview/index.html` from the palette and opens it |
 | `npm run preview -- --compare <file>` | Side-by-side with another palette (either format) → `preview/compare.html` |
 
@@ -278,7 +296,7 @@ Connect), so no publishing tokens exist anywhere.
      until you approve it with 2FA (`npm stage approve <id>`, or Staged
      Packages on npmjs.com);
    - **github-release**: the GitHub Release with the `.vsix`, the
-     `.itermcolors` and `.xccolortheme` files, the Firefox `.zip` and `release-notes.md`, only after both stores succeed.
+     `.itermcolors` and `.xccolortheme` files, the Firefox and Chrome `.zip`s and `release-notes.md`, only after both stores succeed.
 
 The publish jobs run in the `release` environment, which can require approval
 before they start. Trusted Publishing policies name this repository,

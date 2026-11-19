@@ -3,3 +3,6 @@ node_modules/
 /dist/
 .DS_Store
 /notes/
+
+# Chrome writes this into a theme folder it loads unpacked.
+Cached Theme.pak

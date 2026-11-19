@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Ilé-Ọ̀yọ́ Alẹ́",
+  "version": "0.1.3",
+  "description": "Ilé-Ọ̀yọ́ Alẹ́ (evening, dark): colors from Ọ̀yọ́ aṣọ-òkè.",
+  "author": "Ayoola Abimbola",
+  "homepage_url": "https://github.com/ayoolaao/ile-oyo-theme",
+  "icons": {
+    "128": "icon128.png"
+  },
+  "theme": {
+    "colors": {
+      "frame": [15, 31, 60],
+      "frame_inactive": [15, 31, 60],
+      "background_tab": [15, 31, 60],
+      "background_tab_inactive": [15, 31, 60],
+      "tab_text": [244, 230, 206],
+      "tab_background_text": [137, 148, 170],
+      "tab_background_text_inactive": [137, 148, 170],
+      "toolbar": [26, 43, 76],
+      "toolbar_text": [244, 230, 206],
+      "toolbar_button_icon": [244, 230, 206],
+      "bookmark_text": [244, 230, 206],
+      "omnibox_background": [15, 31, 60],
+      "omnibox_text": [244, 230, 206],
+      "ntp_background": [26, 43, 76],
+      "ntp_text": [244, 230, 206],
+      "ntp_link": [110, 157, 245]
+    }
+  }
+}

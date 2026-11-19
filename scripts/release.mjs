@@ -8,6 +8,7 @@
 // - Ile-Oyo-{Ale,Osan}.itermcolors iTerm2 presets
 // - Ile-Oyo-{Ale,Osan}.xccolortheme Xcode themes
 // - ile-oyo-firefox-<version>.zip  Firefox theme (for addons.mozilla.org)
+// - ile-oyo-chrome-{ale,osan}-<version>.zip  Chrome themes (Chrome Web Store)
 // - release-notes.md               CHANGELOG section, install lines, SHA-256
 //
 // With --tag, fails unless the tag is v<palette version>. The release
@@ -42,6 +43,12 @@ run(join(ROOT, 'node_modules/.bin/web-ext'), [
   'build', '--source-dir', join(ROOT, 'themes/firefox'), '--artifacts-dir', DIST,
   '--filename', `ile-oyo-firefox-${version}.zip`, '--overwrite-dest',
 ], ROOT);
+for (const id of ['ale', 'osan']) {
+  // Named files only (Chrome caches a .pak in a folder it loads unpacked); -X
+  // leaves out macOS file attributes.
+  run('zip', ['-q', '-X', join(DIST, `ile-oyo-chrome-${id}-${version}.zip`), 'manifest.json', 'icon128.png', 'LICENSE', 'NOTICE'],
+    join(ROOT, 'themes/chrome', id));
+}
 for (const v of ['Ale', 'Osan']) {
   copyFileSync(join(ROOT, `themes/iterm/Ile-Oyo-${v}.itermcolors`), join(DIST, `Ile-Oyo-${v}.itermcolors`));
   copyFileSync(join(ROOT, `themes/xcode/Ile-Oyo-${v}.xccolortheme`), join(DIST, `Ile-Oyo-${v}.xccolortheme`));
@@ -55,6 +62,8 @@ const expected = [
   'Ile-Oyo-Ale.xccolortheme',
   'Ile-Oyo-Osan.xccolortheme',
   `ile-oyo-firefox-${version}.zip`,
+  `ile-oyo-chrome-ale-${version}.zip`,
+  `ile-oyo-chrome-osan-${version}.zip`,
 ];
 const found = readdirSync(DIST).sort();
 if (JSON.stringify(found) !== JSON.stringify([...expected].sort())) {
@@ -73,6 +82,7 @@ const notes = `${changelogSection(readFileSync(join(ROOT, 'CHANGELOG.md'), 'utf8
 - **iTerm2**: double-click an \`.itermcolors\` file, or iTerm2 → Settings → Profiles → Colors → Color Presets → Import.
 - **Xcode**: Settings → Appearance → Themes → Choose… → Import…, then select an \`.xccolortheme\` file.
 - **Firefox**: addons.mozilla.org listing coming soon. To try it now: \`about:debugging\` → This Firefox → Load Temporary Add-on… → select \`ile-oyo-firefox-${version}.zip\`.
+- **Chrome** (and other Chromium browsers): Chrome Web Store listing coming soon. To try it now: unzip \`ile-oyo-chrome-ale-${version}.zip\` (dark) or \`ile-oyo-chrome-osan-${version}.zip\` (light), open \`chrome://extensions\`, turn on Developer mode, click Load unpacked and select the unzipped folder.
 - **CSS**: [\`npm install ile-oyo-theme\`](https://www.npmjs.com/package/ile-oyo-theme), or copy the files from \`themes/css/\`.
 
 ### SHA-256

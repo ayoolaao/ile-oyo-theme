@@ -15,6 +15,7 @@
     "icon": "node scripts/icon.mjs",
     "screenshot:vscode": "node scripts/screenshot-vscode.mjs",
     "screenshot:iterm": "bash scripts/screenshot-iterm.sh",
+    "screenshot:chrome": "node scripts/screenshot-chrome.mjs",
     "screenshot:xcode": "bash scripts/screenshot-xcode.sh",
     "screenshot:firefox": "bash scripts/screenshot-firefox.sh",
     "demo:terminal": "bash scripts/terminal-demo.sh",

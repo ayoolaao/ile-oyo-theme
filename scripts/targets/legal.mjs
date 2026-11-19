@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT } from '../lib/palette.mjs';
 
-const PACKAGES = ['themes/vscode', 'themes/css', 'themes/firefox'];
+const PACKAGES = ['themes/vscode', 'themes/css', 'themes/firefox', 'themes/chrome/ale', 'themes/chrome/osan'];
 const FILES = ['LICENSE', 'NOTICE'];
 
 export default function legal() {
