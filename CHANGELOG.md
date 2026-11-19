@@ -22,6 +22,9 @@ theme looks is a minor version; a fix that doesn't is a patch.
   (`themes/terminal/`), with screenshots.
 - **Typora**: Alẹ́ and Ọ̀sán themes (`themes/typora/`) for the document,
   code blocks, source mode and Typora's interface, with screenshots.
+- **JetBrains IDEs**: Alẹ́ and Ọ̀sán editor color schemes (`.icls`,
+  `themes/jetbrains/`) for IntelliJ IDEA, PyCharm, WebStorm and the rest,
+  with screenshots.
 - **CSS**: screenshots of the demo page in both variants.
 
 ## 0.1.3 (2026-11-18)

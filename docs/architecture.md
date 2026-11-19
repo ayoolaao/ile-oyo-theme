@@ -40,13 +40,14 @@ Avoid attributing the palette to *adire*: it is associated with Abẹ́òkúta, 
 | Xcode | `themes/xcode/` | `xcode.mjs` | one `.xccolortheme` each | GitHub Releases |
 | Firefox | `themes/firefox/` | `firefox.mjs` | one theme, switches with the system | addons.mozilla.org (coming), GitHub Releases |
 | Chrome | `themes/chrome/` | `chrome.mjs` | one theme extension each | Chrome Web Store (coming), GitHub Releases |
+| JetBrains | `themes/jetbrains/` | `jetbrains.mjs` | one `.icls` editor scheme each | GitHub Releases |
 | Kate | `themes/kate/` | `kate.mjs` | one `.theme` each | GitHub Releases |
 | Terminal.app | `themes/terminal/` | `terminal.mjs` | one `.terminal` profile each | GitHub Releases |
 | Typora | `themes/typora/` | `typora.mjs` | one theme `.css` each | GitHub Releases |
 | Zsh | `themes/zsh/` | `zsh.mjs` | one `.zsh` (zsh-syntax-highlighting) and one `.ini` (fast-syntax-highlighting) each | GitHub Releases |
 
 Generators live in `scripts/targets/`. More apps are planned for v0.2
-(JetBrains, Notepad++).
+(a full JetBrains IDE theme, Notepad++).
 
 ## Repo layout
 
@@ -65,6 +66,7 @@ scripts/icon.mjs               npm run icon: renders assets/icon/icon.svg to the
 
 scripts/screenshot-vscode.mjs  npm run screenshot:vscode (real VS Code; sample in scripts/screenshot/sample/)
 scripts/screenshot-iterm.sh    npm run screenshot:iterm (real iTerm2, temporary dynamic profiles)
+scripts/screenshot-jetbrains.sh npm run screenshot:jetbrains -- open|capture ale|osan (real WebStorm, throwaway config; scheme imported by hand)
 scripts/screenshot-terminal.sh npm run screenshot:terminal (real Terminal.app; preferences restored)
 scripts/screenshot-xcode.sh    npm run screenshot:xcode -- ale|osan (real Xcode; theme picked by hand)
 scripts/screenshot-firefox.sh  npm run screenshot:firefox -- ale|osan (real Firefox; theme loaded by hand)
@@ -247,6 +249,26 @@ and NOTICE. `tests/chrome.test.mjs` checks the keys against Chromium's
 `kOverwritableColorTable` (`chrome/browser/themes/browser_theme_pack.cc`),
 that every color is a palette color, and 4.5:1 for 8 text/background pairs.
 
+## Target: JetBrains
+
+One editor color scheme (`.icls`, XML) per variant in `themes/jetbrains/`
+(`scripts/targets/jetbrains.mjs`), for every JetBrains IDE. Alẹ́ inherits
+from Darcula and Ọ̀sán from Default (`parent_scheme`), so unset keys fall back
+to IntelliJ's own. It sets the editor colors (caret, current line, gutter,
+selection, guides, change markers, file status), all 42 language-default
+attributes (`DEFAULT_*`, which every language inherits) mapped to the syntax
+roles, the general attributes (errors, warnings, search and caret highlights,
+braces, links, TODO, inlays, breakpoints) and the console's 16 ANSI colors
+(the iTerm palette). `FONT_TYPE` 1/2/3 = bold/italic/both; `EFFECT_TYPE` 1/2/3
+= underline/wave/strikeout. Inlays and folded text use `bg_dark` in Alẹ́ and
+`bg_light` in Ọ̀sán, as in Typora. Highlights are palette colors blended onto
+the background. `tests/jetbrains.test.mjs` checks the 42 defaults against
+the platform's `DefaultLanguageHighlighterColors`, that every key exists in
+IntelliJ's own Default/Darcula schemes (read from an installed IDE), opaque
+palette colors, and 4.5:1 for every syntax color and for text on every
+background the scheme sets. This colors the editor only; a full IDE theme
+(UI) is a separate plugin.
+
 ## Target: Kate
 
 One KSyntaxHighlighting color theme (JSON) per variant in `themes/kate/`
@@ -340,12 +362,12 @@ have a dated entry for it, `## <version> (YYYY-MM-DD)` (`tests/versions.test.mjs
 | `npm run check` | Enforces the palette rules; non-zero exit on failure |
 | `npm run build` | Validates, then writes every target's files |
 | `npm run build -- --check` | Fails if a committed generated file is out of date |
-| `npm test` | `check` and `build -- --check`, plus the `node --test` suites (JS tokens, VS Code, Xcode, Firefox, Chrome, Kate, Zsh, Terminal.app, Typora, versions), the Sass compile (`tests/use.scss`), the `.d.ts` type-check (`tests/use.ts`), and `web-ext lint` on the Firefox theme |
+| `npm test` | `check` and `build -- --check`, plus the `node --test` suites (JS tokens, VS Code, Xcode, Firefox, Chrome, Kate, Zsh, Terminal.app, Typora, JetBrains, versions), the Sass compile (`tests/use.scss`), the `.d.ts` type-check (`tests/use.ts`), and `web-ext lint` on the Firefox theme |
 | `npm run lint:firefox` | Mozilla's add-on linter on `themes/firefox`, warnings as errors |
 | `npm run package:vscode` | Tests, then `dist/ile-oyo-theme-<version>.vsix` |
 | `npm run pack:css` | Tests, then `npm pack --dry-run` of `themes/css` |
-| `npm run release:dist` | Tests, then every release file into `dist/`: `.vsix`, npm `.tgz`, both `.itermcolors`, `.terminal` and `.xccolortheme`, the Firefox `.zip`, both Chrome `.zip`s, both Kate `.theme` files, both Typora `.css` files, the Zsh `.zsh` and `.ini` files, `release-notes.md` (CHANGELOG entry, install lines, SHA-256) |
-| `npm run screenshot:vscode`, `screenshot:iterm`, `screenshot:terminal`, `screenshot:chrome`, `screenshot:kate`, `screenshot:typora`, `screenshot:zsh`, `screenshot:xcode` and `screenshot:firefox` (`-- ale\|osan`) | Retake the README screenshots (macOS) |
+| `npm run release:dist` | Tests, then every release file into `dist/`: `.vsix`, npm `.tgz`, both `.itermcolors`, `.terminal`, `.icls` and `.xccolortheme`, the Firefox `.zip`, both Chrome `.zip`s, both Kate `.theme` files, both Typora `.css` files, the Zsh `.zsh` and `.ini` files, `release-notes.md` (CHANGELOG entry, install lines, SHA-256) |
+| `npm run screenshot:vscode`, `screenshot:iterm`, `screenshot:jetbrains` (`-- open\|capture ale\|osan`), `screenshot:terminal`, `screenshot:chrome`, `screenshot:kate`, `screenshot:typora`, `screenshot:zsh`, `screenshot:xcode` and `screenshot:firefox` (`-- ale\|osan`) | Retake the README screenshots (macOS) |
 | `npm run preview` | Builds `preview/index.html` from the palette and opens it |
 | `npm run preview -- --compare <file>` | Side-by-side with another palette (either format) → `preview/compare.html` |
 
@@ -371,7 +393,7 @@ Connect), so no publishing tokens exist anywhere.
      until you approve it with 2FA (`npm stage approve <id>`, or Staged
      Packages on npmjs.com);
    - **github-release**: the GitHub Release with the `.vsix`, the
-     `.itermcolors`, `.terminal` and `.xccolortheme` files, the Firefox and Chrome `.zip`s, the Kate, Typora and Zsh files and `release-notes.md`, only after both stores succeed.
+     `.itermcolors`, `.terminal`, `.icls` and `.xccolortheme` files, the Firefox and Chrome `.zip`s, the Kate, Typora and Zsh files and `release-notes.md`, only after both stores succeed.
 
 The publish jobs run in the `release` environment, which can require approval
 before they start. Trusted Publishing policies name this repository,
