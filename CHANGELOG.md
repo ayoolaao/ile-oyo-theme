@@ -25,6 +25,10 @@ theme looks is a minor version; a fix that doesn't is a patch.
 - **JetBrains IDEs**: Alẹ́ and Ọ̀sán editor color schemes (`.icls`,
   `themes/jetbrains/`) for IntelliJ IDEA, PyCharm, WebStorm and the rest,
   with screenshots.
+- **JetBrains IDE theme**: a theme plugin (`themes/jetbrains/plugin/`,
+  `ile-oyo-jetbrains-<version>.jar` in releases) that colors the whole IDE
+  (window, tool windows, tabs, menus, popups, controls) as well as the editor,
+  built on the Islands look, for 2025.3 and later, with screenshots.
 - **CSS**: screenshots of the demo page in both variants.
 
 ## 0.1.3 (2026-11-18)

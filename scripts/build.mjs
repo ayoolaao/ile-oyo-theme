@@ -16,9 +16,10 @@ import zsh from './targets/zsh.mjs';
 import terminal from './targets/terminal.mjs';
 import typora from './targets/typora.mjs';
 import jetbrains from './targets/jetbrains.mjs';
+import jetbrainsTheme from './targets/jetbrains-theme.mjs';
 import legal from './targets/legal.mjs';
 
-const TARGETS = { iterm, css, vscode, xcode, firefox, chrome, kate, zsh, terminal, typora, jetbrains, legal };
+const TARGETS = { iterm, css, vscode, xcode, firefox, chrome, kate, zsh, terminal, typora, jetbrains, jetbrainsTheme, legal };
 const checkOnly = process.argv.includes('--check');
 
 const palette = loadPalette();
