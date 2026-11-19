@@ -17,6 +17,7 @@
     "screenshot:iterm": "bash scripts/screenshot-iterm.sh",
     "screenshot:chrome": "node scripts/screenshot-chrome.mjs",
     "screenshot:kate": "bash scripts/screenshot-kate.sh",
+    "screenshot:zsh": "bash scripts/screenshot-zsh.sh",
     "screenshot:xcode": "bash scripts/screenshot-xcode.sh",
     "screenshot:firefox": "bash scripts/screenshot-firefox.sh",
     "demo:terminal": "bash scripts/terminal-demo.sh",

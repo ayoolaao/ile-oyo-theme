@@ -32,8 +32,9 @@ The palette started as the Ilé-Ọ̀yọ́ preset on [ayoola.io](https://ayoola
 | iTerm2 | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/iterm/) |
 | Visual Studio Code | [Marketplace](https://marketplace.visualstudio.com/items?itemName=jazzykid.ile-oyo-theme) · [details](themes/vscode/) |
 | Xcode | [`themes/xcode`](themes/xcode/) (in GitHub Releases from v0.2.0) |
+| Zsh (zsh-syntax-highlighting, fast-syntax-highlighting) | [`themes/zsh`](themes/zsh/) (in GitHub Releases from v0.2.0) |
 
-More are on the way: Zsh, Typora, JetBrains, Terminal.app and
+More are on the way: Typora, JetBrains, Terminal.app and
 Notepad++.
 
 ## How it works
