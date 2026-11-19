@@ -1,0 +1,61 @@
+# Ilé-Ọ̀yọ́ Ọ̀sán (afternoon, light) for zsh-syntax-highlighting and zsh-autosuggestions.
+# Generated from palette/ile-oyo.json (v0.1.3) by npm run build; don't edit by hand.
+# https://github.com/ayoolaao/ile-oyo-theme
+#
+# Source this after zsh-syntax-highlighting (and zsh-autosuggestions) in ~/.zshrc.
+
+# 24-bit color, or the nearest 256-color entry when the terminal can't.
+[[ ${COLORTERM-} == (24bit|truecolor) ]] || zmodload zsh/nearcolor 2>/dev/null
+
+typeset -gA ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[default]='none'
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#A52A2A,bold'
+ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=#A12854'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=#2A5B5C'
+ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=#2A5B5C,underline'
+ZSH_HIGHLIGHT_STYLES[global-alias]='fg=#2A5B5C'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=#2A5B5C'
+ZSH_HIGHLIGHT_STYLES[function]='fg=#4B5320'
+ZSH_HIGHLIGHT_STYLES[command]='fg=#4B5320'
+ZSH_HIGHLIGHT_STYLES[precommand]='fg=#4B5320,underline'
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=#A12854'
+ZSH_HIGHLIGHT_STYLES[hashed-command]='fg=#4B5320'
+ZSH_HIGHLIGHT_STYLES[autodirectory]='fg=#4B5320,underline'
+ZSH_HIGHLIGHT_STYLES[path]='underline'
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]='underline'
+ZSH_HIGHLIGHT_STYLES[path_prefix]='underline'
+ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='underline'
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=#6B3A5A'
+ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=#6B3A5A'
+ZSH_HIGHLIGHT_STYLES[command-substitution]='none'
+ZSH_HIGHLIGHT_STYLES[command-substitution-unquoted]='none'
+ZSH_HIGHLIGHT_STYLES[command-substitution-quoted]='fg=#876002'
+ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter]='fg=#A12854'
+ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter-unquoted]='fg=#A12854'
+ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter-quoted]='fg=#A12854'
+ZSH_HIGHLIGHT_STYLES[process-substitution]='none'
+ZSH_HIGHLIGHT_STYLES[process-substitution-delimiter]='fg=#A12854'
+ZSH_HIGHLIGHT_STYLES[arithmetic-expansion]='fg=#6B3A5A'
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=#6B3A5A'
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=#6B3A5A'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='none'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument-unclosed]='fg=#A52A2A,bold'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument-delimiter]='fg=#A12854'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#876002'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument-unclosed]='fg=#A52A2A,bold'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#876002'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument-unclosed]='fg=#A52A2A,bold'
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=#876002'
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument-unclosed]='fg=#A52A2A,bold'
+ZSH_HIGHLIGHT_STYLES[rc-quote]='fg=#A12854'
+ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='fg=#8B4513'
+ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='fg=#A12854'
+ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='fg=#A12854'
+ZSH_HIGHLIGHT_STYLES[assign]='none'
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=#A12854'
+ZSH_HIGHLIGHT_STYLES[comment]='fg=#576788'
+ZSH_HIGHLIGHT_STYLES[named-fd]='fg=#6B3A5A'
+ZSH_HIGHLIGHT_STYLES[numeric-fd]='fg=#6B3A5A'
+ZSH_HIGHLIGHT_STYLES[arg0]='fg=#4B5320'
+
+typeset -g ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#576788'

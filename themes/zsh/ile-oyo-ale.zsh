@@ -1,0 +1,61 @@
+# Ilé-Ọ̀yọ́ Alẹ́ (evening, dark) for zsh-syntax-highlighting and zsh-autosuggestions.
+# Generated from palette/ile-oyo.json (v0.1.3) by npm run build; don't edit by hand.
+# https://github.com/ayoolaao/ile-oyo-theme
+#
+# Source this after zsh-syntax-highlighting (and zsh-autosuggestions) in ~/.zshrc.
+
+# 24-bit color, or the nearest 256-color entry when the terminal can't.
+[[ ${COLORTERM-} == (24bit|truecolor) ]] || zmodload zsh/nearcolor 2>/dev/null
+
+typeset -gA ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[default]='none'
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#EC6C64,bold'
+ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=#E86A8F'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=#6B9D9D'
+ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=#6B9D9D,underline'
+ZSH_HIGHLIGHT_STYLES[global-alias]='fg=#6B9D9D'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=#6B9D9D'
+ZSH_HIGHLIGHT_STYLES[function]='fg=#8F9964'
+ZSH_HIGHLIGHT_STYLES[command]='fg=#8F9964'
+ZSH_HIGHLIGHT_STYLES[precommand]='fg=#8F9964,underline'
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=#E86A8F'
+ZSH_HIGHLIGHT_STYLES[hashed-command]='fg=#8F9964'
+ZSH_HIGHLIGHT_STYLES[autodirectory]='fg=#8F9964,underline'
+ZSH_HIGHLIGHT_STYLES[path]='underline'
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]='underline'
+ZSH_HIGHLIGHT_STYLES[path_prefix]='underline'
+ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='underline'
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=#BA83A5'
+ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=#BA83A5'
+ZSH_HIGHLIGHT_STYLES[command-substitution]='none'
+ZSH_HIGHLIGHT_STYLES[command-substitution-unquoted]='none'
+ZSH_HIGHLIGHT_STYLES[command-substitution-quoted]='fg=#DAA520'
+ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter]='fg=#E86A8F'
+ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter-unquoted]='fg=#E86A8F'
+ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter-quoted]='fg=#E86A8F'
+ZSH_HIGHLIGHT_STYLES[process-substitution]='none'
+ZSH_HIGHLIGHT_STYLES[process-substitution-delimiter]='fg=#E86A8F'
+ZSH_HIGHLIGHT_STYLES[arithmetic-expansion]='fg=#BA83A5'
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=#BA83A5'
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=#BA83A5'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='none'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument-unclosed]='fg=#EC6C64,bold'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument-delimiter]='fg=#E86A8F'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#DAA520'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument-unclosed]='fg=#EC6C64,bold'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#DAA520'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument-unclosed]='fg=#EC6C64,bold'
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=#DAA520'
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument-unclosed]='fg=#EC6C64,bold'
+ZSH_HIGHLIGHT_STYLES[rc-quote]='fg=#E86A8F'
+ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='fg=#CE8154'
+ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='fg=#E86A8F'
+ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='fg=#E86A8F'
+ZSH_HIGHLIGHT_STYLES[assign]='none'
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=#E86A8F'
+ZSH_HIGHLIGHT_STYLES[comment]='fg=#8994AA'
+ZSH_HIGHLIGHT_STYLES[named-fd]='fg=#BA83A5'
+ZSH_HIGHLIGHT_STYLES[numeric-fd]='fg=#BA83A5'
+ZSH_HIGHLIGHT_STYLES[arg0]='fg=#8F9964'
+
+typeset -g ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#8994AA'
