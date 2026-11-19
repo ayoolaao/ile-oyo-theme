@@ -40,9 +40,10 @@ Avoid attributing the palette to *adire*: it is associated with Abẹ́òkúta, 
 | Xcode | `themes/xcode/` | `xcode.mjs` | one `.xccolortheme` each | GitHub Releases |
 | Firefox | `themes/firefox/` | `firefox.mjs` | one theme, switches with the system | addons.mozilla.org (coming), GitHub Releases |
 | Chrome | `themes/chrome/` | `chrome.mjs` | one theme extension each | Chrome Web Store (coming), GitHub Releases |
+| Kate | `themes/kate/` | `kate.mjs` | one `.theme` each | GitHub Releases |
 
 Generators live in `scripts/targets/`. More apps are planned for v0.2
-(Kate, Zsh, Typora, JetBrains, Terminal.app, Notepad++).
+(Zsh, Typora, JetBrains, Terminal.app, Notepad++).
 
 ## Repo layout
 
@@ -64,6 +65,7 @@ scripts/screenshot-iterm.sh    npm run screenshot:iterm (real iTerm2, temporary 
 scripts/screenshot-xcode.sh    npm run screenshot:xcode -- ale|osan (real Xcode; theme picked by hand)
 scripts/screenshot-firefox.sh  npm run screenshot:firefox -- ale|osan (real Firefox; theme loaded by hand)
 scripts/screenshot-chrome.mjs  npm run screenshot:chrome (real Chrome, throwaway profile)
+scripts/screenshot-kate.sh     npm run screenshot:kate (real Kate; settings restored afterwards)
 scripts/terminal-demo.sh       npm run demo:terminal (fixed scene for terminal screenshots)
 scripts/lib/window-id.js       finds an app's window number for screencapture -l
 
@@ -238,6 +240,24 @@ and NOTICE. `tests/chrome.test.mjs` checks the keys against Chromium's
 `kOverwritableColorTable` (`chrome/browser/themes/browser_theme_pack.cc`),
 that every color is a palette color, and 4.5:1 for 8 text/background pairs.
 
+## Target: Kate
+
+One KSyntaxHighlighting color theme (JSON) per variant in `themes/kate/`
+(`scripts/targets/kate.mjs`); the same files work in KWrite and KDevelop. The
+31 text styles and 28 editor colors are the full set in KDE's Breeze themes.
+Each text style maps to a syntax role; KDE-only styles: Variable (shell and
+PHP `$variables`) and CommentVar use the parameter color, preprocessor and
+attributes orange (as in Xcode), escapes pink, regular expressions red,
+TODO/FIXME (Alert) bold red. Every color is opaque, because Qt reads alpha as
+`#AARRGGBB`: the current line, search, replace and bracket highlights are
+palette colors blended onto the background (`blend` in
+`scripts/lib/palette.mjs`), with the same strengths as the VS Code theme.
+`metadata.revision` comes from the version (0.1.3 → 103), so Kate prefers the
+newest copy. `tests/kate.test.mjs` checks the full key sets, palette colors and
+4.5:1 text. On the current-line highlight most accents fall to about 3.8:1
+(as in Xcode; about 4.1:1 in VS Code); the palette rules only cover the
+background.
+
 ## Tooling
 
 Node.js (installed via nvm). Dev dependencies, pinned exactly: `sass` 1.83.0
@@ -265,12 +285,12 @@ have a dated entry for it, `## <version> (YYYY-MM-DD)` (`tests/versions.test.mjs
 | `npm run check` | Enforces the palette rules; non-zero exit on failure |
 | `npm run build` | Validates, then writes every target's files |
 | `npm run build -- --check` | Fails if a committed generated file is out of date |
-| `npm test` | `check` and `build -- --check`, plus the `node --test` suites (JS tokens, VS Code, Xcode, Firefox, Chrome, versions), the Sass compile (`tests/use.scss`), the `.d.ts` type-check (`tests/use.ts`), and `web-ext lint` on the Firefox theme |
+| `npm test` | `check` and `build -- --check`, plus the `node --test` suites (JS tokens, VS Code, Xcode, Firefox, Chrome, Kate, versions), the Sass compile (`tests/use.scss`), the `.d.ts` type-check (`tests/use.ts`), and `web-ext lint` on the Firefox theme |
 | `npm run lint:firefox` | Mozilla's add-on linter on `themes/firefox`, warnings as errors |
 | `npm run package:vscode` | Tests, then `dist/ile-oyo-theme-<version>.vsix` |
 | `npm run pack:css` | Tests, then `npm pack --dry-run` of `themes/css` |
-| `npm run release:dist` | Tests, then every release file into `dist/`: `.vsix`, npm `.tgz`, both `.itermcolors` and `.xccolortheme`, the Firefox `.zip`, both Chrome `.zip`s, `release-notes.md` (CHANGELOG entry, install lines, SHA-256) |
-| `npm run screenshot:vscode`, `screenshot:iterm`, `screenshot:chrome`, `screenshot:xcode` and `screenshot:firefox` (`-- ale\|osan`) | Retake the README screenshots (macOS) |
+| `npm run release:dist` | Tests, then every release file into `dist/`: `.vsix`, npm `.tgz`, both `.itermcolors` and `.xccolortheme`, the Firefox `.zip`, both Chrome `.zip`s, both Kate `.theme` files, `release-notes.md` (CHANGELOG entry, install lines, SHA-256) |
+| `npm run screenshot:vscode`, `screenshot:iterm`, `screenshot:chrome`, `screenshot:kate`, `screenshot:xcode` and `screenshot:firefox` (`-- ale\|osan`) | Retake the README screenshots (macOS) |
 | `npm run preview` | Builds `preview/index.html` from the palette and opens it |
 | `npm run preview -- --compare <file>` | Side-by-side with another palette (either format) → `preview/compare.html` |
 
@@ -296,7 +316,7 @@ Connect), so no publishing tokens exist anywhere.
      until you approve it with 2FA (`npm stage approve <id>`, or Staged
      Packages on npmjs.com);
    - **github-release**: the GitHub Release with the `.vsix`, the
-     `.itermcolors` and `.xccolortheme` files, the Firefox and Chrome `.zip`s and `release-notes.md`, only after both stores succeed.
+     `.itermcolors` and `.xccolortheme` files, the Firefox and Chrome `.zip`s, the Kate `.theme` files and `release-notes.md`, only after both stores succeed.
 
 The publish jobs run in the `release` environment, which can require approval
 before they start. Trusted Publishing policies name this repository,

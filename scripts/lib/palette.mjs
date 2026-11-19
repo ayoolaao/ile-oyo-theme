@@ -17,6 +17,20 @@ export function parseHex(hex) {
   return { r: n(1), g: n(3), b: n(5), a: hex.length === 9 ? n(7) : 1 };
 }
 
+/** Blends a #RRGGBBAA color onto an opaque background → { r, g, b, a: 1 } (0–1). */
+export function flatten(hex, bg) {
+  const c = parseHex(hex);
+  const b = parseHex(bg);
+  const mix = (x, y) => x * c.a + y * (1 - c.a);
+  return { r: mix(c.r, b.r), g: mix(c.g, b.g), b: mix(c.b, b.b), a: 1 };
+}
+
+/** flatten() as an opaque "#RRGGBB" string. */
+export function blend(hex, bg) {
+  const { r, g, b } = flatten(hex, bg);
+  return '#' + [r, g, b].map((c) => Math.round(c * 255).toString(16).padStart(2, '0')).join('').toUpperCase();
+}
+
 function luminance(hex) {
   const { r, g, b } = parseHex(hex);
   const lin = (c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
