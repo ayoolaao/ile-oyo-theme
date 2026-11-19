@@ -27,12 +27,13 @@ The palette started as the Ilé-Ọ̀yọ́ preset on [ayoola.io](https://ayoola
 | ----------- | ------ |
 | Chrome | [`themes/chrome`](themes/chrome/) (Chrome Web Store coming soon) |
 | CSS (web) | [npm `ile-oyo-theme`](https://www.npmjs.com/package/ile-oyo-theme) · [details](themes/css/) |
+| Kate | [`themes/kate`](themes/kate/) (in GitHub Releases from v0.2.0) |
 | Firefox | [`themes/firefox`](themes/firefox/) (addons.mozilla.org coming soon) |
 | iTerm2 | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/iterm/) |
 | Visual Studio Code | [Marketplace](https://marketplace.visualstudio.com/items?itemName=jazzykid.ile-oyo-theme) · [details](themes/vscode/) |
 | Xcode | [`themes/xcode`](themes/xcode/) (in GitHub Releases from v0.2.0) |
 
-More are on the way: Kate, Zsh, Typora, JetBrains, Terminal.app and
+More are on the way: Zsh, Typora, JetBrains, Terminal.app and
 Notepad++.
 
 ## How it works

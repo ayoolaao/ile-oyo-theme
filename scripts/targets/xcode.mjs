@@ -4,7 +4,7 @@
 // SourceEditor.framework (Xcode 27). Colors are "r g b a" strings in sRGB;
 // semi-transparent palette colors are blended onto the background first so
 // Xcode shows exactly the color we checked.
-import { parseHex } from '../lib/palette.mjs';
+import { flatten, parseHex } from '../lib/palette.mjs';
 import { SYNTAX, STYLE } from '../lib/syntax.mjs';
 
 export const FILES = { ale: 'Ile-Oyo-Ale.xccolortheme', osan: 'Ile-Oyo-Osan.xccolortheme' };
@@ -66,12 +66,7 @@ export function fontFor(key) {
 }
 
 // Composite a #RRGGBBAA color over the background into an opaque color.
-export function flatten(hex, bg) {
-  const c = parseHex(hex);
-  const b = parseHex(bg);
-  const mix = (x, y) => x * c.a + y * (1 - c.a);
-  return { r: mix(c.r, b.r), g: mix(c.g, b.g), b: mix(c.b, b.b), a: 1 };
-}
+export { flatten };
 
 const n = (x) => String(Number(x.toFixed(6)));
 export const rgba = ({ r, g, b, a }) => `${n(r)} ${n(g)} ${n(b)} ${n(a)}`;

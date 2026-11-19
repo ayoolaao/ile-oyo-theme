@@ -13,6 +13,8 @@ theme looks is a minor version; a fix that doesn't is a patch.
 - **Chrome**: Alẹ́ and Ọ̀sán as two theme extensions (`themes/chrome/`), with
   screenshots. Chrome themes can't switch with the system setting, so you pick
   one.
+- **Kate**: Alẹ́ and Ọ̀sán color themes (`themes/kate/`), also for KWrite and
+  KDevelop, with screenshots.
 - **CSS**: screenshots of the demo page in both variants.
 
 ## 0.1.3 (2026-11-18)

@@ -9,6 +9,7 @@
 // - Ile-Oyo-{Ale,Osan}.xccolortheme Xcode themes
 // - ile-oyo-firefox-<version>.zip  Firefox theme (for addons.mozilla.org)
 // - ile-oyo-chrome-{ale,osan}-<version>.zip  Chrome themes (Chrome Web Store)
+// - ile-oyo-{ale,osan}.theme      Kate themes
 // - release-notes.md               CHANGELOG section, install lines, SHA-256
 //
 // With --tag, fails unless the tag is v<palette version>. The release
@@ -53,6 +54,7 @@ for (const v of ['Ale', 'Osan']) {
   copyFileSync(join(ROOT, `themes/iterm/Ile-Oyo-${v}.itermcolors`), join(DIST, `Ile-Oyo-${v}.itermcolors`));
   copyFileSync(join(ROOT, `themes/xcode/Ile-Oyo-${v}.xccolortheme`), join(DIST, `Ile-Oyo-${v}.xccolortheme`));
 }
+for (const f of ['ile-oyo-ale.theme', 'ile-oyo-osan.theme']) copyFileSync(join(ROOT, 'themes/kate', f), join(DIST, f));
 
 const expected = [
   `ile-oyo-theme-${version}.vsix`,
@@ -64,6 +66,8 @@ const expected = [
   `ile-oyo-firefox-${version}.zip`,
   `ile-oyo-chrome-ale-${version}.zip`,
   `ile-oyo-chrome-osan-${version}.zip`,
+  'ile-oyo-ale.theme',
+  'ile-oyo-osan.theme',
 ];
 const found = readdirSync(DIST).sort();
 if (JSON.stringify(found) !== JSON.stringify([...expected].sort())) {
@@ -83,6 +87,7 @@ const notes = `${changelogSection(readFileSync(join(ROOT, 'CHANGELOG.md'), 'utf8
 - **Xcode**: Settings → Appearance → Themes → Choose… → Import…, then select an \`.xccolortheme\` file.
 - **Firefox**: addons.mozilla.org listing coming soon. To try it now: \`about:debugging\` → This Firefox → Load Temporary Add-on… → select \`ile-oyo-firefox-${version}.zip\`.
 - **Chrome** (and other Chromium browsers): Chrome Web Store listing coming soon. To try it now: unzip \`ile-oyo-chrome-ale-${version}.zip\` (dark) or \`ile-oyo-chrome-osan-${version}.zip\` (light), open \`chrome://extensions\`, turn on Developer mode, click Load unpacked and select the unzipped folder.
+- **Kate** (and KWrite, KDevelop): Settings → Configure Kate… (macOS: Kate → Settings…) → Color Themes → Import…, then select an \`ile-oyo-*.theme\` file.
 - **CSS**: [\`npm install ile-oyo-theme\`](https://www.npmjs.com/package/ile-oyo-theme), or copy the files from \`themes/css/\`.
 
 ### SHA-256
