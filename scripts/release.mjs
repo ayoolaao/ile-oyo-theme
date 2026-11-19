@@ -6,6 +6,7 @@
 // - ile-oyo-theme-<version>.vsix   VS Code extension
 // - ile-oyo-theme-<version>.tgz    npm package (themes/css)
 // - Ile-Oyo-{Ale,Osan}.itermcolors iTerm2 presets
+// - Ile-Oyo-{Ale,Osan}.terminal   Terminal.app profiles
 // - Ile-Oyo-{Ale,Osan}.xccolortheme Xcode themes
 // - ile-oyo-firefox-<version>.zip  Firefox theme (for addons.mozilla.org)
 // - ile-oyo-chrome-{ale,osan}-<version>.zip  Chrome themes (Chrome Web Store)
@@ -54,6 +55,7 @@ for (const id of ['ale', 'osan']) {
 for (const v of ['Ale', 'Osan']) {
   copyFileSync(join(ROOT, `themes/iterm/Ile-Oyo-${v}.itermcolors`), join(DIST, `Ile-Oyo-${v}.itermcolors`));
   copyFileSync(join(ROOT, `themes/xcode/Ile-Oyo-${v}.xccolortheme`), join(DIST, `Ile-Oyo-${v}.xccolortheme`));
+  copyFileSync(join(ROOT, `themes/terminal/Ile-Oyo-${v}.terminal`), join(DIST, `Ile-Oyo-${v}.terminal`));
 }
 for (const f of ['ile-oyo-ale.theme', 'ile-oyo-osan.theme']) copyFileSync(join(ROOT, 'themes/kate', f), join(DIST, f));
 for (const id of ['ale', 'osan']) {
@@ -66,6 +68,8 @@ const expected = [
   `ile-oyo-theme-${version}.tgz`,
   'Ile-Oyo-Ale.itermcolors',
   'Ile-Oyo-Osan.itermcolors',
+  'Ile-Oyo-Ale.terminal',
+  'Ile-Oyo-Osan.terminal',
   'Ile-Oyo-Ale.xccolortheme',
   'Ile-Oyo-Osan.xccolortheme',
   `ile-oyo-firefox-${version}.zip`,
@@ -93,6 +97,7 @@ const notes = `${changelogSection(readFileSync(join(ROOT, 'CHANGELOG.md'), 'utf8
 - **VS Code**: [Marketplace](https://marketplace.visualstudio.com/items?itemName=jazzykid.ile-oyo-theme) (\`code --install-extension jazzykid.ile-oyo-theme\`), or \`code --install-extension ile-oyo-theme-${version}.vsix\`.
   Then pick **Ilé-Ọ̀yọ́ Alẹ́** or **Ilé-Ọ̀yọ́ Ọ̀sán** under Preferences: Color Theme.
 - **iTerm2**: double-click an \`.itermcolors\` file, or iTerm2 → Settings → Profiles → Colors → Color Presets → Import.
+- **Terminal.app**: double-click an \`.terminal\` file (or Terminal → Settings → Profiles → … → Import…).
 - **Xcode**: Settings → Appearance → Themes → Choose… → Import…, then select an \`.xccolortheme\` file.
 - **Firefox**: addons.mozilla.org listing coming soon. To try it now: \`about:debugging\` → This Firefox → Load Temporary Add-on… → select \`ile-oyo-firefox-${version}.zip\`.
 - **Chrome** (and other Chromium browsers): Chrome Web Store listing coming soon. To try it now: unzip \`ile-oyo-chrome-ale-${version}.zip\` (dark) or \`ile-oyo-chrome-osan-${version}.zip\` (light), open \`chrome://extensions\`, turn on Developer mode, click Load unpacked and select the unzipped folder.

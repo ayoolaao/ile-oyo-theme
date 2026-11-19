@@ -13,9 +13,10 @@ import firefox from './targets/firefox.mjs';
 import chrome from './targets/chrome.mjs';
 import kate from './targets/kate.mjs';
 import zsh from './targets/zsh.mjs';
+import terminal from './targets/terminal.mjs';
 import legal from './targets/legal.mjs';
 
-const TARGETS = { iterm, css, vscode, xcode, firefox, chrome, kate, zsh, legal };
+const TARGETS = { iterm, css, vscode, xcode, firefox, chrome, kate, zsh, terminal, legal };
 const checkOnly = process.argv.includes('--check');
 
 const palette = loadPalette();
