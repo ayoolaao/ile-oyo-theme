@@ -4,6 +4,35 @@ All notable changes to Ilé-Ọ̀yọ́ are listed here. Versions follow
 [Semantic Versioning](https://semver.org/): a color change that alters how a
 theme looks is a minor version; a fix that doesn't is a patch.
 
+## 0.2.0 (2026-11-19)
+
+New apps; no color changes to the existing themes.
+
+- **Xcode**: Alẹ́ and Ọ̀sán source editor themes (`themes/xcode/`), with
+  screenshots. Install with Settings → Appearance → Themes → Choose… → Import….
+- **Firefox**: one theme that switches between Ọ̀sán (light) and Alẹ́ (dark)
+  with the system setting (`themes/firefox/`), with screenshots.
+- **Chrome**: Alẹ́ and Ọ̀sán as two theme extensions (`themes/chrome/`), with
+  screenshots. Chrome themes can't switch with the system setting, so you pick
+  one.
+- **Kate**: Alẹ́ and Ọ̀sán color themes (`themes/kate/`), also for KWrite and
+  KDevelop, with screenshots.
+- **Zsh**: command-line highlighting for zsh-syntax-highlighting (with the
+  zsh-autosuggestions color) and fast-syntax-highlighting, Alẹ́ and Ọ̀sán
+  (`themes/zsh/`), with screenshots.
+- **Terminal.app**: Alẹ́ and Ọ̀sán profiles with the iTerm2 colors
+  (`themes/terminal/`), with screenshots.
+- **Typora**: Alẹ́ and Ọ̀sán themes (`themes/typora/`) for the document,
+  code blocks, source mode and Typora's interface, with screenshots.
+- **JetBrains IDEs**: Alẹ́ and Ọ̀sán editor color schemes (`.icls`,
+  `themes/jetbrains/`) for IntelliJ IDEA, PyCharm, WebStorm and the rest,
+  with screenshots.
+- **JetBrains IDE theme**: a theme plugin (`themes/jetbrains/plugin/`,
+  `ile-oyo-jetbrains-<version>.jar` in releases) that colors the whole IDE
+  (window, tool windows, tabs, menus, popups, controls) as well as the editor,
+  built on the Islands look, for 2025.3 and later, with screenshots.
+- **CSS**: screenshots of the demo page in both variants.
+
 ## 0.1.3 (2026-11-18)
 
 No color changes.

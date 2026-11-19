@@ -23,11 +23,21 @@ The palette started as the Ilé-Ọ̀yọ́ preset on [ayoola.io](https://ayoola
 
 ## Supported applications
 
-| Application        | Status  |
-| ------------------ | ------- |
-| CSS (web)          | [Available](themes/css/) ([npm](https://www.npmjs.com/package/ile-oyo-theme)) |
-| iTerm2             | [Available](themes/iterm/) |
-| Visual Studio Code | [Available](themes/vscode/) ([Marketplace](https://marketplace.visualstudio.com/items?itemName=jazzykid.ile-oyo-theme)) |
+| Application | Get it |
+| ----------- | ------ |
+| Chrome | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/chrome/) (Chrome Web Store coming soon) |
+| CSS (web) | [npm `ile-oyo-theme`](https://www.npmjs.com/package/ile-oyo-theme) · [details](themes/css/) |
+| Kate | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/kate/) |
+| Terminal.app | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/terminal/) |
+| Typora | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/typora/) |
+| Firefox | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/firefox/) (addons.mozilla.org coming soon) |
+| JetBrains IDEs (IDE theme plugin and editor schemes) | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/jetbrains/) |
+| iTerm2 | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/iterm/) |
+| Visual Studio Code | [Marketplace](https://marketplace.visualstudio.com/items?itemName=jazzykid.ile-oyo-theme) · [details](themes/vscode/) |
+| Xcode | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/xcode/) |
+| Zsh (zsh-syntax-highlighting, fast-syntax-highlighting) | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/zsh/) |
+
+More are on the way: Notepad++ and a JetBrains Marketplace listing.
 
 ## How it works
 

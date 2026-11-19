@@ -30,50 +30,104 @@ Avoid attributing the palette to *adire*: it is associated with Abẹ́òkúta, 
 | Alẹ́     | evening   | Dark  |
 | Ọ̀sán    | afternoon | Light |
 
-## First targets
+## Targets
 
-1. iTerm2: a `.itermcolors` file per variant
-2. CSS: custom properties, Sass variables, JS/TS tokens
-3. Visual Studio Code: an extension with both variants
+| App | Folder | Generator | Variants | How people get it |
+| --- | ------ | --------- | -------- | ----------------- |
+| iTerm2 | `themes/iterm/` | `iterm.mjs` | one `.itermcolors` each | GitHub Releases |
+| CSS | `themes/css/` | `css.mjs` | both in one stylesheet | npm `ile-oyo-theme` |
+| VS Code | `themes/vscode/` | `vscode.mjs` | two themes in one extension | Marketplace `jazzykid.ile-oyo-theme`, GitHub Releases |
+| Xcode | `themes/xcode/` | `xcode.mjs` | one `.xccolortheme` each | GitHub Releases |
+| Firefox | `themes/firefox/` | `firefox.mjs` | one theme, switches with the system | addons.mozilla.org (coming), GitHub Releases |
+| Chrome | `themes/chrome/` | `chrome.mjs` | one theme extension each | Chrome Web Store (coming), GitHub Releases |
+| JetBrains | `themes/jetbrains/` | `jetbrains.mjs` | one `.icls` editor scheme each | GitHub Releases |
+| JetBrains IDE theme | `themes/jetbrains/plugin/` | `jetbrains-theme.mjs` | two themes in one plugin (`.jar`) | GitHub Releases (Marketplace later) |
+| Kate | `themes/kate/` | `kate.mjs` | one `.theme` each | GitHub Releases |
+| Terminal.app | `themes/terminal/` | `terminal.mjs` | one `.terminal` profile each | GitHub Releases |
+| Typora | `themes/typora/` | `typora.mjs` | one theme `.css` each | GitHub Releases |
+| Zsh | `themes/zsh/` | `zsh.mjs` | one `.zsh` (zsh-syntax-highlighting) and one `.ini` (fast-syntax-highlighting) each | GitHub Releases |
+
+Generators live in `scripts/targets/`. More apps are planned for v0.2
+(Notepad++).
 
 ## Repo layout
 
 ```
-palette/ile-oyo.json        the only place colors are defined (both variants)
-scripts/lib/palette.mjs     load + validate (rules below); shared by check and build
-scripts/check-palette.mjs   npm run check
-scripts/build.mjs           npm run build: validate, then run every target
-scripts/targets/<name>.mjs  one generator per app; returns [{ path, contents }]
-scripts/preview.mjs         npm run preview (local HTML, git-ignored preview/)
-scripts/screenshot-vscode.mjs  npm run screenshot:vscode (real VS Code, sample in scripts/screenshot/)
-scripts/screenshot-iterm.sh npm run screenshot:iterm (real iTerm2, temporary dynamic profiles)
-scripts/terminal-demo.sh    npm run demo:terminal (fixed scene for terminal screenshots)
-assets/screenshots/         README images (committed; Marketplace links them from main)
-themes/iterm/               generated .itermcolors (committed) + README
-themes/css/                 generated CSS/Sass/JS (committed), demo.html, README
-themes/vscode/              extension: package.json + README (hand-written), themes/*.json (generated)
-docs/                       this document
+palette/ile-oyo.json           the only place colors are defined (both variants)
+
+scripts/lib/palette.mjs        load + validate (rules below); shared by check and build
+scripts/lib/syntax.mjs         syntax roles (below), shared by every code-coloring target
+scripts/lib/changelog.mjs      reads one version's CHANGELOG entry
+scripts/check-palette.mjs      npm run check
+scripts/build.mjs              npm run build: validate, then run every target
+scripts/targets/<name>.mjs     one generator per app; returns [{ path, contents }]
+scripts/release.mjs            npm run release:dist: every release file into dist/
+scripts/preview.mjs            npm run preview (local HTML, git-ignored preview/)
+scripts/icon.mjs               npm run icon: renders assets/icon/icon.svg to the VS Code and Chrome icons
+
+scripts/screenshot-vscode.mjs  npm run screenshot:vscode (real VS Code; sample in scripts/screenshot/sample/)
+scripts/screenshot-iterm.sh    npm run screenshot:iterm (real iTerm2, temporary dynamic profiles)
+scripts/screenshot-jetbrains.sh npm run screenshot:jetbrains -- open|capture ale|osan (real WebStorm, throwaway config; scheme imported by hand)
+scripts/screenshot-jetbrains-theme.sh npm run screenshot:jetbrains-theme (real WebStorm, throwaway config with the plugin; shared JetBrains folders removed afterwards)
+scripts/vendor-islands.mjs     node scripts/vendor-islands.mjs: snapshot of the Islands themes for the IDE theme
+scripts/screenshot-terminal.sh npm run screenshot:terminal (real Terminal.app; preferences restored)
+scripts/screenshot-xcode.sh    npm run screenshot:xcode -- ale|osan (real Xcode; theme picked by hand)
+scripts/screenshot-firefox.sh  npm run screenshot:firefox -- ale|osan (real Firefox; theme loaded by hand)
+scripts/screenshot-chrome.mjs  npm run screenshot:chrome (real Chrome, throwaway profile)
+scripts/screenshot-kate.sh     npm run screenshot:kate (real Kate; settings restored afterwards)
+scripts/screenshot-typora.sh   npm run screenshot:typora (real Typora; sample in scripts/screenshot/sample-markdown/)
+scripts/screenshot-zsh.sh      npm run screenshot:zsh (real zsh + fast-syntax-highlighting in iTerm2)
+scripts/terminal-demo.sh       npm run demo:terminal (fixed scene for terminal screenshots)
+scripts/lib/window-id.js       finds an app's window number for screencapture -l
+scripts/lib/crop-top.js        crops a screenshot to an aspect ratio, keeping the top
+
+themes/<app>/                  generated files (committed) + a hand-written README per app
+tests/                         node --test suites, plus use.scss and use.ts (API checks)
+assets/icon/                   icon source (SVG)
+assets/screenshots/            README images (Marketplace and npm link them from main)
+docs/                          this document
+.github/workflows/             ci.yml (every push/PR) and release.yml (v* tags)
 ```
 
 Generated theme files are committed so people can download them directly.
 `npm run build -- --check` fails if any of them differs from a fresh build.
+`themes/vscode/package.json` and the READMEs are hand-written.
 
-## Target: iTerm2
+## Palette shape
 
-One preset per variant: `themes/iterm/Ile-Oyo-Ale.itermcolors` and
-`Ile-Oyo-Osan.itermcolors` (ASCII filenames; iTerm shows the filename as the
-preset name). Colors are written with `Color Space: sRGB` so iTerm reproduces
-the hex values exactly.
+Defined in `palette/ile-oyo.json` under `variants.ale` and `variants.osan`.
+Borrowed from Dracula, per variant:
 
-| iTerm key | Palette source |
-| --------- | -------------- |
-| Ansi 0–15 | `ansi.color0`–`color15` |
-| Background | `bg` |
-| Foreground, Bold, Cursor, Selected Text | `fg` |
-| Cursor Text | `bg` |
-| Selection | `selection` |
-| Link | `blue` |
-| Cursor Guide | `selection` at 40% opacity |
+- `palette`: bg, fg, selection, comment, and the syntax accents
+  (red, orange, yellow, green, cyan, blue, purple, pink)
+- `ui`: background scale (bg_darker → bg_lighter, float) and `muted`, the
+  secondary UI text color (inactive tabs, descriptions, placeholders)
+- `ansi`: color0–color15 for terminals
+- `other`: translucent overlays (line highlight, tab drop, etc.)
+
+Colors start from the author's draft palette. A draft color that fails a rule
+keeps its OKLCH hue and chroma; only its lightness moves, just far enough to
+pass (target 4.6:1, so hex rounding can't drop it below 4.5). Stored as hex.
+
+## Rules
+
+- **Contrast:** every text color (fg, comment, each accent) must reach
+  **4.5:1** against its variant's `bg` (WCAG 2.1 AA).
+- **ANSI contrast:** colors 1–6, 8 and 9–14 must reach 4.5:1 in both variants.
+  Black and white swap roles by mode: in Alẹ́ (dark), white (7, 15) is text and
+  black (0) is exempt; in Ọ̀sán (light), black (0) is text and white (7, 15) is
+  exempt.
+- **Selection:** `selection` must reach **1.5:1** against `bg` so highlighted
+  text is easy to see. (The line highlight and tab-drop overlays are derived
+  from it.)
+- **Muted UI text:** `ui.muted` must reach 4.5:1 against `bg`, `ui.bg_dark` and
+  `ui.bg_darker`, because it's drawn on all of them. (`comment` only has to
+  pass on `bg`, where code is.)
+- **Distinct accents:** no two syntax accents share a hex value, and none equals
+  `bg`.
+- **One source:** generated files are never hand-edited.
+- **Enforced:** `npm run check` (scripts/check-palette.mjs) tests all of the
+  above and exits non-zero on any failure.
 
 ## Syntax roles
 
@@ -93,6 +147,23 @@ bold: heading, strong).
 | parameter | orange (italic) | changed | orange |
 | tag | pink | heading | purple |
 | regex | red | emphasis / strong | yellow / orange |
+
+## Target: iTerm2
+
+One preset per variant: `themes/iterm/Ile-Oyo-Ale.itermcolors` and
+`Ile-Oyo-Osan.itermcolors` (ASCII filenames; iTerm shows the filename as the
+preset name). Colors are written with `Color Space: sRGB` so iTerm reproduces
+the hex values exactly.
+
+| iTerm key | Palette source |
+| --------- | -------------- |
+| Ansi 0–15 | `ansi.color0`–`color15` |
+| Background | `bg` |
+| Foreground, Bold, Cursor, Selected Text | `fg` |
+| Cursor Text | `bg` |
+| Selection | `selection` |
+| Link | `blue` |
+| Cursor Guide | `selection` at 40% opacity |
 
 ## Target: CSS
 
@@ -140,46 +211,164 @@ the installed VS Code.
 One repo with generators, not Dracula's one-repo-per-app layout. Targets can be
 split out later if needed.
 
-## Palette shape
+## Target: Xcode
 
-Defined in `palette/ile-oyo.json` under `variants.ale` and `variants.osan`.
-Borrowed from Dracula, per variant:
+One `.xccolortheme` property list per variant in `themes/xcode/`
+(`scripts/targets/xcode.mjs`). The key set matches Xcode's own "Default
+(Dark)" theme (`SourceEditor.framework`), checked by `tests/xcode.test.mjs`
+when Xcode is installed. Colors are `"r g b a"` strings; semi-transparent
+palette colors (the current-line highlight) are blended onto the background
+so they're opaque.
 
-- `palette`: bg, fg, selection, comment, and the syntax accents
-  (red, orange, yellow, green, cyan, blue, purple, pink)
-- `ui`: background scale (bg_darker → bg_lighter, float) and `muted`, the
-  secondary UI text color (inactive tabs, descriptions, placeholders)
-- `ansi`: color0–color15 for terminals
-- `other`: translucent overlays (line highlight, tab drop, etc.)
+Each Xcode syntax type maps to a syntax role (above), except macros,
+preprocessor directives and attributes, which use orange. Fonts are SF Mono
+Medium 12 pt; comments are italic, and doc-comment keywords and `MARK:` lines
+bold, as in Xcode.
 
-Colors start from the author's draft palette. A draft color that fails a rule
-keeps its OKLCH hue and chroma; only its lightness moves, just far enough to
-pass (target 4.6:1, so hex rounding can't drop it below 4.5). Stored as hex.
+## Target: Firefox
 
-## Rules
+One static theme extension in `themes/firefox/` (`scripts/targets/firefox.mjs`),
+Manifest V3, ID `ile-oyo-theme@jazzykid.com`. `theme` is Ọ̀sán and
+`dark_theme` is Alẹ́; Firefox switches between them with its light/dark color
+scheme. Surfaces follow the VS Code theme: frame `ui.bg_darker`, selected tab
+and toolbar `bg` with a red tab line, inactive tab text `ui.muted`, fields like
+VS Code's inputs, popups `ui.bg_light`, sidebar `ui.bg_dark`.
+`tests/firefox.test.mjs` checks the keys against MDN's list, that every color
+is a palette color, and 4.5:1 for 12 text/background pairs. `npm test` also
+runs `web-ext lint` (Mozilla's add-on linter) with warnings as errors.
 
-- **Contrast:** every text color (fg, comment, each accent) must reach
-  **4.5:1** against its variant's `bg` (WCAG 2.1 AA).
-- **ANSI contrast:** colors 1–6, 8 and 9–14 must reach 4.5:1 in both variants.
-  Black and white swap roles by mode: in Alẹ́ (dark), white (7, 15) is text and
-  black (0) is exempt; in Ọ̀sán (light), black (0) is text and white (7, 15) is
-  exempt.
-- **Selection:** `selection` must reach **1.5:1** against `bg` so highlighted
-  text is easy to see. (The line highlight and tab-drop overlays are derived
-  from it.)
-- **Muted UI text:** `ui.muted` must reach 4.5:1 against `bg`, `ui.bg_dark` and
-  `ui.bg_darker`, because it's drawn on all of them. (`comment` only has to
-  pass on `bg`, where code is.)
-- **Distinct accents:** no two syntax accents share a hex value, and none equals
-  `bg`.
-- **One source:** generated files are never hand-edited.
-- **Enforced:** `npm run check` (scripts/check-palette.mjs) tests all of the
-  above and exits non-zero on any failure.
+## Target: Chrome
+
+One static theme extension per variant in `themes/chrome/ale/` and
+`themes/chrome/osan/` (`scripts/targets/chrome.mjs`), Manifest V3. Chrome
+themes can't follow the system's light/dark setting, so the variants are
+separate extensions. Colors are `[r, g, b]` arrays and must be opaque.
+Surfaces match the Firefox theme: frame and inactive tabs `ui.bg_darker`,
+selected tab and toolbar `bg`, inactive tab text `ui.muted`, the address bar
+like VS Code's inputs, new tab page `bg` with blue links. Incognito colors are
+left to Chrome so incognito windows still look different. Chrome has no
+tab-line color. Each folder carries a 128 px icon (`npm run icon`), LICENSE
+and NOTICE. `tests/chrome.test.mjs` checks the keys against Chromium's
+`kOverwritableColorTable` (`chrome/browser/themes/browser_theme_pack.cc`),
+that every color is a palette color, and 4.5:1 for 8 text/background pairs.
+
+## Target: JetBrains
+
+One editor color scheme (`.icls`, XML) per variant in `themes/jetbrains/`
+(`scripts/targets/jetbrains.mjs`), for every JetBrains IDE. Alẹ́ inherits
+from Darcula and Ọ̀sán from Default (`parent_scheme`), so unset keys fall back
+to IntelliJ's own. It sets the editor colors (caret, current line, gutter,
+selection, guides, change markers, file status), all 42 language-default
+attributes (`DEFAULT_*`, which every language inherits) mapped to the syntax
+roles, the general attributes (errors, warnings, search and caret highlights,
+braces, links, TODO, inlays, breakpoints) and the console's 16 ANSI colors
+(the iTerm palette). `FONT_TYPE` 1/2/3 = bold/italic/both; `EFFECT_TYPE` 1/2/3
+= underline/wave/strikeout. Inlays and folded text use `bg_dark` in Alẹ́ and
+`bg_light` in Ọ̀sán, as in Typora. Highlights are palette colors blended onto
+the background. `tests/jetbrains.test.mjs` checks the 42 defaults against
+the platform's `DefaultLanguageHighlighterColors`, that every key exists in
+IntelliJ's own Default/Darcula schemes (read from an installed IDE), opaque
+palette colors, and 4.5:1 for every syntax color and for text on every
+background the scheme sets. This colors the editor only; the IDE theme
+below adds the rest.
+
+## Target: JetBrains IDE theme
+
+A theme-only plugin in `themes/jetbrains/plugin/`
+(`scripts/targets/jetbrains-theme.mjs`): `META-INF/plugin.xml` with one
+`themeProvider` per variant (`ile-oyo-ale`, `ile-oyo-osan`), and per variant
+a `.theme.json` plus the editor scheme as `.xml` (the same as the `.icls`),
+which the theme names in `editorScheme`. No Gradle: `scripts/release.mjs`
+zips the folder into `ile-oyo-jetbrains-<version>.jar`. `since-build` is 253
+(2025.3), the first release with Islands.
+
+Each theme's `parentTheme` is Islands Dark or Islands Light, and `colors`
+redefines Islands' named colors by role (`text-*`, `editor-bg`,
+`tool-window-bg`, `main-window-bg`, `popup-bg`, `control-*`, `accent-*`,
+`selection-*`, `tab-*`), not by `layer-*`, because Islands Dark and Light stack
+their layers in opposite orders. Redefining names alone changes nothing,
+since the parent resolves its own references, so `ui` also sets every key whose
+Islands color goes through a redefined name (about 290 per variant), resolved
+to our hex. Which keys those are comes from a snapshot of the two Islands
+themes in `scripts/targets/data/islands-{dark,light}.json`, made by
+`scripts/vendor-islands.mjs` from an installed IDE's
+`intellij.platform.resources.jar` (IntelliJ Platform, Apache-2.0); rerun it
+after an IDE update. The selected editor and tool-window tabs are underlined in
+red. `tests/jetbrains-theme.test.mjs` checks the files against the palette,
+the provider ids, that every color is opaque `#RRGGBB`, 4.5:1 for text on the
+theme's surfaces (`TEXT_PAIRS`), and that the snapshot matches the installed
+IDE (skipped without one).
+
+## Target: Kate
+
+One KSyntaxHighlighting color theme (JSON) per variant in `themes/kate/`
+(`scripts/targets/kate.mjs`); the same files work in KWrite and KDevelop. The
+31 text styles and 28 editor colors are the full set in KDE's Breeze themes.
+Each text style maps to a syntax role; KDE-only styles: Variable (shell and
+PHP `$variables`) and CommentVar use the parameter color, preprocessor and
+attributes orange (as in Xcode), escapes pink, regular expressions red,
+TODO/FIXME (Alert) bold red. Every color is opaque, because Qt reads alpha as
+`#AARRGGBB`: the current line, search, replace and bracket highlights are
+palette colors blended onto the background (`blend` in
+`scripts/lib/palette.mjs`), with the same strengths as the VS Code theme.
+`metadata.revision` comes from the version (0.1.3 → 103), so Kate prefers the
+newest copy. `tests/kate.test.mjs` checks the full key sets, palette colors and
+4.5:1 text. On the current-line highlight most accents fall to about 3.8:1
+(as in Xcode; about 4.1:1 in VS Code); the palette rules only cover the
+background.
+
+## Target: Terminal.app
+
+One `.terminal` profile (XML property list) per variant in `themes/terminal/`
+(`scripts/targets/terminal.mjs`), with the iTerm2 presets' colors: 16 ANSI
+colors plus background, text, bold, cursor and selection. Terminal stores
+each color as an `NSKeyedArchiver` archive of an `NSColor`; the build writes
+that archive itself (XML, embedded as `<data>`): an sRGB color whose color
+space is referenced by ID (`NSID` 7) instead of an embedded ICC profile.
+Fonts aren't set. Terminal names an imported profile after its file, so the
+`name` key is the file name (`Ile-Oyo-Ale`). `tests/terminal.test.mjs`
+checks the 21 color keys from Terminal's bundled profiles, decodes every
+color back from its archive, checks contrast, and on macOS runs `plutil -lint`
+and decodes every color with `NSKeyedUnarchiver`, requiring exact sRGB.
+
+## Target: Typora
+
+One self-contained theme CSS per variant in `themes/typora/`
+(`scripts/targets/typora.mjs`); Typora lists them by file name (Ile Oyo Ale,
+Ile Oyo Osan). It sets every color variable Typora reads (`:root`), styles
+the document (headings, links, quotes, tables, code, task lists, GitHub
+alerts), CodeMirror tokens in code blocks (`.cm-s-inner`, mapped to the
+syntax roles) and in Markdown source mode (`.cm-s-typora-default`), and
+Typora's interface (sidebar, file list with an àlàárì-red active marker,
+menus, dialogs, search). Code blocks and menus use `bg_dark` in Alẹ́ and
+`bg_light` in Ọ̀sán: surfaces that move away from the text color, so every
+accent keeps 4.5:1. The current line and search hits are palette colors
+blended onto the background. `tests/typora.test.mjs` checks that every color
+is a palette color or one of those two blends, 4.5:1 for 43 text/background
+pairs, that every Typora color variable is set and every `var()` used is
+defined, and that the CSS is well-formed.
+
+## Target: Zsh
+
+Command-line highlighting, one file per variant per plugin, in `themes/zsh/`
+(`scripts/targets/zsh.mjs`): `ile-oyo-<variant>.zsh` sets every
+zsh-syntax-highlighting main-highlighter style (`ZSH_HIGHLIGHT_STYLES`) and
+the zsh-autosuggestions color; `fast-syntax-highlighting/ile-oyo-<variant>.ini`
+sets every style `fast-theme` reads, so none falls back. Colors are
+`#RRGGBB` (24-bit, or nearest 256-color via `zsh/nearcolor`); plain text uses
+the terminal foreground. Roles: keywords and operators pink, commands green,
+builtins and aliases cyan, strings yellow, numbers and options purple,
+`$variables` orange, escapes pink, comments in the comment color, unknown
+commands bold red. No italic: `fast-theme` accepts only bold and underline.
+`tests/zsh.test.mjs` checks both key sets (from the plugins' sources), palette
+colors and 4.5:1; where zsh is installed it also runs `zsh -n`, sources the
+file, and loads the `.ini` with the real `fast-theme` (throwaway work dir)
+expecting no missing or unparsed styles.
 
 ## Tooling
 
 Node.js (installed via nvm). Dev dependencies, pinned exactly: `sass` 1.83.0
-and `typescript` 5.6.3 (tests), `@vscode/vsce` 4.1.0 (packaging and publishing). The build
+and `typescript` 5.6.3 (tests), `@vscode/vsce` 4.1.0 (packaging and publishing), `web-ext` 10.8.0 (Firefox lint and packaging). The build
 itself has no dependencies. The root `package.json` is private
 (`ile-oyo-theme-repo`) and never published.
 
@@ -189,20 +378,26 @@ itself has no dependencies. The root `package.json` is private
 | ------- | ------ | ---- | -------- |
 | VS Code extension | `themes/vscode` | `jazzykid.ile-oyo-theme` | manifest, README, both themes, icon, LICENSE, NOTICE |
 | npm | `themes/css` | `ile-oyo-theme` | CSS, highlight CSS, Sass, JS tokens + types; ES module only. Subpaths: `/css`, `/highlight.css`, `/scss` |
+| Firefox add-on | `themes/firefox` | `ile-oyo-theme@jazzykid.com` | manifest (both variants), README, LICENSE, NOTICE |
+| Chrome themes | `themes/chrome/{ale,osan}` | Ilé-Ọ̀yọ́ Alẹ́, Ilé-Ọ̀yọ́ Ọ̀sán | manifest, icon, LICENSE, NOTICE |
 
-Every package's version must equal `palette.version`, and `CHANGELOG.md` must
+Every package's version (and the Firefox and Chrome manifests') must equal
+`palette.version`, and `CHANGELOG.md` must
 have a dated entry for it, `## <version> (YYYY-MM-DD)` (`tests/versions.test.mjs`).
+
+## Commands
 
 | Command | What it does |
 | ------- | ------------ |
-| `npm run check` | Enforces the rules above; non-zero exit on failure |
+| `npm run check` | Enforces the palette rules; non-zero exit on failure |
 | `npm run build` | Validates, then writes every target's files |
 | `npm run build -- --check` | Fails if a committed generated file is out of date |
-| `npm test` | All of the above, plus: JS tokens equal the palette (`node --test`), the Sass compiles (`tests/use.scss`), the `.d.ts` type-checks (`tests/use.ts`), VS Code theme checks, and package versions match the palette |
+| `npm test` | `check` and `build -- --check`, plus the `node --test` suites (JS tokens, VS Code, Xcode, Firefox, Chrome, Kate, Zsh, Terminal.app, Typora, JetBrains, JetBrains IDE theme, versions), the Sass compile (`tests/use.scss`), the `.d.ts` type-check (`tests/use.ts`), and `web-ext lint` on the Firefox theme |
+| `npm run lint:firefox` | Mozilla's add-on linter on `themes/firefox`, warnings as errors |
 | `npm run package:vscode` | Tests, then `dist/ile-oyo-theme-<version>.vsix` |
 | `npm run pack:css` | Tests, then `npm pack --dry-run` of `themes/css` |
-| `npm run release:dist` | Tests, then every release file into `dist/`: `.vsix`, npm `.tgz`, both `.itermcolors`, `release-notes.md` (CHANGELOG entry, install lines, SHA-256) |
-| `npm run screenshot:vscode`, `screenshot:iterm` | Retake the README screenshots (macOS) |
+| `npm run release:dist` | Tests, then every release file into `dist/`: `.vsix`, npm `.tgz`, both `.itermcolors`, `.terminal`, `.icls` and `.xccolortheme`, the Firefox `.zip`, both Chrome `.zip`s, both Kate `.theme` files, both Typora `.css` files, the Zsh `.zsh` and `.ini` files, `release-notes.md` (CHANGELOG entry, install lines, SHA-256) |
+| `npm run screenshot:vscode`, `screenshot:iterm`, `screenshot:jetbrains` (`-- open\|capture ale\|osan`), `screenshot:jetbrains-theme`, `screenshot:terminal`, `screenshot:chrome`, `screenshot:kate`, `screenshot:typora`, `screenshot:zsh`, `screenshot:xcode` and `screenshot:firefox` (`-- ale\|osan`) | Retake the README screenshots (macOS) |
 | `npm run preview` | Builds `preview/index.html` from the palette and opens it |
 | `npm run preview -- --compare <file>` | Side-by-side with another palette (either format) → `preview/compare.html` |
 
@@ -227,8 +422,8 @@ Connect), so no publishing tokens exist anywhere.
      provenance. The trusted publisher is stage-only, so the version waits
      until you approve it with 2FA (`npm stage approve <id>`, or Staged
      Packages on npmjs.com);
-   - **github-release**: the GitHub Release with the `.vsix`, both
-     `.itermcolors` and `release-notes.md`, only after both stores succeed.
+   - **github-release**: the GitHub Release with the `.vsix`, the
+     `.itermcolors`, `.terminal`, `.icls` and `.xccolortheme` files, the JetBrains plugin `.jar`, the Firefox and Chrome `.zip`s, the Kate, Typora and Zsh files and `release-notes.md`, only after both stores succeed.
 
 The publish jobs run in the `release` environment, which can require approval
 before they start. Trusted Publishing policies name this repository,

@@ -1,6 +1,6 @@
 {
   "name": "ile-oyo-theme-repo",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "private": true,
   "description": "Build, tests and sources for the Ilé-Ọ̀yọ́ themes (private; not published).",
   "type": "module",
@@ -15,10 +15,20 @@
     "icon": "node scripts/icon.mjs",
     "screenshot:vscode": "node scripts/screenshot-vscode.mjs",
     "screenshot:iterm": "bash scripts/screenshot-iterm.sh",
+    "screenshot:jetbrains": "bash scripts/screenshot-jetbrains.sh",
+    "screenshot:jetbrains-theme": "bash scripts/screenshot-jetbrains-theme.sh",
+    "screenshot:terminal": "bash scripts/screenshot-terminal.sh",
+    "screenshot:chrome": "node scripts/screenshot-chrome.mjs",
+    "screenshot:kate": "bash scripts/screenshot-kate.sh",
+    "screenshot:typora": "bash scripts/screenshot-typora.sh",
+    "screenshot:zsh": "bash scripts/screenshot-zsh.sh",
+    "screenshot:xcode": "bash scripts/screenshot-xcode.sh",
+    "screenshot:firefox": "bash scripts/screenshot-firefox.sh",
     "demo:terminal": "bash scripts/terminal-demo.sh",
-    "test": "npm run check && npm run build -- --check && npm run test:tokens && npm run test:sass && npm run test:types",
+    "test": "npm run check && npm run build -- --check && npm run test:tokens && npm run test:sass && npm run test:types && npm run lint:firefox",
     "test:tokens": "node --test \"tests/*.test.mjs\"",
     "test:sass": "sass --no-source-map tests/use.scss > /dev/null",
+    "lint:firefox": "web-ext lint --source-dir themes/firefox --self-hosted=false --warnings-as-errors",
     "test:types": "tsc --noEmit --strict --module nodenext --moduleResolution nodenext tests/use.ts",
     "package:vscode": "npm test && node -e \"require('fs').mkdirSync('dist',{recursive:true})\" && cd themes/vscode && vsce package --no-dependencies -o ../../dist/",
     "ls:vscode": "cd themes/vscode && vsce ls --no-dependencies",
@@ -28,6 +38,7 @@
   "devDependencies": {
     "@vscode/vsce": "4.1.0",
     "sass": "1.83.0",
-    "typescript": "5.6.3"
+    "typescript": "5.6.3",
+    "web-ext": "10.8.0"
   }
 }

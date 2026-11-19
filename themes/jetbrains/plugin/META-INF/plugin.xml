@@ -1,0 +1,18 @@
+<idea-plugin>
+  <id>com.jazzykid.ile-oyo-theme</id>
+  <name>Ilé-Ọ̀yọ́</name>
+  <version>0.2.0</version>
+  <vendor url="https://github.com/ayoolaao/ile-oyo-theme">jazzykid</vendor>
+  <description><![CDATA[
+    <p>Ilé-Ọ̀yọ́: Alẹ́ (evening, dark) and Ọ̀sán (afternoon, light),
+    colors from Ọ̀yọ́ aṣọ-òkè. Themes the whole IDE and the editor.</p>
+    <p>Choose <b>Ilé-Ọ̀yọ́ Alẹ́</b> or <b>Ilé-Ọ̀yọ́ Ọ̀sán</b> in
+    Settings → Appearance &amp; Behavior → Appearance → Theme.</p>
+  ]]></description>
+  <idea-version since-build="253" />
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <themeProvider id="ile-oyo-ale" path="/themes/Ile-Oyo-Ale.theme.json" targetUi="islands" />
+    <themeProvider id="ile-oyo-osan" path="/themes/Ile-Oyo-Osan.theme.json" targetUi="islands" />
+  </extensions>
+</idea-plugin>

@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Ilé-Ọ̀yọ́ Ọ̀sán",
+  "version": "0.2.0",
+  "description": "Ilé-Ọ̀yọ́ Ọ̀sán (afternoon, light): colors from Ọ̀yọ́ aṣọ-òkè.",
+  "author": "Ayoola Abimbola",
+  "homepage_url": "https://github.com/ayoolaao/ile-oyo-theme",
+  "icons": {
+    "128": "icon128.png"
+  },
+  "theme": {
+    "colors": {
+      "frame": [228, 214, 190],
+      "frame_inactive": [228, 214, 190],
+      "background_tab": [228, 214, 190],
+      "background_tab_inactive": [228, 214, 190],
+      "tab_text": [26, 43, 76],
+      "tab_background_text": [77, 93, 126],
+      "tab_background_text_inactive": [77, 93, 126],
+      "toolbar": [244, 230, 206],
+      "toolbar_text": [26, 43, 76],
+      "toolbar_button_icon": [26, 43, 76],
+      "bookmark_text": [26, 43, 76],
+      "omnibox_background": [255, 255, 255],
+      "omnibox_text": [26, 43, 76],
+      "ntp_background": [244, 230, 206],
+      "ntp_text": [26, 43, 76],
+      "ntp_link": [53, 88, 157]
+    }
+  }
+}
