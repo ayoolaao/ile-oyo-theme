@@ -8,6 +8,7 @@
 // - Ile-Oyo-{Ale,Osan}.itermcolors iTerm2 presets
 // - Ile-Oyo-{Ale,Osan}.terminal   Terminal.app profiles
 // - Ile-Oyo-{Ale,Osan}.icls       JetBrains editor color schemes
+// - ile-oyo-jetbrains-<version>.jar JetBrains IDE theme plugin (both variants)
 // - Ile-Oyo-{Ale,Osan}.xccolortheme Xcode themes
 // - ile-oyo-firefox-<version>.zip  Firefox theme (for addons.mozilla.org)
 // - ile-oyo-chrome-{ale,osan}-<version>.zip  Chrome themes (Chrome Web Store)
@@ -54,6 +55,10 @@ for (const id of ['ale', 'osan']) {
   run('zip', ['-q', '-X', join(DIST, `ile-oyo-chrome-${id}-${version}.zip`), 'manifest.json', 'icon128.png', 'LICENSE', 'NOTICE'],
     join(ROOT, 'themes/chrome', id));
 }
+// A theme-only JetBrains plugin is a plain jar (zip) of plugin.xml and the
+// theme files.
+run('zip', ['-q', '-X', '-r', join(DIST, `ile-oyo-jetbrains-${version}.jar`), 'META-INF', 'themes'],
+  join(ROOT, 'themes/jetbrains/plugin'));
 for (const v of ['Ale', 'Osan']) {
   copyFileSync(join(ROOT, `themes/iterm/Ile-Oyo-${v}.itermcolors`), join(DIST, `Ile-Oyo-${v}.itermcolors`));
   copyFileSync(join(ROOT, `themes/xcode/Ile-Oyo-${v}.xccolortheme`), join(DIST, `Ile-Oyo-${v}.xccolortheme`));
@@ -76,6 +81,7 @@ const expected = [
   'Ile-Oyo-Osan.terminal',
   'Ile-Oyo-Ale.icls',
   'Ile-Oyo-Osan.icls',
+  `ile-oyo-jetbrains-${version}.jar`,
   'Ile-Oyo-Ale.xccolortheme',
   'Ile-Oyo-Osan.xccolortheme',
   `ile-oyo-firefox-${version}.zip`,
@@ -109,7 +115,7 @@ const notes = `${changelogSection(readFileSync(join(ROOT, 'CHANGELOG.md'), 'utf8
 - **Xcode**: Settings → Appearance → Themes → Choose… → Import…, then select an \`.xccolortheme\` file.
 - **Firefox**: addons.mozilla.org listing coming soon. To try it now: \`about:debugging\` → This Firefox → Load Temporary Add-on… → select \`ile-oyo-firefox-${version}.zip\`.
 - **Chrome** (and other Chromium browsers): Chrome Web Store listing coming soon. To try it now: unzip \`ile-oyo-chrome-ale-${version}.zip\` (dark) or \`ile-oyo-chrome-osan-${version}.zip\` (light), open \`chrome://extensions\`, turn on Developer mode, click Load unpacked and select the unzipped folder.
-- **JetBrains IDEs** (IntelliJ IDEA, PyCharm, WebStorm, …): Settings → Editor → Color Scheme → ⚙ → Import Scheme…, then select an \`.icls\` file.
+- **JetBrains IDEs** (IntelliJ IDEA, PyCharm, WebStorm, …; 2025.3 or later): Settings → Plugins → ⚙ → Install Plugin from Disk… → select \`ile-oyo-jetbrains-${version}.jar\`, then pick the theme in Settings → Appearance & Behavior → Appearance. For the editor colors only: Settings → Editor → Color Scheme → ⚙ → Import Scheme…, then select an \`.icls\` file.
 - **Kate** (and KWrite, KDevelop): Settings → Configure Kate… (macOS: Kate → Settings…) → Color Themes → Import…, then select an \`ile-oyo-*.theme\` file.
 - **Typora**: Settings → Appearance → Open Theme Folder, copy \`ile-oyo-ale.css\` / \`ile-oyo-osan.css\` there, restart Typora and pick Ile Oyo Ale or Ile Oyo Osan from the Themes menu.
 - **Zsh**: with zsh-syntax-highlighting, add \`source /path/to/ile-oyo-ale.zsh\` (or \`ile-oyo-osan.zsh\`) to \`~/.zshrc\` after the plugin; it also colors zsh-autosuggestions. With fast-syntax-highlighting, run \`fast-theme /path/to/ile-oyo-ale.ini\` once.

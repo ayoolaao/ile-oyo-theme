@@ -41,13 +41,14 @@ Avoid attributing the palette to *adire*: it is associated with Abẹ́òkúta, 
 | Firefox | `themes/firefox/` | `firefox.mjs` | one theme, switches with the system | addons.mozilla.org (coming), GitHub Releases |
 | Chrome | `themes/chrome/` | `chrome.mjs` | one theme extension each | Chrome Web Store (coming), GitHub Releases |
 | JetBrains | `themes/jetbrains/` | `jetbrains.mjs` | one `.icls` editor scheme each | GitHub Releases |
+| JetBrains IDE theme | `themes/jetbrains/plugin/` | `jetbrains-theme.mjs` | two themes in one plugin (`.jar`) | GitHub Releases (Marketplace later) |
 | Kate | `themes/kate/` | `kate.mjs` | one `.theme` each | GitHub Releases |
 | Terminal.app | `themes/terminal/` | `terminal.mjs` | one `.terminal` profile each | GitHub Releases |
 | Typora | `themes/typora/` | `typora.mjs` | one theme `.css` each | GitHub Releases |
 | Zsh | `themes/zsh/` | `zsh.mjs` | one `.zsh` (zsh-syntax-highlighting) and one `.ini` (fast-syntax-highlighting) each | GitHub Releases |
 
 Generators live in `scripts/targets/`. More apps are planned for v0.2
-(a full JetBrains IDE theme, Notepad++).
+(Notepad++).
 
 ## Repo layout
 
@@ -67,6 +68,8 @@ scripts/icon.mjs               npm run icon: renders assets/icon/icon.svg to the
 scripts/screenshot-vscode.mjs  npm run screenshot:vscode (real VS Code; sample in scripts/screenshot/sample/)
 scripts/screenshot-iterm.sh    npm run screenshot:iterm (real iTerm2, temporary dynamic profiles)
 scripts/screenshot-jetbrains.sh npm run screenshot:jetbrains -- open|capture ale|osan (real WebStorm, throwaway config; scheme imported by hand)
+scripts/screenshot-jetbrains-theme.sh npm run screenshot:jetbrains-theme (real WebStorm, throwaway config with the plugin; shared JetBrains folders removed afterwards)
+scripts/vendor-islands.mjs     node scripts/vendor-islands.mjs: snapshot of the Islands themes for the IDE theme
 scripts/screenshot-terminal.sh npm run screenshot:terminal (real Terminal.app; preferences restored)
 scripts/screenshot-xcode.sh    npm run screenshot:xcode -- ale|osan (real Xcode; theme picked by hand)
 scripts/screenshot-firefox.sh  npm run screenshot:firefox -- ale|osan (real Firefox; theme loaded by hand)
@@ -266,8 +269,35 @@ the background. `tests/jetbrains.test.mjs` checks the 42 defaults against
 the platform's `DefaultLanguageHighlighterColors`, that every key exists in
 IntelliJ's own Default/Darcula schemes (read from an installed IDE), opaque
 palette colors, and 4.5:1 for every syntax color and for text on every
-background the scheme sets. This colors the editor only; a full IDE theme
-(UI) is a separate plugin.
+background the scheme sets. This colors the editor only; the IDE theme
+below adds the rest.
+
+## Target: JetBrains IDE theme
+
+A theme-only plugin in `themes/jetbrains/plugin/`
+(`scripts/targets/jetbrains-theme.mjs`): `META-INF/plugin.xml` with one
+`themeProvider` per variant (`ile-oyo-ale`, `ile-oyo-osan`), and per variant
+a `.theme.json` plus the editor scheme as `.xml` (the same as the `.icls`),
+which the theme names in `editorScheme`. No Gradle: `scripts/release.mjs`
+zips the folder into `ile-oyo-jetbrains-<version>.jar`. `since-build` is 253
+(2025.3), the first release with Islands.
+
+Each theme's `parentTheme` is Islands Dark or Islands Light, and `colors`
+redefines Islands' named colors by role (`text-*`, `editor-bg`,
+`tool-window-bg`, `main-window-bg`, `popup-bg`, `control-*`, `accent-*`,
+`selection-*`, `tab-*`), not by `layer-*`, because Islands Dark and Light stack
+their layers in opposite orders. Redefining names alone changes nothing,
+since the parent resolves its own references, so `ui` also sets every key whose
+Islands color goes through a redefined name (about 290 per variant), resolved
+to our hex. Which keys those are comes from a snapshot of the two Islands
+themes in `scripts/targets/data/islands-{dark,light}.json`, made by
+`scripts/vendor-islands.mjs` from an installed IDE's
+`intellij.platform.resources.jar` (IntelliJ Platform, Apache-2.0); rerun it
+after an IDE update. The selected editor and tool-window tabs are underlined in
+red. `tests/jetbrains-theme.test.mjs` checks the files against the palette,
+the provider ids, that every color is opaque `#RRGGBB`, 4.5:1 for text on the
+theme's surfaces (`TEXT_PAIRS`), and that the snapshot matches the installed
+IDE (skipped without one).
 
 ## Target: Kate
 
@@ -362,12 +392,12 @@ have a dated entry for it, `## <version> (YYYY-MM-DD)` (`tests/versions.test.mjs
 | `npm run check` | Enforces the palette rules; non-zero exit on failure |
 | `npm run build` | Validates, then writes every target's files |
 | `npm run build -- --check` | Fails if a committed generated file is out of date |
-| `npm test` | `check` and `build -- --check`, plus the `node --test` suites (JS tokens, VS Code, Xcode, Firefox, Chrome, Kate, Zsh, Terminal.app, Typora, JetBrains, versions), the Sass compile (`tests/use.scss`), the `.d.ts` type-check (`tests/use.ts`), and `web-ext lint` on the Firefox theme |
+| `npm test` | `check` and `build -- --check`, plus the `node --test` suites (JS tokens, VS Code, Xcode, Firefox, Chrome, Kate, Zsh, Terminal.app, Typora, JetBrains, JetBrains IDE theme, versions), the Sass compile (`tests/use.scss`), the `.d.ts` type-check (`tests/use.ts`), and `web-ext lint` on the Firefox theme |
 | `npm run lint:firefox` | Mozilla's add-on linter on `themes/firefox`, warnings as errors |
 | `npm run package:vscode` | Tests, then `dist/ile-oyo-theme-<version>.vsix` |
 | `npm run pack:css` | Tests, then `npm pack --dry-run` of `themes/css` |
 | `npm run release:dist` | Tests, then every release file into `dist/`: `.vsix`, npm `.tgz`, both `.itermcolors`, `.terminal`, `.icls` and `.xccolortheme`, the Firefox `.zip`, both Chrome `.zip`s, both Kate `.theme` files, both Typora `.css` files, the Zsh `.zsh` and `.ini` files, `release-notes.md` (CHANGELOG entry, install lines, SHA-256) |
-| `npm run screenshot:vscode`, `screenshot:iterm`, `screenshot:jetbrains` (`-- open\|capture ale\|osan`), `screenshot:terminal`, `screenshot:chrome`, `screenshot:kate`, `screenshot:typora`, `screenshot:zsh`, `screenshot:xcode` and `screenshot:firefox` (`-- ale\|osan`) | Retake the README screenshots (macOS) |
+| `npm run screenshot:vscode`, `screenshot:iterm`, `screenshot:jetbrains` (`-- open\|capture ale\|osan`), `screenshot:jetbrains-theme`, `screenshot:terminal`, `screenshot:chrome`, `screenshot:kate`, `screenshot:typora`, `screenshot:zsh`, `screenshot:xcode` and `screenshot:firefox` (`-- ale\|osan`) | Retake the README screenshots (macOS) |
 | `npm run preview` | Builds `preview/index.html` from the palette and opens it |
 | `npm run preview -- --compare <file>` | Side-by-side with another palette (either format) → `preview/compare.html` |
 
