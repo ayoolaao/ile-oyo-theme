@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.jazzykid.ile-oyo-theme</id>
   <name>Ilé-Ọ̀yọ́</name>
-  <version>0.1.3</version>
+  <version>0.2.0</version>
   <vendor url="https://github.com/ayoolaao/ile-oyo-theme">jazzykid</vendor>
   <description><![CDATA[
     <p>Ilé-Ọ̀yọ́: Alẹ́ (evening, dark) and Ọ̀sán (afternoon, light),

@@ -1,5 +1,5 @@
 # Ilé-Ọ̀yọ́ Alẹ́ (evening, dark) for zsh-syntax-highlighting and zsh-autosuggestions.
-# Generated from palette/ile-oyo.json (v0.1.3) by npm run build; don't edit by hand.
+# Generated from palette/ile-oyo.json (v0.2.0) by npm run build; don't edit by hand.
 # https://github.com/ayoolaao/ile-oyo-theme
 #
 # Source this after zsh-syntax-highlighting (and zsh-autosuggestions) in ~/.zshrc.

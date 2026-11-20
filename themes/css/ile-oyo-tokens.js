@@ -1,4 +1,4 @@
-/* Ilé-Ọ̀yọ́ JS tokens v0.1.3
+/* Ilé-Ọ̀yọ́ JS tokens v0.2.0
  * Generated from palette/ile-oyo.json by `npm run build`. Do not edit by hand. */
 
 export const ale = {
