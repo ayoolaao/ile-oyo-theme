@@ -1,4 +1,4 @@
-/* Ilé-Ọ̀yọ́ JS token types v0.1.3
+/* Ilé-Ọ̀yọ́ JS token types v0.2.0
  * Generated from palette/ile-oyo.json by `npm run build`. Do not edit by hand. */
 
 export interface IleOyoVariant {

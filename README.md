@@ -25,17 +25,17 @@ The palette started as the Ilé-Ọ̀yọ́ preset on [ayoola.io](https://ayoola
 
 | Application | Get it |
 | ----------- | ------ |
-| Chrome | [`themes/chrome`](themes/chrome/) (Chrome Web Store coming soon) |
+| Chrome | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/chrome/) (Chrome Web Store coming soon) |
 | CSS (web) | [npm `ile-oyo-theme`](https://www.npmjs.com/package/ile-oyo-theme) · [details](themes/css/) |
-| Kate | [`themes/kate`](themes/kate/) (in GitHub Releases from v0.2.0) |
-| Terminal.app | [`themes/terminal`](themes/terminal/) (in GitHub Releases from v0.2.0) |
-| Typora | [`themes/typora`](themes/typora/) (in GitHub Releases from v0.2.0) |
-| Firefox | [`themes/firefox`](themes/firefox/) (addons.mozilla.org coming soon) |
-| JetBrains IDEs (IDE theme plugin and editor schemes) | [`themes/jetbrains`](themes/jetbrains/) (in GitHub Releases from v0.2.0) |
+| Kate | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/kate/) |
+| Terminal.app | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/terminal/) |
+| Typora | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/typora/) |
+| Firefox | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/firefox/) (addons.mozilla.org coming soon) |
+| JetBrains IDEs (IDE theme plugin and editor schemes) | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/jetbrains/) |
 | iTerm2 | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/iterm/) |
 | Visual Studio Code | [Marketplace](https://marketplace.visualstudio.com/items?itemName=jazzykid.ile-oyo-theme) · [details](themes/vscode/) |
-| Xcode | [`themes/xcode`](themes/xcode/) (in GitHub Releases from v0.2.0) |
-| Zsh (zsh-syntax-highlighting, fast-syntax-highlighting) | [`themes/zsh`](themes/zsh/) (in GitHub Releases from v0.2.0) |
+| Xcode | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/xcode/) |
+| Zsh (zsh-syntax-highlighting, fast-syntax-highlighting) | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/zsh/) |
 
 More are on the way: Notepad++ and a JetBrains Marketplace listing.
 
