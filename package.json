@@ -24,6 +24,7 @@
     "screenshot:zsh": "bash scripts/screenshot-zsh.sh",
     "screenshot:xcode": "bash scripts/screenshot-xcode.sh",
     "screenshot:firefox": "bash scripts/screenshot-firefox.sh",
+    "screenshot:arcane": "node scripts/screenshot-arcane.mjs",
     "demo:terminal": "bash scripts/terminal-demo.sh",
     "test": "npm run check && npm run build -- --check && npm run test:tokens && npm run test:sass && npm run test:types && npm run lint:firefox",
     "test:tokens": "node --test \"tests/*.test.mjs\"",

@@ -45,6 +45,7 @@ Avoid attributing the palette to *adire*: it is associated with Abẹ́òkúta, 
 | Kate | `themes/kate/` | `kate.mjs` | one `.theme` each | GitHub Releases |
 | Terminal.app | `themes/terminal/` | `terminal.mjs` | one `.terminal` profile each | GitHub Releases |
 | Typora | `themes/typora/` | `typora.mjs` | one theme `.css` each | GitHub Releases |
+| Arcane | `themes/arcane/` | `arcane.mjs` | both in one application theme (`.json`) | GitHub Releases, imported in Arcane's settings |
 | Zsh | `themes/zsh/` | `zsh.mjs` | one `.zsh` (zsh-syntax-highlighting) and one `.ini` (fast-syntax-highlighting) each | GitHub Releases |
 
 Generators live in `scripts/targets/`. More apps are planned for v0.2
@@ -73,6 +74,7 @@ scripts/vendor-islands.mjs     node scripts/vendor-islands.mjs: snapshot of the 
 scripts/screenshot-terminal.sh npm run screenshot:terminal (real Terminal.app; preferences restored)
 scripts/screenshot-xcode.sh    npm run screenshot:xcode -- ale|osan (real Xcode; theme picked by hand)
 scripts/screenshot-firefox.sh  npm run screenshot:firefox -- ale|osan (real Firefox; theme loaded by hand)
+scripts/screenshot-arcane.mjs  npm run screenshot:arcane (real Arcane in a throwaway Docker container, headless Chrome)
 scripts/screenshot-chrome.mjs  npm run screenshot:chrome (real Chrome, throwaway profile)
 scripts/screenshot-kate.sh     npm run screenshot:kate (real Kate; settings restored afterwards)
 scripts/screenshot-typora.sh   npm run screenshot:typora (real Typora; sample in scripts/screenshot/sample-markdown/)
@@ -365,6 +367,36 @@ colors and 4.5:1; where zsh is installed it also runs `zsh -n`, sources the
 file, and loads the `.ini` with the real `fast-theme` (throwaway work dir)
 expecting no missing or unparsed styles.
 
+## Target: Arcane
+
+One application theme for the Arcane Docker manager in
+`themes/arcane/ile-oyo.json` (`scripts/targets/arcane.mjs`), in the format
+Arcane's Import theme dialog accepts: `id` `custom-ile-oyo` (set explicitly;
+Arcane would slug the accented name into hyphens), `name`, `description`, and
+`light` (Ọ̀sán) and `dark` (Alẹ́) palettes of the 33 shadcn-style tokens in
+Arcane's `THEME_TOKENS`. Arcane switches between them with its own light/dark
+mode. Primary, ring and the logo are àlàárì red; borders and inputs are the
+translucent `other.non_text`; syntax colors follow the syntax roles
+(operators share keyword pink). Every other color is opaque and from the
+palette; only `glass-shadow-color` is not (a black or ẹtù-tinted shadow).
+
+The accents are tuned to 4.6:1 on `bg`, so in Alẹ́ every surface that carries
+colored or muted text sits darker than `bg` (cards `ui.bg_dark`, sidebar
+`ui.bg_darker`); lighter cards dropped them to about 4:1. Ọ̀sán's cards are
+lighter (`ui.bg_light`). Surfaces stay opaque: translucent ones (as in
+Arcane's built-in themes) looked the same in Arcane 3.1.1, because its
+components add their own alpha and, over a backdrop image, dark mode paints
+the shell a fixed color.
+
+`tests/arcane.test.mjs` checks the token list (copied from Arcane, dated), the
+id and name against Arcane's importer rules, `#RRGGBB(AA)` colors from the
+palette, and 4.5:1 for 27 text/surface pairs per variant.
+`npm run screenshot:arcane` runs a pinned Arcane image in a throwaway Docker
+container (localhost only, own volume, removed afterwards), saves the theme
+through Arcane's API so its own validation runs, and captures the dashboard
+with headless Chrome. Built-in inclusion upstream (a PR to
+getarcaneapp/arcane) is a possible later step.
+
 ## Tooling
 
 Node.js (installed via nvm). Dev dependencies, pinned exactly: `sass` 1.83.0
@@ -392,12 +424,12 @@ have a dated entry for it, `## <version> (YYYY-MM-DD)` (`tests/versions.test.mjs
 | `npm run check` | Enforces the palette rules; non-zero exit on failure |
 | `npm run build` | Validates, then writes every target's files |
 | `npm run build -- --check` | Fails if a committed generated file is out of date |
-| `npm test` | `check` and `build -- --check`, plus the `node --test` suites (JS tokens, VS Code, Xcode, Firefox, Chrome, Kate, Zsh, Terminal.app, Typora, JetBrains, JetBrains IDE theme, versions), the Sass compile (`tests/use.scss`), the `.d.ts` type-check (`tests/use.ts`), and `web-ext lint` on the Firefox theme |
+| `npm test` | `check` and `build -- --check`, plus the `node --test` suites (JS tokens, VS Code, Xcode, Firefox, Chrome, Kate, Zsh, Terminal.app, Typora, JetBrains, JetBrains IDE theme, Arcane, versions), the Sass compile (`tests/use.scss`), the `.d.ts` type-check (`tests/use.ts`), and `web-ext lint` on the Firefox theme |
 | `npm run lint:firefox` | Mozilla's add-on linter on `themes/firefox`, warnings as errors |
 | `npm run package:vscode` | Tests, then `dist/ile-oyo-theme-<version>.vsix` |
 | `npm run pack:css` | Tests, then `npm pack --dry-run` of `themes/css` |
-| `npm run release:dist` | Tests, then every release file into `dist/`: `.vsix`, npm `.tgz`, both `.itermcolors`, `.terminal`, `.icls` and `.xccolortheme`, the Firefox `.zip`, both Chrome `.zip`s, both Kate `.theme` files, both Typora `.css` files, the Zsh `.zsh` and `.ini` files, `release-notes.md` (CHANGELOG entry, install lines, SHA-256) |
-| `npm run screenshot:vscode`, `screenshot:iterm`, `screenshot:jetbrains` (`-- open\|capture ale\|osan`), `screenshot:jetbrains-theme`, `screenshot:terminal`, `screenshot:chrome`, `screenshot:kate`, `screenshot:typora`, `screenshot:zsh`, `screenshot:xcode` and `screenshot:firefox` (`-- ale\|osan`) | Retake the README screenshots (macOS) |
+| `npm run release:dist` | Tests, then every release file into `dist/`: `.vsix`, npm `.tgz`, both `.itermcolors`, `.terminal`, `.icls` and `.xccolortheme`, the Firefox `.zip`, both Chrome `.zip`s, both Kate `.theme` files, both Typora `.css` files, the Zsh `.zsh` and `.ini` files, `ile-oyo-arcane.json`, `release-notes.md` (CHANGELOG entry, install lines, SHA-256) |
+| `npm run screenshot:vscode`, `screenshot:iterm`, `screenshot:jetbrains` (`-- open\|capture ale\|osan`), `screenshot:jetbrains-theme`, `screenshot:terminal`, `screenshot:chrome`, `screenshot:kate`, `screenshot:typora`, `screenshot:zsh`, `screenshot:arcane`, `screenshot:xcode` and `screenshot:firefox` (`-- ale\|osan`) | Retake the README screenshots (macOS; `screenshot:arcane` also needs Docker) |
 | `npm run preview` | Builds `preview/index.html` from the palette and opens it |
 | `npm run preview -- --compare <file>` | Side-by-side with another palette (either format) → `preview/compare.html` |
 
