@@ -15,6 +15,7 @@
 // - ile-oyo-{ale,osan}.theme      Kate themes
 // - ile-oyo-{ale,osan}.css        Typora themes
 // - ile-oyo-{ale,osan}.zsh, .ini  Zsh highlighting (zsh-syntax-highlighting, fast-syntax-highlighting)
+// - ile-oyo-arcane.json            Arcane application theme (both variants)
 // - release-notes.md               CHANGELOG section, install lines, SHA-256
 //
 // With --tag, fails unless the tag is v<palette version>. The release
@@ -67,6 +68,7 @@ for (const v of ['Ale', 'Osan']) {
 }
 for (const f of ['ile-oyo-ale.theme', 'ile-oyo-osan.theme']) copyFileSync(join(ROOT, 'themes/kate', f), join(DIST, f));
 for (const f of ['ile-oyo-ale.css', 'ile-oyo-osan.css']) copyFileSync(join(ROOT, 'themes/typora', f), join(DIST, f));
+copyFileSync(join(ROOT, 'themes/arcane/ile-oyo.json'), join(DIST, 'ile-oyo-arcane.json'));
 for (const id of ['ale', 'osan']) {
   copyFileSync(join(ROOT, `themes/zsh/ile-oyo-${id}.zsh`), join(DIST, `ile-oyo-${id}.zsh`));
   copyFileSync(join(ROOT, `themes/zsh/fast-syntax-highlighting/ile-oyo-${id}.ini`), join(DIST, `ile-oyo-${id}.ini`));
@@ -95,6 +97,7 @@ const expected = [
   'ile-oyo-osan.zsh',
   'ile-oyo-ale.ini',
   'ile-oyo-osan.ini',
+  'ile-oyo-arcane.json',
 ];
 const found = readdirSync(DIST).sort();
 if (JSON.stringify(found) !== JSON.stringify([...expected].sort())) {
@@ -119,6 +122,7 @@ const notes = `${changelogSection(readFileSync(join(ROOT, 'CHANGELOG.md'), 'utf8
 - **Kate** (and KWrite, KDevelop): Settings → Configure Kate… (macOS: Kate → Settings…) → Color Themes → Import…, then select an \`ile-oyo-*.theme\` file.
 - **Typora**: Settings → Appearance → Open Theme Folder, copy \`ile-oyo-ale.css\` / \`ile-oyo-osan.css\` there, restart Typora and pick Ile Oyo Ale or Ile Oyo Osan from the Themes menu.
 - **Zsh**: with zsh-syntax-highlighting, add \`source /path/to/ile-oyo-ale.zsh\` (or \`ile-oyo-osan.zsh\`) to \`~/.zshrc\` after the plugin; it also colors zsh-autosuggestions. With fast-syntax-highlighting, run \`fast-theme /path/to/ile-oyo-ale.ini\` once.
+- **Arcane**: Settings → Appearance → Application Theme → Import theme, then drop in \`ile-oyo-arcane.json\` (or paste its contents). It follows Arcane's light/dark mode.
 - **CSS**: [\`npm install ile-oyo-theme\`](https://www.npmjs.com/package/ile-oyo-theme), or copy the files from \`themes/css/\`.
 
 ### SHA-256

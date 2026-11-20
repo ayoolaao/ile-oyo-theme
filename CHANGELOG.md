@@ -4,6 +4,13 @@ All notable changes to Ilé-Ọ̀yọ́ are listed here. Versions follow
 [Semantic Versioning](https://semver.org/): a color change that alters how a
 theme looks is a minor version; a fix that doesn't is a patch.
 
+## Unreleased
+
+- **Arcane**: an application theme for the Arcane Docker manager
+  (`themes/arcane/`, `ile-oyo-arcane.json` in releases) with Ọ̀sán as light
+  mode and Alẹ́ as dark, with screenshots. Import it under Settings →
+  Appearance → Application Theme.
+
 ## 0.2.0 (2026-11-19)
 
 New apps; no color changes to the existing themes.

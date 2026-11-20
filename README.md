@@ -25,6 +25,7 @@ The palette started as the Ilé-Ọ̀yọ́ preset on [ayoola.io](https://ayoola
 
 | Application | Get it |
 | ----------- | ------ |
+| Arcane (Docker manager) | [details](themes/arcane/) (import file in GitHub Releases from the next release) |
 | Chrome | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/chrome/) (Chrome Web Store coming soon) |
 | CSS (web) | [npm `ile-oyo-theme`](https://www.npmjs.com/package/ile-oyo-theme) · [details](themes/css/) |
 | Kate | [GitHub Releases](https://github.com/ayoolaao/ile-oyo-theme/releases) · [details](themes/kate/) |
