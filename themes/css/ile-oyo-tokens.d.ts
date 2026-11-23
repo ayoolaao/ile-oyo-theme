@@ -18,6 +18,18 @@ export interface IleOyoVariant {
     purple: string;
     pink: string;
   };
+  /** Status colors (aliases of `colors`) and their tinted surfaces. Put fg
+   * text on a *Bg surface; the status color is for its border or icon. */
+  status: {
+    error: string;
+    errorBg: string;
+    warning: string;
+    warningBg: string;
+    info: string;
+    infoBg: string;
+    success: string;
+    successBg: string;
+  };
   ui: {
     bgDarker: string;
     bgDark: string;
@@ -36,9 +48,11 @@ export interface IleOyoVariant {
 }
 
 export type SyntaxRole = 'keyword' | 'function' | 'string' | 'number' | 'type' | 'parameter' | 'property' | 'tag' | 'regex' | 'comment' | 'variable' | 'punctuation' | 'link' | 'deleted' | 'inserted' | 'changed' | 'heading' | 'emphasis' | 'strong';
+export type StatusRole = 'error' | 'warning' | 'info' | 'success';
 
 export declare const ale: IleOyoVariant;
 export declare const osan: IleOyoVariant;
 export declare const syntax: Record<SyntaxRole, keyof IleOyoVariant['colors']>;
-declare const _default: { ale: IleOyoVariant; osan: IleOyoVariant; syntax: typeof syntax };
+export declare const status: Record<StatusRole, keyof IleOyoVariant['colors']>;
+declare const _default: { ale: IleOyoVariant; osan: IleOyoVariant; syntax: typeof syntax; status: typeof status };
 export default _default;

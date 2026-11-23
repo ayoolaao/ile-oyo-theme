@@ -10,6 +10,13 @@ theme looks is a minor version; a fix that doesn't is a patch.
   (`themes/arcane/`, `ile-oyo-arcane.json` in releases) with Ọ̀sán as light
   mode and Alẹ́ as dark, with screenshots. Import it under Settings →
   Appearance → Application Theme.
+- **Status colors**: error, warning, info and success are now named roles
+  (red, yellow, blue, green) shared by every theme. **CSS** adds
+  `--ile-error`, `--ile-warning`, `--ile-info`, `--ile-success` and a tinted
+  surface for each (`--ile-error-bg`, …), with the same in Sass and in the JS
+  tokens (`ale.status`, `osan.status`, `status`).
+- **Kate**: warnings (the Warning style and warning marks) are yellow instead
+  of orange, to match the other themes.
 
 ## 0.2.0 (2026-11-19)
 

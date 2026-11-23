@@ -127,8 +127,8 @@
             "selected-text-color": "#6E9DF5"
         },
         "Warning": {
-            "text-color": "#CE8154",
-            "selected-text-color": "#CE8154"
+            "text-color": "#DAA520",
+            "selected-text-color": "#DAA520"
         },
         "Alert": {
             "text-color": "#EC6C64",
@@ -168,7 +168,7 @@
         "MarkBreakpointReached": "#DAA520",
         "MarkBreakpointDisabled": "#BA83A5",
         "MarkExecution": "#37496B",
-        "MarkWarning": "#CE8154",
+        "MarkWarning": "#DAA520",
         "MarkError": "#EC6C64",
         "TemplateBackground": "#152540",
         "TemplatePlaceholder": "#314151",

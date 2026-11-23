@@ -2,6 +2,7 @@
 // themes/vscode/. Workbench colors come from the palette by role; code colors
 // come from the shared syntax roles (scripts/lib/syntax.mjs).
 import { SYNTAX, STYLE } from '../lib/syntax.mjs';
+import { statusColors } from '../lib/status.mjs';
 
 const OUT = 'themes/vscode/themes';
 export const FILES = { ale: 'ile-oyo-ale.json', osan: 'ile-oyo-osan.json' };
@@ -19,6 +20,7 @@ const a = (hex, alpha) => `${hex.slice(0, 7)}${alpha}`;
 export function workbench(v) {
   const p = v.palette;
   const u = v.ui;
+  const s = statusColors(v);
   const dark = v.mode === 'dark';
   const border = u.bg_darker;
   const ansiNames = ['Black', 'Red', 'Green', 'Yellow', 'Blue', 'Magenta', 'Cyan', 'White'];
@@ -27,7 +29,7 @@ export function workbench(v) {
     // Base
     foreground: p.fg,
     descriptionForeground: u.muted,
-    errorForeground: p.red,
+    errorForeground: s.error,
     focusBorder: a(p.blue, '99'),
     'selection.background': p.selection,
     'widget.shadow': dark ? '#00000066' : '#0000001F',
@@ -56,11 +58,11 @@ export function workbench(v) {
     'input.placeholderForeground': u.muted,
     'inputOption.activeBorder': p.red,
     'inputOption.activeBackground': a(p.red, '33'),
-    'inputValidation.errorBorder': p.red,
+    'inputValidation.errorBorder': s.error,
     'inputValidation.errorBackground': u.bg_light,
-    'inputValidation.warningBorder': p.yellow,
+    'inputValidation.warningBorder': s.warning,
     'inputValidation.warningBackground': u.bg_light,
-    'inputValidation.infoBorder': p.blue,
+    'inputValidation.infoBorder': s.info,
     'inputValidation.infoBackground': u.bg_light,
     'checkbox.background': u.bg_light,
     'checkbox.border': dark ? u.bg_lighter : u.bg_darker,
@@ -86,8 +88,8 @@ export function workbench(v) {
     'list.focusOutline': a(p.blue, '99'),
     'list.dropBackground': v.other.tab_drop_bg,
     'list.highlightForeground': p.yellow,
-    'list.errorForeground': p.red,
-    'list.warningForeground': p.yellow,
+    'list.errorForeground': s.error,
+    'list.warningForeground': s.warning,
     'tree.indentGuidesStroke': v.other.non_text,
 
     // Activity bar
@@ -165,9 +167,9 @@ export function workbench(v) {
     'editorInlayHint.foreground': p.comment,
     'editorInlayHint.background': a(u.bg_light, '80'),
     'editorGhostText.foreground': p.comment,
-    'editorError.foreground': p.red,
-    'editorWarning.foreground': p.yellow,
-    'editorInfo.foreground': p.blue,
+    'editorError.foreground': s.error,
+    'editorWarning.foreground': s.warning,
+    'editorInfo.foreground': s.info,
     'editorHint.foreground': p.cyan,
     'editorUnnecessaryCode.opacity': '#000000AA',
 
@@ -180,9 +182,9 @@ export function workbench(v) {
     'editorOverviewRuler.modifiedForeground': a(p.orange, '99'),
     'editorOverviewRuler.addedForeground': a(p.green, '99'),
     'editorOverviewRuler.deletedForeground': a(p.red, '99'),
-    'editorOverviewRuler.errorForeground': a(p.red, 'CC'),
-    'editorOverviewRuler.warningForeground': a(p.yellow, 'CC'),
-    'editorOverviewRuler.infoForeground': a(p.blue, 'CC'),
+    'editorOverviewRuler.errorForeground': a(s.error, 'CC'),
+    'editorOverviewRuler.warningForeground': a(s.warning, 'CC'),
+    'editorOverviewRuler.infoForeground': a(s.info, 'CC'),
     'editorOverviewRuler.findMatchForeground': a(p.orange, 'CC'),
     'editorOverviewRuler.selectionHighlightForeground': a(p.selection, 'CC'),
 
@@ -268,9 +270,9 @@ export function workbench(v) {
     'notifications.border': u.bg_darker,
     'notificationCenterHeader.background': u.bg_darker,
     'notificationLink.foreground': p.blue,
-    'notificationsErrorIcon.foreground': p.red,
-    'notificationsWarningIcon.foreground': p.yellow,
-    'notificationsInfoIcon.foreground': p.blue,
+    'notificationsErrorIcon.foreground': s.error,
+    'notificationsWarningIcon.foreground': s.warning,
+    'notificationsInfoIcon.foreground': s.info,
 
     // Git decorations
     'gitDecoration.modifiedResourceForeground': p.orange,

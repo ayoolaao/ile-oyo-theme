@@ -8,6 +8,7 @@
 // highlights are blended onto the background, like the VS Code theme's.
 import { blend } from '../lib/palette.mjs';
 import { SYNTAX, STYLE } from '../lib/syntax.mjs';
+import { STATUS, statusColors } from '../lib/status.mjs';
 
 export const DIR = 'themes/kate';
 export const FILES = { ale: 'ile-oyo-ale.theme', osan: 'ile-oyo-osan.theme' };
@@ -41,10 +42,10 @@ export const STYLE_MAP = {
   Annotation: 'comment', // @param in doc comments (bold, below)
   CommentVar: 'parameter', // the name after @param
   RegionMarker: '=purple',
-  Information: '=blue',
-  Warning: '=orange',
+  Information: `=${STATUS.info}`,
+  Warning: `=${STATUS.warning}`,
   Alert: '=red', // TODO, FIXME
-  Error: '=red',
+  Error: `=${STATUS.error}`,
   Others: 'property',
 };
 
@@ -108,8 +109,8 @@ export function editorColors(v) {
     MarkBreakpointReached: p.yellow,
     MarkBreakpointDisabled: p.purple,
     MarkExecution: p.selection,
-    MarkWarning: p.orange,
-    MarkError: p.red,
+    MarkWarning: statusColors(v).warning,
+    MarkError: statusColors(v).error,
 
     TemplateBackground: u.bg_dark,
     TemplatePlaceholder: on(p.green, '33'),

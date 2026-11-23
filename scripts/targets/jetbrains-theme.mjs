@@ -17,6 +17,7 @@
 // stay JetBrains'.
 import { readFileSync } from 'node:fs';
 import { blend } from '../lib/palette.mjs';
+import { statusColors } from '../lib/status.mjs';
 import { FILES as SCHEME_FILES, scheme } from './jetbrains.mjs';
 
 export const DIR = 'themes/jetbrains/plugin';
@@ -30,6 +31,7 @@ export const providerId = (id) => `ile-oyo-${id}`;
 export function namedColors(v) {
   const p = v.palette;
   const u = v.ui;
+  const s = statusColors(v);
   const dark = v.mode === 'dark';
   const on = (hex, alpha) => blend(hex + alpha, p.bg);
   const field = dark ? u.bg_darker : u.bg_lighter;
@@ -42,9 +44,9 @@ export function namedColors(v) {
     'text-secondary': u.muted,
     'text-disabled': p.comment,
     'text-link': p.blue,
-    'text-error': p.red,
-    'text-warning': p.yellow,
-    'text-success': p.green,
+    'text-error': s.error,
+    'text-warning': s.warning,
+    'text-success': s.success,
     'text-over-accent': p.bg,
     'editor-text': p.fg,
     'popup-completion-match-text': p.blue,
@@ -95,18 +97,18 @@ export function namedColors(v) {
     'accent-brand-border': p.blue,
     'accent-brand-bg-secondary': on(p.blue, '33'),
     'accent-brand-border-secondary': on(p.blue, '80'),
-    'accent-error-bg': p.red,
-    'accent-error-border': p.red,
-    'accent-error-bg-secondary': on(p.red, '33'),
-    'accent-error-border-secondary': on(p.red, '80'),
-    'accent-warning-bg': p.yellow,
-    'accent-warning-border': p.yellow,
-    'accent-warning-bg-secondary': on(p.yellow, '33'),
-    'accent-warning-border-secondary': on(p.yellow, '80'),
-    'accent-success-bg': p.green,
-    'accent-success-border': p.green,
-    'accent-success-bg-secondary': on(p.green, '33'),
-    'accent-success-border-secondary': on(p.green, '80'),
+    'accent-error-bg': s.error,
+    'accent-error-border': s.error,
+    'accent-error-bg-secondary': on(s.error, '33'),
+    'accent-error-border-secondary': on(s.error, '80'),
+    'accent-warning-bg': s.warning,
+    'accent-warning-border': s.warning,
+    'accent-warning-bg-secondary': on(s.warning, '33'),
+    'accent-warning-border-secondary': on(s.warning, '80'),
+    'accent-success-bg': s.success,
+    'accent-success-border': s.success,
+    'accent-success-bg-secondary': on(s.success, '33'),
+    'accent-success-border-secondary': on(s.success, '80'),
     'accent-neutral-bg': p.comment,
     'accent-ai-bg': on(p.purple, '33'),
     'accent-ai-border': p.purple,

@@ -64,6 +64,23 @@ accents (`--ile-red`, `-orange`, `-yellow`, `-green`, `-cyan`, `-blue`,
 `-bg-light`, `-bg-lighter`, `-float`), `--ile-line-highlight`,
 `--ile-non-text`, `--ile-tab-drop-bg`, and `--ile-ansi-0` to `--ile-ansi-15`.
 
+### Status colors
+
+`--ile-error`, `--ile-warning`, `--ile-info` and `--ile-success` (the red,
+yellow, blue and green accents) for status text and icons, each with a tinted
+surface, `--ile-error-bg` and so on, for banners, badges and alerts. Put the
+normal text color on the tinted surface and use the status color for its border
+or icon; status-colored text on its own tint is below 4.5:1.
+
+```css
+.alert-error {
+  background: var(--ile-error-bg);
+  color: var(--ile-fg);
+  border-left: 4px solid var(--ile-error);
+}
+.field-hint.is-invalid { color: var(--ile-error); }
+```
+
 ## Syntax highlighting
 
 ```html
@@ -93,6 +110,7 @@ the active variant.
 
 .note { color: ile.$ile-ale-yellow; }
 .card { background: map.get(ile.$ile-oyo, 'osan', 'bg'); }
+.warn { background: map.get(ile.$ile-osan, 'warning-bg'); border-color: ile.$ile-osan-warning; }
 ```
 
 Every variable is `!default`, so you can override it before `@use ... with (...)`.
@@ -100,11 +118,13 @@ Every variable is `!default`, so you can override it before `@use ... with (...)
 ## JavaScript / TypeScript
 
 ```js
-import { ale, osan, syntax } from 'ile-oyo-theme';
+import { ale, osan, syntax, status } from 'ile-oyo-theme';
 
 ale.colors.bg;              // "#1A2B4C"
 osan.ansi[1];               // ANSI red in Ọ̀sán
 ale.colors[syntax.keyword]; // the keyword color in Alẹ́
+ale.status.warning;         // the warning color in Alẹ́ (same as ale.colors[status.warning])
+osan.status.errorBg;        // tinted surface for an error banner in Ọ̀sán
 ```
 
 These files are generated from `palette/ile-oyo.json` by `npm run build`.

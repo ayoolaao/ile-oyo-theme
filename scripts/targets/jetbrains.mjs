@@ -14,6 +14,7 @@
 // underline, 2 wave underline, 3 strikeout (as in IntelliJ's own schemes).
 import { blend } from '../lib/palette.mjs';
 import { SYNTAX } from '../lib/syntax.mjs';
+import { statusColors } from '../lib/status.mjs';
 
 export const DIR = 'themes/jetbrains';
 export const FILES = { ale: 'Ile-Oyo-Ale.icls', osan: 'Ile-Oyo-Osan.icls' };
@@ -123,6 +124,7 @@ const ANSI = ['BLACK', 'RED', 'GREEN', 'YELLOW', 'BLUE', 'MAGENTA', 'CYAN'];
 export function attributes(v) {
   const p = v.palette;
   const u = v.ui;
+  const s = statusColors(v);
   const on = (hex, alpha) => blend(hex + alpha, p.bg);
   // Inlays and folded text: a surface that moves away from the text color
   // (darker in Alẹ́, lighter in Ọ̀sán), so their text keeps 4.5:1, as in Typora.
@@ -140,8 +142,8 @@ export function attributes(v) {
     };
   }
   Object.assign(out, {
-    ERRORS_ATTRIBUTES: { EFFECT_COLOR: p.red, EFFECT_TYPE: WAVE, ERROR_STRIPE_COLOR: p.red },
-    WARNING_ATTRIBUTES: { EFFECT_COLOR: p.yellow, EFFECT_TYPE: WAVE, ERROR_STRIPE_COLOR: p.yellow },
+    ERRORS_ATTRIBUTES: { EFFECT_COLOR: s.error, EFFECT_TYPE: WAVE, ERROR_STRIPE_COLOR: s.error },
+    WARNING_ATTRIBUTES: { EFFECT_COLOR: s.warning, EFFECT_TYPE: WAVE, ERROR_STRIPE_COLOR: s.warning },
     INFO_ATTRIBUTES: { EFFECT_COLOR: p.comment, EFFECT_TYPE: WAVE, ERROR_STRIPE_COLOR: p.comment },
     TYPO: { EFFECT_COLOR: p.cyan, EFFECT_TYPE: WAVE },
     WRONG_REFERENCES_ATTRIBUTES: { FOREGROUND: p.red },
@@ -167,7 +169,7 @@ export function attributes(v) {
     EXECUTIONPOINT_ATTRIBUTES: { BACKGROUND: on(p.blue, '40') },
     BOOKMARKS_ATTRIBUTES: { ERROR_STRIPE_COLOR: p.blue },
     CONSOLE_NORMAL_OUTPUT: { FOREGROUND: p.fg },
-    CONSOLE_ERROR_OUTPUT: { FOREGROUND: p.red },
+    CONSOLE_ERROR_OUTPUT: { FOREGROUND: s.error },
     CONSOLE_SYSTEM_OUTPUT: { FOREGROUND: p.comment },
     CONSOLE_USER_INPUT: { FOREGROUND: p.green, FONT_TYPE: ITALIC },
   });
