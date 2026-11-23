@@ -15,6 +15,7 @@
 // color with the background it sits on; tests check them for 4.5:1.
 import { blend } from '../lib/palette.mjs';
 import { SYNTAX } from '../lib/syntax.mjs';
+import { STATUS } from '../lib/status.mjs';
 
 export const DIR = 'themes/typora';
 export const FILES = { ale: 'ile-oyo-ale.css', osan: 'ile-oyo-osan.css' };
@@ -112,7 +113,7 @@ export const CODE = {
   bracket: 'fg',
   negative: 'red',
   positive: 'green',
-  error: 'red',
+  error: STATUS.error,
   em: 'fg italic',
   strong: 'fg bold',
   strikethrough: 'fg strike',
@@ -259,16 +260,16 @@ code, tt, kbd {
 }
 kbd { border: 1px solid ${c.border}; box-shadow: inset 0 -1px 0 ${c.border}; }
 #write pre.md-meta-block { background: ${c.surface}; color: ${c.comment}; border-radius: 6px; }
-.md-alert-text-note { color: ${c.blue}; }
-.md-alert-text-tip { color: ${c.green}; }
+.md-alert-text-note { color: ${c[STATUS.info]}; }
+.md-alert-text-tip { color: ${c[STATUS.success]}; }
 .md-alert-text-important { color: ${c.purple}; }
-.md-alert-text-warning { color: ${c.yellow}; }
-.md-alert-text-caution { color: ${c.red}; }
-.md-alert-note { border-left-color: ${c.blue}; }
-.md-alert-tip { border-left-color: ${c.green}; }
+.md-alert-text-warning { color: ${c[STATUS.warning]}; }
+.md-alert-text-caution { color: ${c[STATUS.error]}; }
+.md-alert-note { border-left-color: ${c[STATUS.info]}; }
+.md-alert-tip { border-left-color: ${c[STATUS.success]}; }
 .md-alert-important { border-left-color: ${c.purple}; }
-.md-alert-warning { border-left-color: ${c.yellow}; }
-.md-alert-caution { border-left-color: ${c.red}; }
+.md-alert-warning { border-left-color: ${c[STATUS.warning]}; }
+.md-alert-caution { border-left-color: ${c[STATUS.error]}; }
 .md-toc-item { color: ${c.link}; }
 .md-inline-math svg { color: ${c.fg}; }
 

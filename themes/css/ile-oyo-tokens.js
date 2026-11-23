@@ -18,6 +18,16 @@ export const ale = {
     "purple": "#BA83A5",
     "pink": "#E86A8F"
   },
+  status: {
+    "error": "#EC6C64",
+    "errorBg": "#393550",
+    "warning": "#DAA520",
+    "warningBg": "#373D45",
+    "info": "#6E9DF5",
+    "infoBg": "#273C65",
+    "success": "#8F9964",
+    "successBg": "#2B3B50"
+  },
   ui: {
     "bgDarker": "#0F1F3C",
     "bgDark": "#152540",
@@ -67,6 +77,16 @@ export const osan = {
     "blue": "#35589D",
     "purple": "#6B3A5A",
     "pink": "#A12854"
+  },
+  status: {
+    "error": "#A52A2A",
+    "errorBg": "#E8CAB6",
+    "warning": "#876002",
+    "warningBg": "#E4D2B0",
+    "info": "#35589D",
+    "infoBg": "#D8D1C7",
+    "success": "#4B5320",
+    "successBg": "#DBD0B4"
   },
   ui: {
     "bgDarker": "#E4D6BE",
@@ -125,5 +145,14 @@ export const syntax = {
   "strong": "orange"
 };
 
-export default { ale, osan, syntax };
+/** Status role → key in `colors`. */
+
+export const status = {
+  "error": "red",
+  "warning": "yellow",
+  "info": "blue",
+  "success": "green"
+};
+
+export default { ale, osan, syntax, status };
 

@@ -58,6 +58,7 @@ palette/ile-oyo.json           the only place colors are defined (both variants)
 
 scripts/lib/palette.mjs        load + validate (rules below); shared by check and build
 scripts/lib/syntax.mjs         syntax roles (below), shared by every code-coloring target
+scripts/lib/status.mjs         status roles (below), shared by every target that shows status
 scripts/lib/changelog.mjs      reads one version's CHANGELOG entry
 scripts/check-palette.mjs      npm run check
 scripts/build.mjs              npm run build: validate, then run every target
@@ -150,6 +151,31 @@ bold: heading, strong).
 | tag | pink | heading | purple |
 | regex | red | emphasis / strong | yellow / orange |
 
+## Status roles
+
+Which palette color means error, warning, info and success. Defined once in
+`scripts/lib/status.mjs` (`STATUS`, also exported from the JS tokens) and used
+by every target that shows status (CSS, VS Code, JetBrains, Kate, Typora). They
+are aliases of accents, not new colors, so the contrast rules above already
+cover them as text on `bg`.
+
+| Role | Color | Seen as |
+| ---- | ----- | ------- |
+| error | red | errors, failed validation, Typora "caution" alerts |
+| warning | yellow | warnings, Typora "warning" alerts |
+| info | blue | info markers, Typora "note" alerts |
+| success | green | success, Typora "tip" alerts |
+
+Each role also has a tinted surface for banners, badges and alerts: the status
+color at 15% over `bg` (`statusColors` in `status.mjs`). It carries `fg` text
+(8.9:1 or more); the status color on it is for the border or icon (3:1 or
+more, WCAG 1.4.11), not for text, because the accents are tuned to 4.6:1 on
+`bg` and lose that on any tint. `tests/status.test.mjs` checks both, and that
+every target uses the same mapping.
+
+Àlàárì red is both the brand accent and the error color. Status uses it as-is
+for now; whether error needs its own red is an open design question.
+
 ## Target: iTerm2
 
 One preset per variant: `themes/iterm/Ile-Oyo-Ale.itermcolors` and
@@ -173,10 +199,10 @@ Files in `themes/css/`:
 
 | File | Contents |
 | ---- | -------- |
-| `ile-oyo.css` | `--ile-*` variables for both variants |
+| `ile-oyo.css` | `--ile-*` variables for both variants, including status (`--ile-error`, `--ile-error-bg`, …) |
 | `ile-oyo-highlight.css` | Prism + highlight.js token rules and Shiki `--shiki-*` variables, all via `--ile-*` |
 | `_ile-oyo.scss` | `$ile-<variant>-<token>` (all `!default`), maps `$ile-ale`, `$ile-osan`, `$ile-oyo` |
-| `ile-oyo-tokens.js`, `.d.ts` | ES module: `ale`, `osan`, `syntax`, default export |
+| `ile-oyo-tokens.js`, `.d.ts` | ES module: `ale`, `osan` (each with `status`), `syntax`, `status`, default export |
 
 Variant selection: Ọ̀sán by default, Alẹ́ under `prefers-color-scheme: dark`;
 `data-ile-theme="ale" | "osan"` on any element overrides it for that subtree.
@@ -309,7 +335,8 @@ One KSyntaxHighlighting color theme (JSON) per variant in `themes/kate/`
 Each text style maps to a syntax role; KDE-only styles: Variable (shell and
 PHP `$variables`) and CommentVar use the parameter color, preprocessor and
 attributes orange (as in Xcode), escapes pink, regular expressions red,
-TODO/FIXME (Alert) bold red. Every color is opaque, because Qt reads alpha as
+TODO/FIXME (Alert) bold red. Information, Warning and Error (and the warning and
+error marks) follow the status roles. Every color is opaque, because Qt reads alpha as
 `#AARRGGBB`: the current line, search, replace and bracket highlights are
 palette colors blended onto the background (`blend` in
 `scripts/lib/palette.mjs`), with the same strengths as the VS Code theme.

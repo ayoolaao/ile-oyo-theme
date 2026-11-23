@@ -1,8 +1,9 @@
 // The generated JS tokens must match the palette exactly.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import tokens, { ale, osan, syntax } from '../themes/css/ile-oyo-tokens.js';
+import tokens, { ale, osan, syntax, status } from '../themes/css/ile-oyo-tokens.js';
 import { loadPalette } from '../scripts/lib/palette.mjs';
+import { STATUS, statusColors } from '../scripts/lib/status.mjs';
 
 const palette = loadPalette();
 const camel = (k) => k.replace(/_(\w)/g, (_, c) => c.toUpperCase());
@@ -16,6 +17,9 @@ for (const [id, v] of Object.entries({ ale, osan })) {
     assert.deepEqual(v.other, Object.fromEntries(Object.entries(p.other).map(([k, x]) => [camel(k), x])));
     assert.equal(v.mode, p.mode);
   });
+  test(`${id}: status colors match the status roles`, () => {
+    assert.deepEqual(v.status, statusColors(p));
+  });
 }
 
 test('every syntax role points at a palette color', () => {
@@ -24,8 +28,13 @@ test('every syntax role points at a palette color', () => {
   }
 });
 
-test('default export has both variants and syntax', () => {
+test('status roles match scripts/lib/status.mjs', () => {
+  assert.deepEqual(status, STATUS);
+});
+
+test('default export has both variants, syntax and status', () => {
   assert.equal(tokens.ale, ale);
   assert.equal(tokens.osan, osan);
   assert.equal(tokens.syntax, syntax);
+  assert.equal(tokens.status, status);
 });

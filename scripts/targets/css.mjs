@@ -3,6 +3,7 @@
 // the palette; the highlighting rules only reference CSS variables, so code
 // blocks follow whichever variant (Alẹ́ / Ọ̀sán) is active.
 import { SYNTAX } from '../lib/syntax.mjs';
+import { STATUS, statusColors } from '../lib/status.mjs';
 
 const OUT = 'themes/css';
 const ATTR = 'data-ile-theme';
@@ -17,6 +18,7 @@ const header = (palette, what) =>
 function tokens(v) {
   const t = {};
   for (const [k, hex] of Object.entries(v.palette)) t[k] = hex;
+  for (const [k, hex] of Object.entries(statusColors(v))) t[k.replace(/Bg$/, '-bg')] = hex;
   for (const [k, hex] of Object.entries(v.ui)) t[`ui-${k.replace(/_/g, '-')}`] = hex;
   for (const [k, hex] of Object.entries(v.other)) t[k.replace(/_/g, '-')] = hex;
   for (let i = 0; i < 16; i++) t[`ansi-${i}`] = v.ansi[`color${i}`];
@@ -155,6 +157,7 @@ function jsTokens(palette) {
       name: JSON.stringify(v.name),
       mode: JSON.stringify(v.mode),
       colors: v.palette,
+      status: statusColors(v),
       ui: Object.fromEntries(Object.entries(v.ui).map(([k, x]) => [camel(k), x])),
       ansi: Array.from({ length: 16 }, (_, i) => v.ansi[`color${i}`]),
       other: Object.fromEntries(Object.entries(v.other).map(([k, x]) => [camel(k), x])),
@@ -169,7 +172,10 @@ function jsTokens(palette) {
     `/** Syntax role → key in \`colors\`. */`,
     `export const syntax = ${JSON.stringify(SYNTAX, null, 2)};`,
     '',
-    `export default { ${Object.keys(palette.variants).join(', ')}, syntax };`,
+    `/** Status role → key in \`colors\`. */`,
+    `export const status = ${JSON.stringify(STATUS, null, 2)};`,
+    '',
+    `export default { ${Object.keys(palette.variants).join(', ')}, syntax, status };`,
     '',
   ].join('\n\n').replace(/\n\n\n+/g, '\n\n');
 }
@@ -184,6 +190,11 @@ export interface IleOyoVariant {
   colors: {
 ${keys(v.palette)}
   };
+  /** Status colors (aliases of \`colors\`) and their tinted surfaces. Put fg
+   * text on a *Bg surface; the status color is for its border or icon. */
+  status: {
+${keys(statusColors(v))}
+  };
   ui: {
 ${keys(v.ui, camel)}
   };
@@ -195,10 +206,12 @@ ${keys(v.other, camel)}
 }
 
 export type SyntaxRole = ${Object.keys(SYNTAX).map((k) => `'${k}'`).join(' | ')};
+export type StatusRole = ${Object.keys(STATUS).map((k) => `'${k}'`).join(' | ')};
 
 ${Object.keys(palette.variants).map((id) => `export declare const ${id}: IleOyoVariant;`).join('\n')}
 export declare const syntax: Record<SyntaxRole, keyof IleOyoVariant['colors']>;
-declare const _default: { ${Object.keys(palette.variants).map((id) => `${id}: IleOyoVariant`).join('; ')}; syntax: typeof syntax };
+export declare const status: Record<StatusRole, keyof IleOyoVariant['colors']>;
+declare const _default: { ${Object.keys(palette.variants).map((id) => `${id}: IleOyoVariant`).join('; ')}; syntax: typeof syntax; status: typeof status };
 export default _default;
 `;
 }
@@ -207,6 +220,9 @@ export default function css(palette) {
   // Every syntax role must point at a real palette key.
   for (const [role, key] of Object.entries(SYNTAX)) {
     if (!(key in palette.variants.ale.palette)) throw new Error(`css: syntax role "${role}" uses unknown token "${key}"`);
+  }
+  for (const [role, key] of Object.entries(STATUS)) {
+    if (!(key in palette.variants.ale.palette)) throw new Error(`css: status role "${role}" uses unknown token "${key}"`);
   }
   return [
     { path: `${OUT}/ile-oyo.css`, contents: variablesCss(palette) },

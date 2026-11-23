@@ -15,6 +15,14 @@ $ile-ale-cyan: #6B9D9D !default;
 $ile-ale-blue: #6E9DF5 !default;
 $ile-ale-purple: #BA83A5 !default;
 $ile-ale-pink: #E86A8F !default;
+$ile-ale-error: #EC6C64 !default;
+$ile-ale-error-bg: #393550 !default;
+$ile-ale-warning: #DAA520 !default;
+$ile-ale-warning-bg: #373D45 !default;
+$ile-ale-info: #6E9DF5 !default;
+$ile-ale-info-bg: #273C65 !default;
+$ile-ale-success: #8F9964 !default;
+$ile-ale-success-bg: #2B3B50 !default;
 $ile-ale-ui-bg-darker: #0F1F3C !default;
 $ile-ale-ui-bg-dark: #152540 !default;
 $ile-ale-ui-bg-light: #253550 !default;
@@ -53,6 +61,14 @@ $ile-ale: (
   'blue': $ile-ale-blue,
   'purple': $ile-ale-purple,
   'pink': $ile-ale-pink,
+  'error': $ile-ale-error,
+  'error-bg': $ile-ale-error-bg,
+  'warning': $ile-ale-warning,
+  'warning-bg': $ile-ale-warning-bg,
+  'info': $ile-ale-info,
+  'info-bg': $ile-ale-info-bg,
+  'success': $ile-ale-success,
+  'success-bg': $ile-ale-success-bg,
   'ui-bg-darker': $ile-ale-ui-bg-darker,
   'ui-bg-dark': $ile-ale-ui-bg-dark,
   'ui-bg-light': $ile-ale-ui-bg-light,
@@ -93,6 +109,14 @@ $ile-osan-cyan: #2A5B5C !default;
 $ile-osan-blue: #35589D !default;
 $ile-osan-purple: #6B3A5A !default;
 $ile-osan-pink: #A12854 !default;
+$ile-osan-error: #A52A2A !default;
+$ile-osan-error-bg: #E8CAB6 !default;
+$ile-osan-warning: #876002 !default;
+$ile-osan-warning-bg: #E4D2B0 !default;
+$ile-osan-info: #35589D !default;
+$ile-osan-info-bg: #D8D1C7 !default;
+$ile-osan-success: #4B5320 !default;
+$ile-osan-success-bg: #DBD0B4 !default;
 $ile-osan-ui-bg-darker: #E4D6BE !default;
 $ile-osan-ui-bg-dark: #EEDDC2 !default;
 $ile-osan-ui-bg-light: #F3EDE4 !default;
@@ -131,6 +155,14 @@ $ile-osan: (
   'blue': $ile-osan-blue,
   'purple': $ile-osan-purple,
   'pink': $ile-osan-pink,
+  'error': $ile-osan-error,
+  'error-bg': $ile-osan-error-bg,
+  'warning': $ile-osan-warning,
+  'warning-bg': $ile-osan-warning-bg,
+  'info': $ile-osan-info,
+  'info-bg': $ile-osan-info-bg,
+  'success': $ile-osan-success,
+  'success-bg': $ile-osan-success-bg,
   'ui-bg-darker': $ile-osan-ui-bg-darker,
   'ui-bg-dark': $ile-osan-ui-bg-dark,
   'ui-bg-light': $ile-osan-ui-bg-light,
